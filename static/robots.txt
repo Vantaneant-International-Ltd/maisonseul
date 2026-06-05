@@ -1,0 +1,5 @@
+# allow crawling everything by default
+User-agent: *
+Allow: /
+
+Sitemap: https://maisonseul.com/sitemap.xml
