@@ -14,7 +14,7 @@
 	<title>Maison Seul®</title>
 	<meta
 		name="description"
-		content="Maison Seul — house of absence. Solitude is the last luxury. One house in each city. Home: Dublin. Coming 2027."
+		content="Maison Seul — house of absence. One house in each city. Station Dublin active. Deployment 2027."
 	/>
 	<meta name="theme-color" content="#050507" />
 
@@ -23,7 +23,7 @@
 	<meta property="og:title" content="Maison Seul® — House of Absence" />
 	<meta
 		property="og:description"
-		content="Solitude is the last luxury. One house in each city. Home: Dublin. Coming 2027."
+		content="One house in each city. Station Dublin active. Deployment 2027."
 	/>
 	<meta property="og:url" content="https://maisonseul.com/" />
 	<meta name="twitter:card" content="summary_large_image" />
@@ -40,6 +40,8 @@
 		--ink-faint: rgba(233, 234, 236, 0.24);
 		--void: #050507;
 		--hairline: rgba(233, 234, 236, 0.12);
+		/* the single cold signal — used only for live/active state (ICA-red) */
+		--signal: #c5302a;
 
 		--sans: 'Inter', system-ui, -apple-system, sans-serif;
 		--mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;

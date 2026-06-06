@@ -11,17 +11,15 @@
 	let wordmark = $state(WORDMARK);
 	let desc = $state(DESC);
 
-	// Flagship network. Dublin is the only revealed node (HOME); the rest stay
-	// redacted and only flicker glimpses of cities — the model is "one house per
-	// city" but no future opening is actually announced here.
+	// Deployment sites. Dublin is the only active station; the rest stay
+	// classified and only flicker glimpses of cities before re-redacting.
 	const REDACT = '██████';
 	let city2 = $state(REDACT);
 	let city3 = $state(REDACT);
 	let city4 = $state(REDACT);
-	// Pool the dormant nodes scan through — never settling on any one.
 	const POOL = ['SEOUL', 'TOKYO', 'MILAN', 'LONDON', 'NEW YORK', 'SHANGHAI', 'BERLIN', 'ANTWERP'];
 
-	// Countdown — placeholder target ("Coming 2027").
+	// Mission countdown — placeholder target ("2027").
 	const TARGET = new Date('2027-01-01T00:00:00Z').getTime();
 	let days = $state('000');
 	let hrs = $state('00');
@@ -35,6 +33,23 @@
 		mins = pad(Math.floor((s % 3600) / 60));
 		secs = pad(s % 60);
 	}
+
+	// --- barcode (Agent-47 serial) — fixed pattern, deterministic ------------
+	const PATTERN = [
+		2, 1, 1, 3, 1, 2, 1, 1, 2, 3, 1, 1, 2, 1, 3, 1, 2, 1, 1, 2, 2, 1, 3, 1, 1, 2, 1, 1, 3, 2, 1, 2,
+		1, 1, 2, 1, 3, 1, 2, 1, 1, 3, 1, 2, 2, 1, 1, 2
+	];
+	const UNIT = 2;
+	const bars: { x: number; w: number }[] = [];
+	{
+		let bx = 0;
+		for (let i = 0; i < PATTERN.length; i++) {
+			const w = PATTERN[i] * UNIT;
+			if (i % 2 === 0) bars.push({ x: bx, w });
+			bx += w;
+		}
+	}
+	const barW = bars.reduce((m, b) => Math.max(m, b.x + b.w), 0);
 
 	// --- decrypt / scramble --------------------------------------------------
 	const GLYPHS = '▚▞#%&/\\<>[]{}=±0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -64,16 +79,16 @@
 		return () => cancelAnimationFrame(raf);
 	}
 
-	// --- particles (drifting dust) ------------------------------------------
+	// --- snow (Max Payne) ----------------------------------------------------
 	let canvas: HTMLCanvasElement;
-	function startDust() {
+	function startSnow() {
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return () => {};
 		let raf = 0;
 		let w = 0;
 		let h = 0;
 		let dpr = 1;
-		type P = { x: number; y: number; r: number; vx: number; vy: number; a: number; tw: number };
+		type P = { x: number; y: number; r: number; vy: number; drift: number; tw: number; a: number };
 		let ps: P[] = [];
 		const seed = () => {
 			dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -81,30 +96,30 @@
 			h = canvas.height = Math.floor(window.innerHeight * dpr);
 			canvas.style.width = window.innerWidth + 'px';
 			canvas.style.height = window.innerHeight + 'px';
-			const count = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 26000));
+			const count = Math.min(110, Math.floor((window.innerWidth * window.innerHeight) / 16000));
 			ps = Array.from({ length: count }, () => ({
 				x: Math.random() * w,
 				y: Math.random() * h,
-				r: (Math.random() * 1.3 + 0.3) * dpr,
-				vx: (Math.random() - 0.5) * 0.12 * dpr,
-				vy: -(Math.random() * 0.18 + 0.04) * dpr,
-				a: Math.random() * 0.4 + 0.1,
-				tw: Math.random() * Math.PI * 2
+				r: (Math.random() * 1.4 + 0.4) * dpr,
+				vy: (Math.random() * 0.4 + 0.18) * dpr,
+				drift: (Math.random() * 0.5 + 0.2) * dpr,
+				tw: Math.random() * Math.PI * 2,
+				a: Math.random() * 0.5 + 0.2
 			}));
 		};
 		const draw = () => {
 			ctx.clearRect(0, 0, w, h);
 			for (const p of ps) {
-				p.x += p.vx;
+				p.tw += 0.01;
 				p.y += p.vy;
-				p.tw += 0.02;
-				if (p.y < -4) p.y = h + 4;
-				if (p.x < -4) p.x = w + 4;
-				if (p.x > w + 4) p.x = -4;
-				const a = p.a * (0.6 + 0.4 * Math.sin(p.tw));
+				p.x += Math.sin(p.tw) * p.drift;
+				if (p.y > h + 4) {
+					p.y = -4;
+					p.x = Math.random() * w;
+				}
 				ctx.beginPath();
 				ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-				ctx.fillStyle = `rgba(208, 216, 226, ${a})`;
+				ctx.fillStyle = `rgba(226, 232, 238, ${p.a})`;
 				ctx.fill();
 			}
 			raf = requestAnimationFrame(draw);
@@ -120,11 +135,11 @@
 
 	onMount(() => {
 		console.log(
-			'%c⌖ MAISON SEUL',
+			'%c⌖ MAISON SEUL // CLASSIFIED',
 			'color:#e9eaec;font:300 14px ui-monospace,monospace;letter-spacing:4px'
 		);
 		console.log(
-			'%csolitude is the last luxury.  one house in each city.  ·  MMXXVII',
+			'%cdeployment pending.  station dublin active.  ·  MMXXVII',
 			'color:#5d6470;font:12px ui-monospace,monospace'
 		);
 
@@ -138,11 +153,10 @@
 		const timeouts: ReturnType<typeof setTimeout>[] = [];
 
 		if (!still) {
-			cleanups.push(startDust());
+			cleanups.push(startSnow());
 			timeouts.push(setTimeout(() => scramble(WORDMARK, (s) => (wordmark = s), 1300), 280));
 			timeouts.push(setTimeout(() => scramble(DESC, (s) => (desc = s), 1100), 700));
 
-			// Dormant nodes flicker glimpses of cities, then re-redact.
 			const setters = [(s: string) => (city2 = s), (s: string) => (city3 = s), (s: string) => (city4 = s)];
 			let turn = 0;
 			const glimpseId = setInterval(() => {
@@ -174,13 +188,13 @@
 
 <!-- Atmosphere -->
 <div class="atmos" aria-hidden="true">
-	<div class="field" style="transform: translate3d({mx * 16}px, {my * 16}px, 0)">
+	<div class="field" style="transform: translate3d({mx * 14}px, {my * 14}px, 0)">
 		<span class="fog fog-a"></span>
 		<span class="fog fog-b"></span>
 		<span class="fog fog-c"></span>
 	</div>
 	<div class="horizon"></div>
-	<canvas bind:this={canvas} class="dust"></canvas>
+	<canvas bind:this={canvas} class="snow"></canvas>
 	<div class="grain"></div>
 	<div class="vignette"></div>
 	<div class="scan"></div>
@@ -196,57 +210,64 @@
 	<span class="tag tag-tl">Maison&nbsp;Seul<sup>®</sup></span>
 	<span class="tag tag-tr">53.3498°&nbsp;N&nbsp;&nbsp;6.2603°&nbsp;W</span>
 	<span class="tag tag-bl">A&nbsp;VNTA&nbsp;company</span>
-	<span class="tag tag-br">Status&nbsp;—&nbsp;Dormant</span>
+	<span class="tag tag-br">Eyes&nbsp;only</span>
 </div>
 
-<main class:ready={alive} style="transform: translate3d({mx * -7}px, {my * -7}px, 0)">
+<main class:ready={alive} style="transform: translate3d({mx * -6}px, {my * -6}px, 0)">
 	<div class="stage">
 		<section class="lockup">
+			<p class="eyebrow" style="--i: 0"><span class="redact"></span>Classified<span class="redact"></span></p>
 			<h1 style="--i: 1"><span class="glyphs">{wordmark}</span><sup>®</sup></h1>
 			<p class="desc" style="--i: 2"><span class="glyphs">{desc}</span></p>
-			<p class="manifesto" style="--i: 3">Solitude is the last luxury.</p>
 		</section>
 
-		<section class="network" style="--i: 4">
-			<div class="net-head"><span class="hr"></span>One house · each city<span class="hr"></span></div>
+		<section class="sites" style="--i: 3">
+			<div class="net-head"><span class="hr"></span>Deployment sites<span class="hr"></span></div>
 			<div class="rows">
-				<div class="row home">
+				<div class="row active">
 					<span class="ix">01</span>
 					<span class="city">DUBLIN</span>
 					<span class="loc">53.35° N · 6.26° W</span>
-					<span class="st"><i class="dot on"></i>Home</span>
+					<span class="st"><i class="dot live"></i>Active · HQ</span>
 				</div>
 				<div class="row dormant">
 					<span class="ix">02</span>
 					<span class="city glyphs">{city2}</span>
-					<span class="loc">— · —</span>
-					<span class="st"><i class="dot off"></i>Dormant</span>
+					<span class="loc">[ redacted ]</span>
+					<span class="st"><i class="dot off"></i>Classified</span>
 				</div>
 				<div class="row dormant">
 					<span class="ix">03</span>
 					<span class="city glyphs">{city3}</span>
-					<span class="loc">— · —</span>
-					<span class="st"><i class="dot off"></i>Dormant</span>
+					<span class="loc">[ redacted ]</span>
+					<span class="st"><i class="dot off"></i>Classified</span>
 				</div>
 				<div class="row dormant">
 					<span class="ix">04</span>
 					<span class="city glyphs">{city4}</span>
-					<span class="loc">— · —</span>
-					<span class="st"><i class="dot off"></i>Dormant</span>
+					<span class="loc">[ redacted ]</span>
+					<span class="st"><i class="dot off"></i>Standby</span>
 				</div>
 			</div>
 		</section>
 	</div>
 
 	<div class="foot">
-		<div class="count" style="--i: 5" aria-label="Countdown to launch">
-			<span class="t">T&nbsp;minus</span>
+		<div class="count" style="--i: 4" aria-label="Mission countdown">
+			<span class="t">Deployment&nbsp;in</span>
 			<b>{days}</b><span class="c">:</span><b>{hrs}</b><span class="c">:</span><b>{mins}</b><span
 				class="c">:</span
 			><b>{secs}</b>
 		</div>
-		<p class="stamp" style="--i: 6">Dublin, Ireland · Coming MMXXVII</p>
-		<p class="micro" style="--i: 6">Made in the grey</p>
+
+		<div class="serial" style="--i: 5">
+			<svg class="barcode" viewBox="0 0 {barW} 30" width={barW} height="22" aria-hidden="true">
+				{#each bars as b}
+					<rect x={b.x} y="0" width={b.w} height="30" />
+				{/each}
+			</svg>
+			<span class="code">MS·0047·ÉIRE · DUBLIN STATION · MMXXVII</span>
+		</div>
 	</div>
 </main>
 
@@ -278,7 +299,7 @@
 		height: 70vw;
 		top: 2%;
 		left: 6%;
-		background: radial-gradient(closest-side, rgba(150, 172, 198, 0.16), transparent 70%);
+		background: radial-gradient(closest-side, rgba(150, 172, 198, 0.15), transparent 70%);
 		animation: fade-in 3.5s ease forwards, drift-a 56s ease-in-out infinite alternate;
 	}
 	.fog-b {
@@ -286,7 +307,7 @@
 		height: 60vw;
 		bottom: 0;
 		right: 4%;
-		background: radial-gradient(closest-side, rgba(112, 134, 166, 0.14), transparent 70%);
+		background: radial-gradient(closest-side, rgba(112, 134, 166, 0.13), transparent 70%);
 		animation: fade-in 4s ease forwards, drift-b 74s ease-in-out infinite alternate;
 	}
 	.fog-c {
@@ -303,26 +324,26 @@
 		right: -10%;
 		bottom: -30%;
 		height: 60%;
-		background: radial-gradient(60% 100% at 50% 100%, rgba(140, 162, 190, 0.12), transparent 70%);
+		background: radial-gradient(60% 100% at 50% 100%, rgba(140, 162, 190, 0.1), transparent 70%);
 		filter: blur(30px);
 	}
-	.dust {
+	.snow {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
 		opacity: 0;
-		animation: fade-in 4s ease 0.4s forwards;
+		animation: fade-in 3s ease 0.3s forwards;
 	}
 	.vignette {
 		position: absolute;
 		inset: 0;
-		background: radial-gradient(125% 115% at 50% 42%, transparent 36%, rgba(0, 0, 0, 0.82));
+		background: radial-gradient(125% 115% at 50% 42%, transparent 34%, rgba(0, 0, 0, 0.84));
 	}
 	.grain {
 		position: absolute;
 		inset: -50%;
-		opacity: 0.05;
+		opacity: 0.06;
 		mix-blend-mode: overlay;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 		animation: grain 6s steps(4) infinite;
@@ -331,10 +352,10 @@
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
-		opacity: 0.5;
+		opacity: 0.55;
 		background: repeating-linear-gradient(
 			to bottom,
-			rgba(233, 234, 236, 0.025) 0 1px,
+			rgba(233, 234, 236, 0.028) 0 1px,
 			transparent 1px 3px
 		);
 		mix-blend-mode: overlay;
@@ -492,27 +513,25 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: clamp(1rem, 2.4vh, 1.4rem);
+		gap: clamp(1.1rem, 2.6vh, 1.5rem);
 	}
 
+	.eyebrow,
 	h1,
 	.desc,
-	.manifesto,
-	.network,
+	.sites,
 	.count,
-	.stamp,
-	.micro {
+	.serial {
 		opacity: 0;
 		transform: translateY(14px);
 		filter: blur(8px);
 	}
+	main.ready .eyebrow,
 	main.ready h1,
 	main.ready .desc,
-	main.ready .manifesto,
-	main.ready .network,
+	main.ready .sites,
 	main.ready .count,
-	main.ready .stamp,
-	main.ready .micro {
+	main.ready .serial {
 		opacity: 1;
 		transform: translateY(0);
 		filter: blur(0);
@@ -521,6 +540,25 @@
 			transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
 			filter 1.4s ease;
 		transition-delay: calc(var(--i) * 240ms);
+	}
+
+	/* classified eyebrow with redaction bars */
+	.eyebrow {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.7em;
+		font-family: var(--mono);
+		text-transform: uppercase;
+		letter-spacing: 0.42em;
+		text-indent: 0.42em;
+		font-size: 0.5rem;
+		color: var(--ink-dim);
+	}
+	.redact {
+		width: 1.4rem;
+		height: 0.62rem;
+		background: var(--ink-faint);
 	}
 
 	h1 {
@@ -550,25 +588,14 @@
 		margin: 0;
 		font-family: var(--mono);
 		text-transform: uppercase;
-		letter-spacing: 0.34em;
-		text-indent: 0.34em;
-		font-size: clamp(0.56rem, 1.7vw, 0.68rem);
+		letter-spacing: 0.36em;
+		text-indent: 0.36em;
+		font-size: clamp(0.56rem, 1.7vw, 0.7rem);
 		color: var(--ink-dim);
 	}
-	/* the one warm, human line — sans, not mono, sentence case */
-	.manifesto {
-		margin: 0.4em 0 0;
-		font-family: var(--sans);
-		font-weight: 300;
-		font-style: italic;
-		letter-spacing: 0.01em;
-		font-size: clamp(0.92rem, 2.8vw, 1.28rem);
-		line-height: 1.35;
-		color: var(--ink);
-	}
 
-	/* ====================== NETWORK MANIFEST ====================== */
-	.network {
+	/* ====================== DEPLOYMENT SITES ====================== */
+	.sites {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -593,7 +620,7 @@
 	.rows {
 		display: flex;
 		flex-direction: column;
-		width: min(92vw, 30rem);
+		width: min(92vw, 31rem);
 	}
 	.row {
 		display: grid;
@@ -616,7 +643,7 @@
 		letter-spacing: 0.18em;
 		white-space: pre;
 	}
-	.row.home .city {
+	.row.active .city {
 		color: var(--ink);
 	}
 	.row.dormant .city {
@@ -637,35 +664,35 @@
 		letter-spacing: 0.22em;
 		color: var(--ink-faint);
 	}
-	.row.home .st {
-		color: var(--ink-dim);
+	.row.active .st {
+		color: var(--signal);
 	}
 	.dot {
 		width: 5px;
 		height: 5px;
 		border-radius: 50%;
 	}
-	.dot.on {
-		background: var(--ink-dim);
-		box-shadow: 0 0 6px rgba(150, 172, 198, 0.6);
-		animation: pulse 2.6s ease-in-out infinite;
+	.dot.live {
+		background: var(--signal);
+		box-shadow: 0 0 7px var(--signal);
+		animation: pulse 1.8s ease-in-out infinite;
 	}
 	.dot.off {
 		border: 1px solid var(--ink-faint);
 	}
 	@keyframes pulse {
 		50% {
-			opacity: 0.4;
+			opacity: 0.35;
 		}
 	}
 
-	/* ====================== COUNTDOWN ====================== */
+	/* ====================== COUNTDOWN + SERIAL ====================== */
 	.count {
 		display: flex;
 		align-items: center;
 		gap: 0.5em;
 		font-family: var(--mono);
-		font-size: clamp(0.62rem, 1.9vw, 0.78rem);
+		font-size: clamp(0.62rem, 1.9vw, 0.8rem);
 		letter-spacing: 0.16em;
 		color: var(--ink-dim);
 		font-variant-numeric: tabular-nums;
@@ -673,7 +700,7 @@
 	.count .t {
 		text-transform: uppercase;
 		letter-spacing: 0.28em;
-		font-size: 0.82em;
+		font-size: 0.78em;
 		color: var(--ink-faint);
 		margin-right: 0.3em;
 	}
@@ -681,31 +708,33 @@
 		font-weight: 400;
 	}
 	.count .c {
-		color: var(--ink-faint);
-		animation: blink 2s steps(1) infinite;
+		color: var(--signal);
+		animation: blink 1.6s steps(1) infinite;
 	}
 	@keyframes blink {
 		50% {
-			opacity: 0.25;
+			opacity: 0.2;
 		}
 	}
-	.stamp {
-		margin: 0;
-		font-family: var(--mono);
-		text-transform: uppercase;
-		letter-spacing: 0.3em;
-		text-indent: 0.3em;
-		font-size: clamp(0.54rem, 1.6vw, 0.64rem);
-		color: var(--ink-faint);
+
+	.serial {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.65rem;
 	}
-	.micro {
-		margin: 0;
+	.barcode {
+		display: block;
+		fill: var(--ink-dim);
+		opacity: 0.7;
+	}
+	.code {
 		font-family: var(--mono);
 		text-transform: uppercase;
 		letter-spacing: 0.26em;
 		text-indent: 0.26em;
 		font-size: 0.46rem;
-		color: rgba(233, 234, 236, 0.16);
+		color: var(--ink-faint);
 	}
 
 	@media (max-width: 540px) {
@@ -719,6 +748,10 @@
 		.loc {
 			display: none;
 		}
+		.code {
+			font-size: 0.42rem;
+			letter-spacing: 0.18em;
+		}
 	}
 
 	/* ====================== REDUCED MOTION ====================== */
@@ -726,15 +759,15 @@
 		.fog,
 		.grain,
 		.beam,
-		.dust,
+		.snow,
 		.count .c,
-		.dot.on {
+		.dot.live {
 			animation: none;
 		}
 		.fog {
 			opacity: 1;
 		}
-		.dust {
+		.snow {
 			opacity: 0;
 		}
 		.field,
@@ -742,13 +775,12 @@
 			transition: none;
 			transform: none !important;
 		}
+		.eyebrow,
 		h1,
 		.desc,
-		.manifesto,
-		.network,
+		.sites,
 		.count,
-		.stamp,
-		.micro {
+		.serial {
 			opacity: 1;
 			transform: none;
 			filter: none;
