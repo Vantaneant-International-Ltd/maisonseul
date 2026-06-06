@@ -14,16 +14,16 @@
 	<title>Maison Seul®</title>
 	<meta
 		name="description"
-		content="Maison Seul. An archival fashion house. One house in each city. Home: Dublin. Coming 2027."
+		content="Maison Seul — house of absence. Solitude is the last luxury. One house in each city. Home: Dublin. Coming 2027."
 	/>
 	<meta name="theme-color" content="#050507" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Maison Seul" />
-	<meta property="og:title" content="Maison Seul®" />
+	<meta property="og:title" content="Maison Seul® — House of Absence" />
 	<meta
 		property="og:description"
-		content="An archival fashion house. One house in each city. Home: Dublin. Coming 2027."
+		content="Solitude is the last luxury. One house in each city. Home: Dublin. Coming 2027."
 	/>
 	<meta property="og:url" content="https://maisonseul.com/" />
 	<meta name="twitter:card" content="summary_large_image" />

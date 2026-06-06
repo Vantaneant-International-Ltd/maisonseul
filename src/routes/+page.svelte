@@ -7,7 +7,7 @@
 	let alive = $state(false);
 
 	const WORDMARK = 'MAISON SEUL';
-	const DESC = 'ARCHIVAL FASHION HOUSE';
+	const DESC = 'HOUSE OF ABSENCE';
 	let wordmark = $state(WORDMARK);
 	let desc = $state(DESC);
 
@@ -124,7 +124,7 @@
 			'color:#e9eaec;font:300 14px ui-monospace,monospace;letter-spacing:4px'
 		);
 		console.log(
-			'%cone house in each city.  those who look closely arrive first.  ·  MMXXVII',
+			'%csolitude is the last luxury.  one house in each city.  ·  MMXXVII',
 			'color:#5d6470;font:12px ui-monospace,monospace'
 		);
 
@@ -204,11 +204,11 @@
 		<section class="lockup">
 			<h1 style="--i: 1"><span class="glyphs">{wordmark}</span><sup>®</sup></h1>
 			<p class="desc" style="--i: 2"><span class="glyphs">{desc}</span></p>
-			<p class="tag-line" style="--i: 3">One house · each city</p>
+			<p class="manifesto" style="--i: 3">Solitude is the last luxury.</p>
 		</section>
 
 		<section class="network" style="--i: 4">
-			<div class="net-head"><span class="hr"></span>Flagship network<span class="hr"></span></div>
+			<div class="net-head"><span class="hr"></span>One house · each city<span class="hr"></span></div>
 			<div class="rows">
 				<div class="row home">
 					<span class="ix">01</span>
@@ -245,7 +245,8 @@
 				class="c">:</span
 			><b>{secs}</b>
 		</div>
-		<p class="stamp" style="--i: 6">Dublin · Coming MMXXVII</p>
+		<p class="stamp" style="--i: 6">Dublin, Ireland · Coming MMXXVII</p>
+		<p class="micro" style="--i: 6">Made in the grey</p>
 	</div>
 </main>
 
@@ -496,20 +497,22 @@
 
 	h1,
 	.desc,
-	.tag-line,
+	.manifesto,
 	.network,
 	.count,
-	.stamp {
+	.stamp,
+	.micro {
 		opacity: 0;
 		transform: translateY(14px);
 		filter: blur(8px);
 	}
 	main.ready h1,
 	main.ready .desc,
-	main.ready .tag-line,
+	main.ready .manifesto,
 	main.ready .network,
 	main.ready .count,
-	main.ready .stamp {
+	main.ready .stamp,
+	main.ready .micro {
 		opacity: 1;
 		transform: translateY(0);
 		filter: blur(0);
@@ -552,14 +555,16 @@
 		font-size: clamp(0.56rem, 1.7vw, 0.68rem);
 		color: var(--ink-dim);
 	}
-	.tag-line {
-		margin: 0;
-		font-family: var(--mono);
-		text-transform: uppercase;
-		letter-spacing: 0.28em;
-		text-indent: 0.28em;
-		font-size: 0.5rem;
-		color: var(--ink-faint);
+	/* the one warm, human line — sans, not mono, sentence case */
+	.manifesto {
+		margin: 0.4em 0 0;
+		font-family: var(--sans);
+		font-weight: 300;
+		font-style: italic;
+		letter-spacing: 0.01em;
+		font-size: clamp(0.92rem, 2.8vw, 1.28rem);
+		line-height: 1.35;
+		color: var(--ink);
 	}
 
 	/* ====================== NETWORK MANIFEST ====================== */
@@ -693,6 +698,15 @@
 		font-size: clamp(0.54rem, 1.6vw, 0.64rem);
 		color: var(--ink-faint);
 	}
+	.micro {
+		margin: 0;
+		font-family: var(--mono);
+		text-transform: uppercase;
+		letter-spacing: 0.26em;
+		text-indent: 0.26em;
+		font-size: 0.46rem;
+		color: rgba(233, 234, 236, 0.16);
+	}
 
 	@media (max-width: 540px) {
 		.tag-tr,
@@ -730,10 +744,11 @@
 		}
 		h1,
 		.desc,
-		.tag-line,
+		.manifesto,
 		.network,
 		.count,
-		.stamp {
+		.stamp,
+		.micro {
 			opacity: 1;
 			transform: none;
 			filter: none;
