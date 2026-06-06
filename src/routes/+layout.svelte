@@ -16,7 +16,7 @@
 		name="description"
 		content="Maison Seul — house of absence. One house in each city. Station Dublin active. Deployment 2027."
 	/>
-	<meta name="theme-color" content="#050507" />
+	<meta name="theme-color" content="#0b0907" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Maison Seul" />
@@ -33,15 +33,16 @@
 
 <style>
 	:global(:root) {
-		/* Cool monochrome only — echoes the misty IG still without committing
-		   to a palette. No hue, no warmth. */
-		--ink: #e9eaec; /* cool off-white, never pure #fff */
-		--ink-dim: rgba(233, 234, 236, 0.46);
-		--ink-faint: rgba(233, 234, 236, 0.24);
-		--void: #050507;
-		--hairline: rgba(233, 234, 236, 0.12);
-		/* the single cold signal — used only for live/active state (ICA-red) */
-		--signal: #c5302a;
+		/* Umber palette — warm, earthy, muted. A warm umber-black void, bone/ecru
+		   text, with amber + umber-navy haze. Luxury-archival, not cold tech. */
+		--ink: #e9e0d2; /* warm bone, never pure #fff */
+		--ink-dim: rgba(233, 224, 210, 0.5);
+		--ink-faint: rgba(233, 224, 210, 0.26);
+		--void: #0b0907; /* warm umber-black */
+		--hairline: rgba(233, 224, 210, 0.12);
+		/* umber accents */
+		--umber: #8a5a34; /* burnt umber */
+		--umber-navy: #3a4254; /* muted umber-navy */
 
 		--sans: 'Inter', system-ui, -apple-system, sans-serif;
 		--mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
