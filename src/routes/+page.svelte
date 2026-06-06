@@ -6,20 +6,27 @@
 	let my = $state(0);
 	let alive = $state(false);
 
-	// Wordmark + descriptor render their real text at prerender time (good for
-	// SEO/OG), then "decrypt" from scrambled glyphs once JS takes over.
 	const WORDMARK = 'MAISON SEUL';
 	const DESC = 'ARCHIVAL FASHION HOUSE';
 	let wordmark = $state(WORDMARK);
 	let desc = $state(DESC);
 
-	// Countdown — placeholder target ("Coming 2027"), trivially changed.
+	// Flagship network. Dublin is the only revealed node (HOME); the rest stay
+	// redacted and only flicker glimpses of cities — the model is "one house per
+	// city" but no future opening is actually announced here.
+	const REDACT = '██████';
+	let city2 = $state(REDACT);
+	let city3 = $state(REDACT);
+	let city4 = $state(REDACT);
+	// Pool the dormant nodes scan through — never settling on any one.
+	const POOL = ['SEOUL', 'TOKYO', 'MILAN', 'LONDON', 'NEW YORK', 'SHANGHAI', 'BERLIN', 'ANTWERP'];
+
+	// Countdown — placeholder target ("Coming 2027").
 	const TARGET = new Date('2027-01-01T00:00:00Z').getTime();
 	let days = $state('000');
 	let hrs = $state('00');
 	let mins = $state('00');
 	let secs = $state('00');
-
 	const pad = (n: number, w = 2) => Math.max(0, n).toString().padStart(w, '0');
 	function tick() {
 		const s = Math.max(0, Math.floor((TARGET - Date.now()) / 1000));
@@ -31,11 +38,13 @@
 
 	// --- decrypt / scramble --------------------------------------------------
 	const GLYPHS = '▚▞#%&/\\<>[]{}=±0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	let mounted = true;
 	function scramble(target: string, set: (s: string) => void, duration = 1200) {
 		const start = performance.now();
 		const n = target.length;
 		let raf = 0;
 		const frame = (now: number) => {
+			if (!mounted) return;
 			const t = Math.min(1, (now - start) / duration);
 			let out = '';
 			for (let i = 0; i < n; i++) {
@@ -66,7 +75,6 @@
 		let dpr = 1;
 		type P = { x: number; y: number; r: number; vx: number; vy: number; a: number; tw: number };
 		let ps: P[] = [];
-
 		const seed = () => {
 			dpr = Math.min(2, window.devicePixelRatio || 1);
 			w = canvas.width = Math.floor(window.innerWidth * dpr);
@@ -84,7 +92,6 @@
 				tw: Math.random() * Math.PI * 2
 			}));
 		};
-
 		const draw = () => {
 			ctx.clearRect(0, 0, w, h);
 			for (const p of ps) {
@@ -102,7 +109,6 @@
 			}
 			raf = requestAnimationFrame(draw);
 		};
-
 		seed();
 		draw();
 		window.addEventListener('resize', seed);
@@ -118,7 +124,7 @@
 			'color:#e9eaec;font:300 14px ui-monospace,monospace;letter-spacing:4px'
 		);
 		console.log(
-			'%cthose who look closely arrive first.  ·  MMXXVII',
+			'%cone house in each city.  those who look closely arrive first.  ·  MMXXVII',
 			'color:#5d6470;font:12px ui-monospace,monospace'
 		);
 
@@ -128,17 +134,25 @@
 
 		const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const fine = window.matchMedia('(pointer: fine)').matches;
-
 		const cleanups: Array<() => void> = [() => clearInterval(id)];
+		const timeouts: ReturnType<typeof setTimeout>[] = [];
 
 		if (!still) {
 			cleanups.push(startDust());
-			const t1 = setTimeout(() => cleanups.push(scramble(WORDMARK, (s) => (wordmark = s), 1300)), 280);
-			const t2 = setTimeout(() => cleanups.push(scramble(DESC, (s) => (desc = s), 1100)), 700);
-			cleanups.push(() => {
-				clearTimeout(t1);
-				clearTimeout(t2);
-			});
+			timeouts.push(setTimeout(() => scramble(WORDMARK, (s) => (wordmark = s), 1300), 280));
+			timeouts.push(setTimeout(() => scramble(DESC, (s) => (desc = s), 1100), 700));
+
+			// Dormant nodes flicker glimpses of cities, then re-redact.
+			const setters = [(s: string) => (city2 = s), (s: string) => (city3 = s), (s: string) => (city4 = s)];
+			let turn = 0;
+			const glimpseId = setInterval(() => {
+				const set = setters[turn % setters.length];
+				turn++;
+				const city = POOL[Math.floor(Math.random() * POOL.length)];
+				scramble(city, set, 650);
+				timeouts.push(setTimeout(() => scramble(REDACT, set, 650), 2000));
+			}, 3400);
+			cleanups.push(() => clearInterval(glimpseId));
 		}
 
 		if (fine && !still) {
@@ -150,11 +164,15 @@
 			cleanups.push(() => window.removeEventListener('pointermove', onMove));
 		}
 
-		return () => cleanups.forEach((fn) => fn());
+		return () => {
+			mounted = false;
+			timeouts.forEach(clearTimeout);
+			cleanups.forEach((fn) => fn());
+		};
 	});
 </script>
 
-<!-- Atmosphere: cold mist, drifting dust, scanlines -->
+<!-- Atmosphere -->
 <div class="atmos" aria-hidden="true">
 	<div class="field" style="transform: translate3d({mx * 16}px, {my * 16}px, 0)">
 		<span class="fog fog-a"></span>
@@ -182,22 +200,52 @@
 </div>
 
 <main class:ready={alive} style="transform: translate3d({mx * -7}px, {my * -7}px, 0)">
-	<section class="lockup">
-		<h1 style="--i: 1"><span class="glyphs">{wordmark}</span><sup>®</sup></h1>
-		<p class="desc" style="--i: 2"><span class="glyphs">{desc}</span></p>
-	</section>
+	<div class="stage">
+		<section class="lockup">
+			<h1 style="--i: 1"><span class="glyphs">{wordmark}</span><sup>®</sup></h1>
+			<p class="desc" style="--i: 2"><span class="glyphs">{desc}</span></p>
+			<p class="tag-line" style="--i: 3">One house · each city</p>
+		</section>
+
+		<section class="network" style="--i: 4">
+			<div class="net-head"><span class="hr"></span>Flagship network<span class="hr"></span></div>
+			<div class="rows">
+				<div class="row home">
+					<span class="ix">01</span>
+					<span class="city">DUBLIN</span>
+					<span class="loc">53.35° N · 6.26° W</span>
+					<span class="st"><i class="dot on"></i>Home</span>
+				</div>
+				<div class="row dormant">
+					<span class="ix">02</span>
+					<span class="city glyphs">{city2}</span>
+					<span class="loc">— · —</span>
+					<span class="st"><i class="dot off"></i>Dormant</span>
+				</div>
+				<div class="row dormant">
+					<span class="ix">03</span>
+					<span class="city glyphs">{city3}</span>
+					<span class="loc">— · —</span>
+					<span class="st"><i class="dot off"></i>Dormant</span>
+				</div>
+				<div class="row dormant">
+					<span class="ix">04</span>
+					<span class="city glyphs">{city4}</span>
+					<span class="loc">— · —</span>
+					<span class="st"><i class="dot off"></i>Dormant</span>
+				</div>
+			</div>
+		</section>
+	</div>
 
 	<div class="foot">
-		<div class="count" style="--i: 3" aria-label="Countdown to launch">
-			<span><b>{days}</b><i>Days</i></span>
-			<span class="sep">:</span>
-			<span><b>{hrs}</b><i>Hrs</i></span>
-			<span class="sep">:</span>
-			<span><b>{mins}</b><i>Min</i></span>
-			<span class="sep">:</span>
-			<span><b>{secs}</b><i>Sec</i></span>
+		<div class="count" style="--i: 5" aria-label="Countdown to launch">
+			<span class="t">T&nbsp;minus</span>
+			<b>{days}</b><span class="c">:</span><b>{hrs}</b><span class="c">:</span><b>{mins}</b><span
+				class="c">:</span
+			><b>{secs}</b>
 		</div>
-		<p class="stamp" style="--i: 4">Coming MMXXVII</p>
+		<p class="stamp" style="--i: 6">Dublin · Coming MMXXVII</p>
 	</div>
 </main>
 
@@ -299,7 +347,6 @@
 		background: linear-gradient(to bottom, transparent, rgba(150, 172, 198, 0.05), transparent);
 		animation: sweep 9s linear infinite;
 	}
-
 	@keyframes drift-a {
 		to {
 			transform: translate3d(6%, 4%, 0) scale(1.12);
@@ -415,37 +462,42 @@
 		right: 1.4rem;
 	}
 
-	/* ====================== LOCKUP ====================== */
+	/* ====================== LAYOUT ====================== */
 	main {
 		position: relative;
 		min-height: 100svh;
-		display: grid;
-		grid-template-rows: 1fr auto;
-		align-items: center;
-		justify-items: center;
-		text-align: center;
-		padding: clamp(3.5rem, 10vh, 6rem) 1.5rem;
-		gap: clamp(2.5rem, 8vh, 5rem);
+		display: flex;
+		flex-direction: column;
+		padding: clamp(3.2rem, 9vh, 5.5rem) 1.5rem;
 		will-change: transform;
 		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
-	.lockup {
-		align-self: end;
+	.stage {
+		flex: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: clamp(1.1rem, 3vh, 1.8rem);
+		justify-content: center;
+		gap: clamp(2.2rem, 6vh, 3.6rem);
+		text-align: center;
+	}
+	.lockup {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: clamp(1rem, 2.6vh, 1.5rem);
 	}
 	.foot {
-		align-self: end;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: clamp(1.4rem, 3.4vh, 2rem);
+		gap: clamp(1rem, 2.4vh, 1.4rem);
 	}
 
 	h1,
 	.desc,
+	.tag-line,
+	.network,
 	.count,
 	.stamp {
 		opacity: 0;
@@ -454,39 +506,40 @@
 	}
 	main.ready h1,
 	main.ready .desc,
+	main.ready .tag-line,
+	main.ready .network,
 	main.ready .count,
 	main.ready .stamp {
 		opacity: 1;
 		transform: translateY(0);
 		filter: blur(0);
 		transition:
-			opacity 1.5s ease,
-			transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
-			filter 1.5s ease;
-		transition-delay: calc(var(--i) * 280ms);
+			opacity 1.4s ease,
+			transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+			filter 1.4s ease;
+		transition-delay: calc(var(--i) * 240ms);
 	}
 
 	h1 {
 		margin: 0;
 		font-family: var(--sans);
-		font-weight: 200;
+		font-weight: 300;
 		text-transform: uppercase;
 		letter-spacing: 0.42em;
 		text-indent: 0.42em;
-		font-size: clamp(1.4rem, 5.4vw, 3rem);
+		font-size: clamp(1.5rem, 5.6vw, 3.2rem);
 		line-height: 1;
 		color: var(--ink);
 	}
-	/* keep the decrypting wordmark from reflowing as glyphs change width */
 	.glyphs {
 		display: inline-block;
 		font-variant-numeric: tabular-nums;
 		white-space: pre;
 	}
 	h1 sup {
-		font-size: 0.32em;
+		font-size: 0.3em;
 		font-weight: 300;
-		top: -1.4em;
+		top: -1.5em;
 		letter-spacing: 0;
 		color: var(--ink-faint);
 	}
@@ -499,39 +552,131 @@
 		font-size: clamp(0.56rem, 1.7vw, 0.68rem);
 		color: var(--ink-dim);
 	}
-
-	.count {
-		display: flex;
-		align-items: baseline;
-		gap: clamp(0.5rem, 1.6vw, 0.9rem);
+	.tag-line {
+		margin: 0;
 		font-family: var(--mono);
+		text-transform: uppercase;
+		letter-spacing: 0.28em;
+		text-indent: 0.28em;
+		font-size: 0.5rem;
+		color: var(--ink-faint);
 	}
-	.count span {
+
+	/* ====================== NETWORK MANIFEST ====================== */
+	.network {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: clamp(0.8rem, 2vh, 1.2rem);
+	}
+	.net-head {
+		display: flex;
+		align-items: center;
+		gap: 0.9em;
+		font-family: var(--mono);
+		text-transform: uppercase;
+		letter-spacing: 0.34em;
+		text-indent: 0.34em;
+		font-size: 0.5rem;
+		color: var(--ink-faint);
+	}
+	.net-head .hr {
+		width: clamp(1.5rem, 6vw, 3rem);
+		height: 1px;
+		background: var(--hairline);
+	}
+	.rows {
+		display: flex;
+		flex-direction: column;
+		width: min(92vw, 30rem);
+	}
+	.row {
+		display: grid;
+		grid-template-columns: 1.8em 7em 1fr auto;
+		align-items: center;
+		gap: clamp(0.6rem, 2vw, 1.1rem);
+		padding: 0.6em 0.2em;
+		font-family: var(--mono);
+		font-size: 0.6rem;
+		text-align: left;
+	}
+	.row + .row {
+		border-top: 1px solid var(--hairline);
+	}
+	.ix {
+		color: var(--ink-faint);
+		letter-spacing: 0.1em;
+	}
+	.city {
+		letter-spacing: 0.18em;
+		white-space: pre;
+	}
+	.row.home .city {
+		color: var(--ink);
+	}
+	.row.dormant .city {
+		color: var(--ink-faint);
+	}
+	.loc {
+		font-size: 0.5rem;
+		letter-spacing: 0.08em;
+		color: var(--ink-faint);
+	}
+	.st {
+		display: flex;
+		align-items: center;
+		gap: 0.6em;
+		justify-self: end;
+		font-size: 0.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.22em;
+		color: var(--ink-faint);
+	}
+	.row.home .st {
+		color: var(--ink-dim);
+	}
+	.dot {
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+	}
+	.dot.on {
+		background: var(--ink-dim);
+		box-shadow: 0 0 6px rgba(150, 172, 198, 0.6);
+		animation: pulse 2.6s ease-in-out infinite;
+	}
+	.dot.off {
+		border: 1px solid var(--ink-faint);
+	}
+	@keyframes pulse {
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	/* ====================== COUNTDOWN ====================== */
+	.count {
+		display: flex;
+		align-items: center;
 		gap: 0.5em;
+		font-family: var(--mono);
+		font-size: clamp(0.62rem, 1.9vw, 0.78rem);
+		letter-spacing: 0.16em;
+		color: var(--ink-dim);
+		font-variant-numeric: tabular-nums;
+	}
+	.count .t {
+		text-transform: uppercase;
+		letter-spacing: 0.28em;
+		font-size: 0.82em;
+		color: var(--ink-faint);
+		margin-right: 0.3em;
 	}
 	.count b {
 		font-weight: 400;
-		font-size: clamp(0.95rem, 3vw, 1.5rem);
-		letter-spacing: 0.08em;
-		font-variant-numeric: tabular-nums;
-		color: var(--ink-dim);
 	}
-	.count i {
-		font-style: normal;
-		font-size: 0.46rem;
-		letter-spacing: 0.28em;
-		text-indent: 0.28em;
-		text-transform: uppercase;
+	.count .c {
 		color: var(--ink-faint);
-	}
-	.count .sep {
-		flex-direction: row;
-		font-size: clamp(0.95rem, 3vw, 1.5rem);
-		color: var(--ink-faint);
-		transform: translateY(-0.35em);
 		animation: blink 2s steps(1) infinite;
 	}
 	@keyframes blink {
@@ -545,13 +690,19 @@
 		text-transform: uppercase;
 		letter-spacing: 0.3em;
 		text-indent: 0.3em;
-		font-size: clamp(0.56rem, 1.7vw, 0.66rem);
+		font-size: clamp(0.54rem, 1.6vw, 0.64rem);
 		color: var(--ink-faint);
 	}
 
 	@media (max-width: 540px) {
 		.tag-tr,
 		.tag-br {
+			display: none;
+		}
+		.row {
+			grid-template-columns: 1.8em 1fr auto;
+		}
+		.loc {
 			display: none;
 		}
 	}
@@ -562,7 +713,8 @@
 		.grain,
 		.beam,
 		.dust,
-		.count .sep {
+		.count .c,
+		.dot.on {
 			animation: none;
 		}
 		.fog {
@@ -578,6 +730,8 @@
 		}
 		h1,
 		.desc,
+		.tag-line,
+		.network,
 		.count,
 		.stamp {
 			opacity: 1;
