@@ -1,13 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	// Cursor parallax — mist and lockup drift apart, giving the flat void depth.
+	// --- live state ----------------------------------------------------------
 	let mx = $state(0);
 	let my = $state(0);
 	let alive = $state(false);
 
-	// Countdown. Target is a placeholder ("Coming 2027") — trivially changed once
-	// a real date exists. Reads as a transmission timer, not a marketing clock.
+	// Wordmark + descriptor render their real text at prerender time (good for
+	// SEO/OG), then "decrypt" from scrambled glyphs once JS takes over.
+	const WORDMARK = 'MAISON SEUL';
+	const DESC = 'ARCHIVAL FASHION HOUSE';
+	let wordmark = $state(WORDMARK);
+	let desc = $state(DESC);
+
+	// Countdown — placeholder target ("Coming 2027"), trivially changed.
 	const TARGET = new Date('2027-01-01T00:00:00Z').getTime();
 	let days = $state('000');
 	let hrs = $state('00');
@@ -15,18 +21,98 @@
 	let secs = $state('00');
 
 	const pad = (n: number, w = 2) => Math.max(0, n).toString().padStart(w, '0');
-
 	function tick() {
-		const d = TARGET - Date.now();
-		const s = Math.max(0, Math.floor(d / 1000));
+		const s = Math.max(0, Math.floor((TARGET - Date.now()) / 1000));
 		days = pad(Math.floor(s / 86400), 3);
 		hrs = pad(Math.floor((s % 86400) / 3600));
 		mins = pad(Math.floor((s % 3600) / 60));
 		secs = pad(s % 60);
 	}
 
+	// --- decrypt / scramble --------------------------------------------------
+	const GLYPHS = '▚▞#%&/\\<>[]{}=±0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	function scramble(target: string, set: (s: string) => void, duration = 1200) {
+		const start = performance.now();
+		const n = target.length;
+		let raf = 0;
+		const frame = (now: number) => {
+			const t = Math.min(1, (now - start) / duration);
+			let out = '';
+			for (let i = 0; i < n; i++) {
+				const ch = target[i];
+				if (ch === ' ') {
+					out += ' ';
+					continue;
+				}
+				const reveal = (i / n) * 0.6;
+				out += t >= reveal + 0.4 ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+			}
+			set(out);
+			if (t < 1) raf = requestAnimationFrame(frame);
+			else set(target);
+		};
+		raf = requestAnimationFrame(frame);
+		return () => cancelAnimationFrame(raf);
+	}
+
+	// --- particles (drifting dust) ------------------------------------------
+	let canvas: HTMLCanvasElement;
+	function startDust() {
+		const ctx = canvas.getContext('2d');
+		if (!ctx) return () => {};
+		let raf = 0;
+		let w = 0;
+		let h = 0;
+		let dpr = 1;
+		type P = { x: number; y: number; r: number; vx: number; vy: number; a: number; tw: number };
+		let ps: P[] = [];
+
+		const seed = () => {
+			dpr = Math.min(2, window.devicePixelRatio || 1);
+			w = canvas.width = Math.floor(window.innerWidth * dpr);
+			h = canvas.height = Math.floor(window.innerHeight * dpr);
+			canvas.style.width = window.innerWidth + 'px';
+			canvas.style.height = window.innerHeight + 'px';
+			const count = Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 26000));
+			ps = Array.from({ length: count }, () => ({
+				x: Math.random() * w,
+				y: Math.random() * h,
+				r: (Math.random() * 1.3 + 0.3) * dpr,
+				vx: (Math.random() - 0.5) * 0.12 * dpr,
+				vy: -(Math.random() * 0.18 + 0.04) * dpr,
+				a: Math.random() * 0.4 + 0.1,
+				tw: Math.random() * Math.PI * 2
+			}));
+		};
+
+		const draw = () => {
+			ctx.clearRect(0, 0, w, h);
+			for (const p of ps) {
+				p.x += p.vx;
+				p.y += p.vy;
+				p.tw += 0.02;
+				if (p.y < -4) p.y = h + 4;
+				if (p.x < -4) p.x = w + 4;
+				if (p.x > w + 4) p.x = -4;
+				const a = p.a * (0.6 + 0.4 * Math.sin(p.tw));
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(208, 216, 226, ${a})`;
+				ctx.fill();
+			}
+			raf = requestAnimationFrame(draw);
+		};
+
+		seed();
+		draw();
+		window.addEventListener('resize', seed);
+		return () => {
+			cancelAnimationFrame(raf);
+			window.removeEventListener('resize', seed);
+		};
+	}
+
 	onMount(() => {
-		// A quiet line for anyone who opens the console — a real Cicada move.
 		console.log(
 			'%c⌖ MAISON SEUL',
 			'color:#e9eaec;font:300 14px ui-monospace,monospace;letter-spacing:4px'
@@ -40,25 +126,35 @@
 		const id = setInterval(tick, 1000);
 		alive = true;
 
-		const fine = window.matchMedia('(pointer: fine)').matches;
 		const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		let onMove: ((e: PointerEvent) => void) | null = null;
+		const fine = window.matchMedia('(pointer: fine)').matches;
+
+		const cleanups: Array<() => void> = [() => clearInterval(id)];
+
+		if (!still) {
+			cleanups.push(startDust());
+			const t1 = setTimeout(() => cleanups.push(scramble(WORDMARK, (s) => (wordmark = s), 1300)), 280);
+			const t2 = setTimeout(() => cleanups.push(scramble(DESC, (s) => (desc = s), 1100)), 700);
+			cleanups.push(() => {
+				clearTimeout(t1);
+				clearTimeout(t2);
+			});
+		}
+
 		if (fine && !still) {
-			onMove = (e: PointerEvent) => {
+			const onMove = (e: PointerEvent) => {
 				mx = (e.clientX / window.innerWidth - 0.5) * 2;
 				my = (e.clientY / window.innerHeight - 0.5) * 2;
 			};
 			window.addEventListener('pointermove', onMove, { passive: true });
+			cleanups.push(() => window.removeEventListener('pointermove', onMove));
 		}
 
-		return () => {
-			clearInterval(id);
-			if (onMove) window.removeEventListener('pointermove', onMove);
-		};
+		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
 
-<!-- Atmosphere: drifting cold mist, parallaxed by the cursor -->
+<!-- Atmosphere: cold mist, drifting dust, scanlines -->
 <div class="atmos" aria-hidden="true">
 	<div class="field" style="transform: translate3d({mx * 16}px, {my * 16}px, 0)">
 		<span class="fog fog-a"></span>
@@ -66,19 +162,19 @@
 		<span class="fog fog-c"></span>
 	</div>
 	<div class="horizon"></div>
+	<canvas bind:this={canvas} class="dust"></canvas>
 	<div class="grain"></div>
 	<div class="vignette"></div>
 	<div class="scan"></div>
 	<div class="beam"></div>
 </div>
 
-<!-- HUD frame: classified-terminal corner brackets + pinned technical labels -->
+<!-- HUD frame -->
 <div class="hud" class:ready={alive} aria-hidden="true">
 	<span class="bracket tl"></span>
 	<span class="bracket tr"></span>
 	<span class="bracket bl"></span>
 	<span class="bracket br"></span>
-
 	<span class="tag tag-tl">Maison&nbsp;Seul<sup>®</sup></span>
 	<span class="tag tag-tr">53.3498°&nbsp;N&nbsp;&nbsp;6.2603°&nbsp;W</span>
 	<span class="tag tag-bl">A&nbsp;VNTA&nbsp;company</span>
@@ -87,8 +183,8 @@
 
 <main class:ready={alive} style="transform: translate3d({mx * -7}px, {my * -7}px, 0)">
 	<section class="lockup">
-		<h1 style="--i: 1">Maison&nbsp;Seul<sup>®</sup></h1>
-		<p class="desc" style="--i: 2">Archival fashion house</p>
+		<h1 style="--i: 1"><span class="glyphs">{wordmark}</span><sup>®</sup></h1>
+		<p class="desc" style="--i: 2"><span class="glyphs">{desc}</span></p>
 	</section>
 
 	<div class="foot">
@@ -106,9 +202,7 @@
 </main>
 
 <style>
-	/* ======================================================================
-	   ATMOSPHERE
-	   ====================================================================== */
+	/* ====================== ATMOSPHERE ====================== */
 	.atmos {
 		position: fixed;
 		inset: 0;
@@ -116,14 +210,12 @@
 		overflow: hidden;
 		background: var(--void);
 	}
-
 	.field {
 		position: absolute;
 		inset: -25%;
 		will-change: transform;
 		transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
-
 	.fog {
 		position: absolute;
 		display: block;
@@ -132,7 +224,6 @@
 		mix-blend-mode: screen;
 		opacity: 0;
 	}
-
 	.fog-a {
 		width: 70vw;
 		height: 70vw;
@@ -157,7 +248,6 @@
 		background: radial-gradient(closest-side, rgba(86, 104, 132, 0.1), transparent 72%);
 		animation: fade-in 5s ease forwards, drift-c 92s ease-in-out infinite alternate;
 	}
-
 	.horizon {
 		position: absolute;
 		left: -10%;
@@ -167,13 +257,19 @@
 		background: radial-gradient(60% 100% at 50% 100%, rgba(140, 162, 190, 0.12), transparent 70%);
 		filter: blur(30px);
 	}
-
+	.dust {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		animation: fade-in 4s ease 0.4s forwards;
+	}
 	.vignette {
 		position: absolute;
 		inset: 0;
 		background: radial-gradient(125% 115% at 50% 42%, transparent 36%, rgba(0, 0, 0, 0.82));
 	}
-
 	.grain {
 		position: absolute;
 		inset: -50%;
@@ -182,8 +278,6 @@
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 		animation: grain 6s steps(4) infinite;
 	}
-
-	/* CRT scanlines + a slow scanning beam — the "futuristic" texture */
 	.scan {
 		position: absolute;
 		inset: 0;
@@ -249,9 +343,7 @@
 		}
 	}
 
-	/* ======================================================================
-	   HUD FRAME
-	   ====================================================================== */
+	/* ====================== HUD ====================== */
 	.hud {
 		position: fixed;
 		inset: clamp(1rem, 2.6vw, 1.9rem);
@@ -263,7 +355,6 @@
 	.hud.ready {
 		opacity: 1;
 	}
-
 	.bracket {
 		position: absolute;
 		width: 16px;
@@ -294,7 +385,6 @@
 		border-bottom-width: 1px;
 		border-right-width: 1px;
 	}
-
 	.tag {
 		position: absolute;
 		font-family: var(--mono);
@@ -325,9 +415,7 @@
 		right: 1.4rem;
 	}
 
-	/* ======================================================================
-	   LOCKUP
-	   ====================================================================== */
+	/* ====================== LOCKUP ====================== */
 	main {
 		position: relative;
 		min-height: 100svh;
@@ -341,7 +429,6 @@
 		will-change: transform;
 		transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
-
 	.lockup {
 		align-self: end;
 		display: flex;
@@ -349,7 +436,6 @@
 		align-items: center;
 		gap: clamp(1.1rem, 3vh, 1.8rem);
 	}
-
 	.foot {
 		align-self: end;
 		display: flex;
@@ -391,6 +477,12 @@
 		line-height: 1;
 		color: var(--ink);
 	}
+	/* keep the decrypting wordmark from reflowing as glyphs change width */
+	.glyphs {
+		display: inline-block;
+		font-variant-numeric: tabular-nums;
+		white-space: pre;
+	}
 	h1 sup {
 		font-size: 0.32em;
 		font-weight: 300;
@@ -398,7 +490,6 @@
 		letter-spacing: 0;
 		color: var(--ink-faint);
 	}
-
 	.desc {
 		margin: 0;
 		font-family: var(--mono);
@@ -409,13 +500,11 @@
 		color: var(--ink-dim);
 	}
 
-	/* countdown — technical readout */
 	.count {
 		display: flex;
 		align-items: baseline;
 		gap: clamp(0.5rem, 1.6vw, 0.9rem);
 		font-family: var(--mono);
-		color: var(--ink);
 	}
 	.count span {
 		display: flex;
@@ -450,7 +539,6 @@
 			opacity: 0.25;
 		}
 	}
-
 	.stamp {
 		margin: 0;
 		font-family: var(--mono);
@@ -468,18 +556,20 @@
 		}
 	}
 
-	/* ======================================================================
-	   REDUCED MOTION
-	   ====================================================================== */
+	/* ====================== REDUCED MOTION ====================== */
 	@media (prefers-reduced-motion: reduce) {
 		.fog,
 		.grain,
 		.beam,
+		.dust,
 		.count .sep {
 			animation: none;
 		}
 		.fog {
 			opacity: 1;
+		}
+		.dust {
+			opacity: 0;
 		}
 		.field,
 		main {
