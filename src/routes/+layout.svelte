@@ -1,22 +1,24 @@
 <script lang="ts">
-	// Maison Seul — a fashion house of absence. Marcellus (flared Optima-alike)
-	// carries the wordmark; Marcellus SC sets the small-caps labels. Nothing else
-	// is needed: the brand is black, space, and restraint.
-	import '@fontsource/marcellus/400.css';
-	import '@fontsource/marcellus-sc/400.css';
+	// Deliberately identity-neutral. Maison Seul has no brand system yet, so this
+	// holding page commits to nothing: a neutral grotesk (Inter) and a mono for
+	// the small data lines. Nothing here should be expensive to walk back later.
+	import '@fontsource/inter/200.css';
+	import '@fontsource/inter/300.css';
+	import '@fontsource/inter/400.css';
+	import '@fontsource/jetbrains-mono/400.css';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<title>Maison Seul — Coming Soon</title>
-	<meta name="description" content="Maison Seul. A fashion house of absence. Arriving 2026." />
-	<meta name="theme-color" content="#000000" />
+	<title>Maison Seul®</title>
+	<meta name="description" content="Maison Seul. An archival fashion house. Dublin. Coming 2027." />
+	<meta name="theme-color" content="#050507" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Maison Seul" />
-	<meta property="og:title" content="Maison Seul" />
-	<meta property="og:description" content="A fashion house of absence. Arriving 2026." />
+	<meta property="og:title" content="Maison Seul®" />
+	<meta property="og:description" content="An archival fashion house. Dublin. Coming 2027." />
 	<meta property="og:url" content="https://maisonseul.com/" />
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
@@ -25,15 +27,16 @@
 
 <style>
 	:global(:root) {
-		/* Monochrome only. Absence is the palette. */
-		--ink: #f4f3f0; /* off-white, never pure #fff */
-		--ink-dim: rgba(244, 243, 240, 0.52);
-		--ink-faint: rgba(244, 243, 240, 0.28);
-		--void: #000000;
-		--hairline: rgba(244, 243, 240, 0.14);
+		/* Cool monochrome only — echoes the misty IG still without committing
+		   to a palette. No hue, no warmth. */
+		--ink: #e9eaec; /* cool off-white, never pure #fff */
+		--ink-dim: rgba(233, 234, 236, 0.46);
+		--ink-faint: rgba(233, 234, 236, 0.24);
+		--void: #050507;
+		--hairline: rgba(233, 234, 236, 0.12);
 
-		--display: 'Marcellus', 'Times New Roman', serif;
-		--label: 'Marcellus SC', 'Marcellus', serif;
+		--sans: 'Inter', system-ui, -apple-system, sans-serif;
+		--mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
 	}
 
 	:global(*) {
@@ -48,12 +51,10 @@
 		color: var(--ink);
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
-		/* Marcellus is a single 400 weight — never let the browser fake bold. */
-		font-synthesis: none;
 	}
 
 	:global(body) {
-		font-family: var(--display);
+		font-family: var(--sans);
 	}
 
 	:global(::selection) {

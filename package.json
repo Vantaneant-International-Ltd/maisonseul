@@ -22,7 +22,7 @@
 		"vite": "^7.2.6"
 	},
 	"dependencies": {
-		"@fontsource/marcellus": "^5.2.8",
-		"@fontsource/marcellus-sc": "^5.2.8"
+		"@fontsource/inter": "^5.2.8",
+		"@fontsource/jetbrains-mono": "^5.2.8"
 	}
 }
