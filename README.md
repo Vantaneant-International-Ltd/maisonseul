@@ -1,9 +1,12 @@
 # Maison Seul
 
-**A fashion house of absence.** A VNTA house.
+**Singular objects.** A VNTA house.
 
-This repository is the public web presence for Maison Seul — currently a single,
-quiet **coming-soon** holding page. Pure black, maximal space, one wordmark.
+This repository is the public web presence for Maison Seul. For now it is a
+single holding page: the wordmark, one hairline, one line of text.
+
+Maison Seul is a design house, not a fashion label. The earlier garment
+direction ("house of absence") is retired.
 
 ---
 
@@ -13,11 +16,11 @@ quiet **coming-soon** holding page. Pure black, maximal space, one wordmark.
 - **Bundler:** Vite
 - **Output:** Static (`@sveltejs/adapter-static`, `404.html` fallback)
 - **Language:** TypeScript
-- **Styling:** Bespoke CSS — no Tailwind, no UI kits
-- **Fonts:** Marcellus + Marcellus SC (via `@fontsource`)
+- **Styling:** Bespoke CSS, no Tailwind, no UI kits
+- **Font:** Outfit (via `@fontsource`), standing in for Cygre
 - **Hosting:** GitHub Pages + custom domain `maisonseul.com`
 
-No backend. Nothing dynamic. Interest is registered via a plain `mailto:`.
+No backend. Nothing dynamic. Contact is a plain `mailto:`.
 
 ---
 
@@ -42,13 +45,16 @@ npm run dev
 ## Structure
 
 ```
+src/lib/
+└── Wordmark.svelte  # MAISON sharp, SEUL out of focus
 src/routes/
-├── +layout.svelte   # Fonts + global monochrome tokens
+├── +layout.svelte   # Font, colour tokens, page metadata
 ├── +layout.ts       # prerender = true
-├── +page.svelte     # The coming-soon holding page
-└── +error.svelte    # Styled 404 ("this page is absent")
+├── +page.svelte     # The holding page
+└── +error.svelte    # 404
 static/
 ├── favicon.svg
+├── og.png           # Share image, 1200 × 630
 ├── CNAME            # maisonseul.com
 ├── robots.txt
 └── sitemap.xml
@@ -61,17 +67,29 @@ static/
 ## Deploy
 
 Push to `main` → GitHub Actions builds and deploys to GitHub Pages. The custom
-domain is served via `static/CNAME`. After the first deploy, enable Pages in the
-repo settings (Source: **GitHub Actions**) and point the `maisonseul.com` DNS at
-GitHub Pages.
+domain is served via `static/CNAME`.
 
 ---
 
 ## Brand
 
-Monochrome only — off-white `#f4f3f0` on a pure-black void. Marcellus carries the
-wordmark (single 400 weight, `font-synthesis: none` so it never faux-bolds);
-Marcellus SC sets the small-caps labels. No shadows, no gradients, restraint
-throughout. Maison Seul is part of **VNTA** (Vantanéant International).
+Two colours from the brand book, plus one grey:
+
+| Token        | Value     | Use                  |
+| ------------ | --------- | -------------------- |
+| `--void`     | `#121619` | Ground ("Unlit")     |
+| `--ink`      | `#f2f3f1` | Wordmark and text    |
+| `--ink-dim`  | `#a9aeb1` | Small text           |
+
+The wordmark is two weights of one face: MAISON at 400, SEUL at 700 and blurred.
+On the holding page SEUL blurs further as the pointer approaches. With reduced
+motion, or on touch screens, it stays at its resting blur.
+
+The brand-book typeface is **Cygre**. It is not in this repository because the
+font files are licensed. To switch, add the files, replace the `@fontsource/outfit`
+imports in `src/routes/+layout.svelte`, and change `--sans`.
+
+No gold, no gradients, no shadows, no outside logo beyond the wordmark.
+Maison Seul is part of **VNTA** (Vantanéant International).
 
 Contact: studio@maisonseul.com

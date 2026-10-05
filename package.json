@@ -22,7 +22,6 @@
 		"vite": "^7.2.6"
 	},
 	"dependencies": {
-		"@fontsource/inter": "^5.2.8",
-		"@fontsource/jetbrains-mono": "^5.2.8"
+		"@fontsource/outfit": "^5.3.0"
 	}
 }

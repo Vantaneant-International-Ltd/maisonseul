@@ -1,51 +1,42 @@
 <script lang="ts">
-	// Deliberately identity-neutral. Maison Seul has no brand system yet, so this
-	// holding page commits to nothing: a neutral grotesk (Inter) and a mono for
-	// the small data lines. Nothing here should be expensive to walk back later.
-	import '@fontsource/inter/200.css';
-	import '@fontsource/inter/300.css';
-	import '@fontsource/inter/400.css';
-	import '@fontsource/jetbrains-mono/400.css';
+	// One typeface. Outfit stands in for Cygre, the brand-book face, until the
+	// licensed Cygre files are added; swap the imports and `--sans` when they are.
+	import '@fontsource/outfit/latin-300.css';
+	import '@fontsource/outfit/latin-400.css';
+	import '@fontsource/outfit/latin-700.css';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<title>Maison Seul®</title>
-	<meta
-		name="description"
-		content="Maison Seul — house of absence. One house in each city. Station Dublin active. Deployment 2027."
-	/>
-	<meta name="theme-color" content="#0b0907" />
+	<title>Maison Seul</title>
+	<meta name="description" content="Maison Seul. Singular objects. Dublin. 2027." />
+	<meta name="theme-color" content="#121619" />
 
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Maison Seul" />
-	<meta property="og:title" content="Maison Seul® — House of Absence" />
-	<meta
-		property="og:description"
-		content="One house in each city. Station Dublin active. Deployment 2027."
-	/>
+	<meta property="og:title" content="Maison Seul" />
+	<meta property="og:description" content="Singular objects. Dublin. 2027." />
 	<meta property="og:url" content="https://maisonseul.com/" />
+	<meta property="og:image" content="https://maisonseul.com/og.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Maison Seul" />
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content="https://maisonseul.com/og.png" />
 </svelte:head>
 
 {@render children()}
 
 <style>
 	:global(:root) {
-		/* Umber palette — warm, earthy, muted. A warm umber-black void, bone/ecru
-		   text, with amber + umber-navy haze. Luxury-archival, not cold tech. */
-		--ink: #e9e0d2; /* warm bone, never pure #fff */
-		--ink-dim: rgba(233, 224, 210, 0.5);
-		--ink-faint: rgba(233, 224, 210, 0.26);
-		--void: #0b0907; /* warm umber-black */
-		--hairline: rgba(233, 224, 210, 0.12);
-		/* umber accents */
-		--umber: #8a5a34; /* burnt umber */
-		--umber-navy: #3a4254; /* muted umber-navy */
+		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */
+		--void: #121619;
+		--ink: #f2f3f1;
+		--ink-dim: #a9aeb1;
+		--hairline: rgba(242, 243, 241, 0.3);
 
-		--sans: 'Inter', system-ui, -apple-system, sans-serif;
-		--mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+		--sans: 'Outfit', system-ui, -apple-system, sans-serif;
 	}
 
 	:global(*) {
@@ -64,6 +55,7 @@
 
 	:global(body) {
 		font-family: var(--sans);
+		font-weight: 300;
 	}
 
 	:global(::selection) {
@@ -73,5 +65,10 @@
 
 	:global(a) {
 		color: inherit;
+	}
+
+	:global(:focus-visible) {
+		outline: 1px solid var(--ink);
+		outline-offset: 4px;
 	}
 </style>

@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Wordmark from '$lib/Wordmark.svelte';
 </script>
 
 <main>
-	<span class="code">{$page.status}</span>
-	<h1>Maison&nbsp;Seul<sup>®</sup></h1>
+	<h1><Wordmark /></h1>
+	<p>{$page.status}</p>
 	<a href="/">Return</a>
 </main>
 
@@ -15,52 +16,37 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		text-align: center;
-		gap: 1.4rem;
+		gap: 1.5rem;
 		padding: 2rem;
-		background: var(--void);
-	}
-
-	.code {
-		font-family: var(--mono);
-		letter-spacing: 0.3em;
-		font-size: 0.62rem;
-		color: var(--ink-faint);
+		text-align: center;
 	}
 
 	h1 {
 		margin: 0;
-		font-family: var(--sans);
-		font-weight: 200;
-		text-transform: uppercase;
-		letter-spacing: 0.42em;
-		text-indent: 0.42em;
-		font-size: clamp(1.2rem, 5vw, 2.4rem);
-		color: var(--ink);
+		font-size: clamp(1.5rem, 6vw, 3rem);
+		font-weight: inherit;
 	}
 
-	h1 sup {
-		font-size: 0.32em;
-		top: -1.4em;
-		letter-spacing: 0;
-		color: var(--ink-faint);
+	p,
+	a {
+		margin: 0;
+		font-size: 0.75rem;
+		font-weight: 300;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--ink-dim);
 	}
 
 	a {
-		margin-top: 0.5rem;
-		font-family: var(--mono);
-		text-transform: uppercase;
-		letter-spacing: 0.3em;
-		font-size: 0.58rem;
-		color: var(--ink-dim);
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 		text-decoration: none;
-		padding-bottom: 0.35em;
-		border-bottom: 1px solid var(--hairline);
-		transition: color 180ms ease, border-color 180ms ease;
+		transition: color 180ms ease;
 	}
 
-	a:hover {
+	a:hover,
+	a:focus-visible {
 		color: var(--ink);
-		border-bottom-color: var(--ink);
 	}
 </style>
