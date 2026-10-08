@@ -3,9 +3,9 @@
 </script>
 
 <!--
-	The holding page. Three things only: the wordmark, one hairline, one line of
-	text. The hairline cuts the frame in two, as it does on the brand-book cover,
-	and passes through the gap between MAISON and SEUL.
+	The home page, still a teaser: the wordmark, one hairline, and a quiet line
+	of links into the site. The hairline cuts the frame in two, as it does on the
+	brand-book cover, and passes through the gap between MAISON and SEUL.
 -->
 <svelte:head>
 	<title>Maison Seul</title>
@@ -21,8 +21,12 @@
 </main>
 
 <footer>
-	<span>Singular objects. 2027.</span>
-	<a href="mailto:studio@maisonseul.com">studio@maisonseul.com</a>
+	<span>Singular objects.</span>
+	<nav aria-label="Main">
+		<a href="/case-01">CASE 01</a>
+		<a href="/permanent"><span class="kanji" lang="ja">間</span>&nbsp;MA</a>
+		<a href="/reserve">Reserve</a>
+	</nav>
 </footer>
 
 <style>
@@ -68,7 +72,14 @@
 		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
-	footer span,
+	footer nav {
+		display: flex;
+		gap: 0 1.75rem;
+	}
+	.kanji {
+		font-family: var(--kanji);
+	}
+	footer > span,
 	footer a {
 		display: inline-flex;
 		align-items: center;

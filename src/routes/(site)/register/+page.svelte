@@ -12,6 +12,8 @@
 </script>
 
 <svelte:head>
+	<!-- Not live until sales open: unlinked and not indexed. -->
+	<meta name="robots" content="noindex, nofollow" />
 	<title>Register a serial / Maison Seul</title>
 	<meta name="description" content="Register your CASE 01 serial number to start its warranty." />
 </svelte:head>
