@@ -15,7 +15,7 @@
 	const here = (href: string) => (base === href ? 'page' : undefined);
 
 	const nav = $derived([
-		{ href: '/skrin', label: 'SKRIN' },
+		{ href: '/skrin', label: 'SKRIN', kanji: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr' },
 		{ href: '/permanent', label: 'MA', kanji: '間' },
 		{ href: '/permanent#grund', label: 'GRUND' },
 		{ href: '/house', label: c.nav.house },
@@ -43,7 +43,7 @@
 	<nav aria-label="Main">
 		{#each nav as n}
 			<a href={lp(lang, n.href)} aria-current={here(n.href)}
-				>{#if n.kanji}<span class="kanji" lang="ja">{n.kanji}</span>&nbsp;{/if}{n.label}</a
+				>{#if n.kanji}<span class="kanji" lang={n.script ?? 'ja'}>{n.kanji}</span>&nbsp;{/if}{n.label}</a
 			>
 		{/each}
 		<a class="reserve" href={lp(lang, '/backers')} aria-current={here('/backers')}>{c.nav.back}</a>
