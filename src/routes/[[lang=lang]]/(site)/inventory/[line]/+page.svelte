@@ -91,7 +91,7 @@
 			{/if}
 
 			<div class="buy">
-				<p class="price">{piece.price} <span>{c.taxNote}</span></p>
+				{#if L.locked}<p class="price">{piece.price} <span>{c.taxNote}</span></p>{:else}<p class="price dev">{c.ui.inDev}</p>{/if}
 				<p class="pline">{isSet ? L.pieces.map((p) => p.name).join(' + ') : piece.line}</p>
 				<a class="cta" href={mail}>{c.ui.ask}</a>
 				<p class="avail">{c.ui.notOnSale}</p>
@@ -99,6 +99,7 @@
 
 			<details open>
 				<summary>{c.ji.detailsLabel}</summary>
+				<p class="spec">{c.ui.specNote}</p>
 				<p>{L.lead2}</p>
 				<ul>
 					{#each L.details as d}<li>{d}</li>{/each}
@@ -263,6 +264,14 @@
 	.price span {
 		font-size: 0.8125rem;
 		color: var(--ink-dim);
+	}
+	.price.dev {
+		font-size: 1.25rem;
+		color: var(--ink-dim);
+	}
+	.spec {
+		font-size: 0.875rem;
+		color: var(--ink-dim) !important;
 	}
 	.pline {
 		margin: 0.4rem 0 0;

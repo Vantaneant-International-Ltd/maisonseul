@@ -1,5 +1,6 @@
 import type { Copy } from '$lib/i18n';
 import { LINE, type LineName } from '$lib/lines';
+import { PRICES_LOCKED } from '$lib/config';
 import {
 	CASE, MA_LOOSE, MA_BAGGY, MA_BARREL, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER,
 	PJ_SHIRT, PJ_TROUSER, type Drawing
@@ -24,6 +25,7 @@ export type Line = {
 	colours: string[];
 	details: string[];
 	backing?: 'case01' | 'ma';
+	locked: boolean; // price confirmed
 };
 
 export const PRODUCT_IDS = ['ma', 'grund', 'qutn', 'ovol', 'baram', 'si'] as const;
@@ -31,7 +33,7 @@ export const PRODUCT_IDS = ['ma', 'grund', 'qutn', 'ovol', 'baram', 'si'] as con
 export function catalogue(c: Copy): Line[] {
 	const p = c.prices;
 	const page = (id: string) => `/inventory/${id}`;
-	return [
+	const lines: Omit<Line, 'locked'>[] = [
 		{
 			id: 'skrin', name: LINE.skrin, cat: 'objects', href: '/skrin', edition: true, oneCard: true,
 			cardName: 'Graphite', lead: c.case01.intro ?? '', lead2: '',
@@ -89,4 +91,5 @@ export function catalogue(c: Copy): Line[] {
 			colours: c.si.colours, details: c.si.details
 		}
 	];
+	return lines.map((l) => ({ ...l, locked: PRICES_LOCKED.includes(l.id) }));
 }

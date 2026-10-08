@@ -33,11 +33,16 @@
 	const CATS: ('all' | Cat)[] = ['all', 'objects', 'tops', 'outer', 'bottoms', 'lounge'];
 	let current = $state<'all' | Cat>('all');
 	let sort = $state<'order' | 'low' | 'high'>('order');
-	const amount = (s: string) => Number(s.replace(/[^0-9]/g, ''));
+	const amount = (k: Card) => (k.line.locked ? Number(k.price.replace(/[^0-9]/g, '')) : null);
 	const shown = $derived.by(() => {
 		const list = current === 'all' ? cards : cards.filter((k) => k.line.cat === current);
 		if (sort === 'order') return list;
-		return [...list].sort((a, b) => (sort === 'low' ? 1 : -1) * (amount(a.price) - amount(b.price)));
+		// pieces without a set price go last either way
+		return [...list].sort((a, b) => {
+			const x = amount(a), y = amount(b);
+			if (x === null || y === null) return (x === null ? 1 : 0) - (y === null ? 1 : 0);
+			return (sort === 'low' ? 1 : -1) * (x - y);
+		});
 	});
 	const countOf = (k: 'all' | Cat) => (k === 'all' ? cards.length : cards.filter((x) => x.line.cat === k).length);
 
@@ -107,7 +112,7 @@
 						<Stack line={card.line.name} size="s" />
 						<p class="name">{card.name}</p>
 						<p class="row">
-							<span class="price">{card.price}</span>
+							<span class="price">{card.line.locked ? card.price : c.ui.inDev}</span>
 							{#if card.line.colours.length}
 								<span class="dots" aria-label={card.line.colours.join(', ')}>
 									{#each card.line.colours as col}<i style="background:{SWATCH[col] ?? '#2c3236'}"></i>{/each}

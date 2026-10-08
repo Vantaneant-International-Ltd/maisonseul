@@ -39,3 +39,7 @@ export const FACTORIES: Factory[] = [
 	{ lines: ['ovol'], name: '', city: '', since: '', photos: [] },
 	{ lines: ['si'], name: '', city: '', since: '', photos: [] }
 ];
+
+// Prices shown as fact. Only SKRIN's is set; the clothes show "In development"
+// until each price is confirmed at sampling. Add a line id here to show its price.
+export const PRICES_LOCKED: string[] = ['skrin'];
