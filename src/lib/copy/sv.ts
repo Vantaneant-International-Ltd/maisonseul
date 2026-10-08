@@ -36,6 +36,7 @@ export const sv: Copy = {
 		kicker: 'Föremål 01 / Kabinväska',
 		variant: 'Grafit / Utgåva 001 / 100 exemplar',
 		status: 'Ännu inte till salu.',
+		target: 'Vi siktar på vintern 2027.',
 		backNote: 'Hundra grundande stödjare gör SKRIN möjlig. Var och en får en väska, och deras initialer graveras inuti varje SKRIN som någonsin tillverkas.',
 		cta: `Bli grundande stödjare, ${P.sv.case01Back}`,
 		backersTitle: 'Grundande stödjare',
@@ -351,7 +352,7 @@ export const sv: Copy = {
 		amountLabel: 'Grundande stödjare',
 		termsTitle: 'Villkoren, rakt på sak',
 		terms: [
-			'När: när det är klart. Inget datum utlovas, och vi skriver till stödjarna i varje skede.',
+			'När: vi siktar på vintern 2027. Det är ett mål, inget utlovat datum, och vi skriver till stödjarna i varje skede.',
 			'Om det aldrig levereras får du tillbaka alla dina pengar.',
 			'Du kan begära full återbetalning när som helst innan din väska skickas. Om tillverkningen har börjat kan dina initialer redan finnas i tillverkade exemplar.',
 			'Att stödja är en förbeställning till grundarpris, inte en investering. Det ger ingen andel i företaget.',
