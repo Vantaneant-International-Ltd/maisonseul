@@ -53,7 +53,7 @@ const P: Record<Lang, Prices> = {
 const en = {
 	prices: P.en,
 	taxNote: 'VAT included',
-	bar: 'Designed in Dublin.',
+	bar: 'Designed in Dublin. Made in China.',
 	photo: 'Photograph to follow',
 	nav: { permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
@@ -147,7 +147,7 @@ const en = {
 		faq: [
 			{
 				q: 'Where is it made?',
-				a: 'Designed in Dublin. Made by one specialist aluminium factory, which we will name here before anything ships. Every batch is inspected before it leaves.'
+				a: 'Designed in Dublin. Made in China, by one specialist aluminium factory, which we will name here before anything ships. Every batch is inspected before it leaves.'
 			},
 			{
 				q: 'What happens when the hundred are gone?',
@@ -163,7 +163,7 @@ const en = {
 			}
 		],
 		trustLabel: 'Promises',
-		trust: ['Designed in Dublin', 'Numbered editions', 'Repairable', '14-day returns']
+		trust: ['Designed in Dublin, made in China', 'Numbered editions', 'Repairable', '14-day returns']
 	},
 	ma: {
 		title: 'MA 間 · GRUND / Maison Seul',
@@ -235,7 +235,7 @@ const en = {
 			{
 				h: 'Where it is made',
 				p: [
-					'Designed in Dublin. Made by one specialist aluminium factory, which we will name here before anything ships. We inspect every batch before it leaves. We would rather tell you where it is made than leave you to guess.'
+					'Designed in Dublin. Made in China. For now, everything we make is made there: SKRIN by one specialist aluminium factory, MA and GRUND by garment makers we will choose with the same care. We will name each factory here before anything ships, and we inspect every batch before it leaves.', 'We would rather tell you where it is made than leave you to guess. If that changes, this page changes first.'
 				]
 			},
 			{ h: 'Part of VNTA', p: ['Maison Seul is a VNTA house.'] }
@@ -339,7 +339,7 @@ export type Copy = typeof en;
 const de: Copy = {
 	prices: P.de,
 	taxNote: 'inkl. MwSt.',
-	bar: 'Entworfen in Dublin.',
+	bar: 'Entworfen in Dublin. Gefertigt in China.',
 	photo: 'Foto folgt',
 	nav: { permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
@@ -433,7 +433,7 @@ const de: Copy = {
 		faq: [
 			{
 				q: 'Wo wird er hergestellt?',
-				a: 'Entworfen in Dublin. Gefertigt von einer spezialisierten Aluminiummanufaktur, die wir hier nennen, bevor etwas versendet wird. Jede Charge wird vor dem Versand geprüft.'
+				a: 'Entworfen in Dublin. Gefertigt in China, von einer spezialisierten Aluminiummanufaktur, die wir hier nennen, bevor etwas versendet wird. Jede Charge wird vor dem Versand geprüft.'
 			},
 			{
 				q: 'Was passiert, wenn alle hundert vergeben sind?',
@@ -449,7 +449,7 @@ const de: Copy = {
 			}
 		],
 		trustLabel: 'Versprechen',
-		trust: ['Entworfen in Dublin', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
+		trust: ['Entworfen in Dublin, gefertigt in China', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
 	},
 	ma: {
 		title: 'MA 間 · GRUND / Maison Seul',
@@ -521,7 +521,7 @@ const de: Copy = {
 			{
 				h: 'Wo gefertigt wird',
 				p: [
-					'Entworfen in Dublin. Gefertigt von einer spezialisierten Aluminiummanufaktur, die wir hier nennen, bevor etwas versendet wird. Wir prüfen jede Charge vor dem Versand. Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen.'
+					'Entworfen in Dublin. Gefertigt in China. Derzeit wird alles, was wir machen, dort gefertigt: SKRIN von einer spezialisierten Aluminiummanufaktur, MA und GRUND von Bekleidungsherstellern, die wir mit derselben Sorgfalt auswählen. Wir nennen jede Fabrik hier, bevor etwas versendet wird, und prüfen jede Charge vor dem Versand.', 'Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen. Wenn sich das ändert, ändert sich zuerst diese Seite.'
 				]
 			},
 			{ h: 'Teil von VNTA', p: ['Maison Seul ist ein Haus von VNTA.'] }
@@ -623,7 +623,7 @@ const de: Copy = {
 const ja: Copy = {
 	prices: P.ja,
 	taxNote: '関税・輸入消費税は含まれません',
-	bar: 'ダブリンでデザイン。',
+	bar: 'ダブリンでデザイン。中国で製造。',
 	photo: '写真は後日掲載',
 	nav: { permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
@@ -711,7 +711,7 @@ const ja: Copy = {
 		faq: [
 			{
 				q: 'どこで作られていますか?',
-				a: 'デザインはダブリン。製造はアルミニウム専門の工場ひとつに任せています。工場名は出荷前にここで公表します。すべてのロットは出荷前に検品します。'
+				a: 'デザインはダブリン。製造は中国、アルミニウム専門の工場ひとつに任せています。工場名は出荷前にここで公表します。すべてのロットは出荷前に検品します。'
 			},
 			{
 				q: '100点が完売したら?',
@@ -727,7 +727,7 @@ const ja: Copy = {
 			}
 		],
 		trustLabel: '約束',
-		trust: ['ダブリンでデザイン', 'ナンバリング・エディション', '修理できる', '14日間返品可']
+		trust: ['ダブリンでデザイン、中国で製造', 'ナンバリング・エディション', '修理できる', '14日間返品可']
 	},
 	ma: {
 		title: 'MA 間 · GRUND / Maison Seul',
@@ -795,7 +795,7 @@ const ja: Copy = {
 			{
 				h: 'どこで作るか',
 				p: [
-					'デザインはダブリン。製造はアルミニウム専門の工場ひとつに任せ、出荷前にここで工場名を公表します。すべてのロットは出荷前に検品します。どこで作られているかは、推測させるより、きちんとお伝えしたいと考えています。'
+					'デザインはダブリン。製造は中国。現在、私たちが作るものはすべて中国で作られています。SKRINはアルミニウム専門の工場ひとつで、MAとGRUNDは同じ基準で選ぶ衣料工場で。工場名は出荷前にここで公表し、すべてのロットを出荷前に検品します。', 'どこで作られているかは、推測させるより、きちんとお伝えしたい。変わるときは、まずこのページを書き換えます。'
 				]
 			},
 			{ h: 'VNTAの一員', p: ['Maison SeulはVNTAのメゾンです。'] }
