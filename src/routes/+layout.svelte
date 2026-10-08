@@ -9,8 +9,6 @@
 </script>
 
 <svelte:head>
-	<title>Maison Seul</title>
-	<meta name="description" content="Maison Seul. Singular objects. Dublin. 2027." />
 	<meta name="theme-color" content="#121619" />
 
 	<meta property="og:type" content="website" />
