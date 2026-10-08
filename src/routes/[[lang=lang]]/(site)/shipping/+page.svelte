@@ -24,10 +24,10 @@
 	</section>
 
 	<section>
-		<h2>Reservations</h2>
+		<h2>Founding backers</h2>
 		<ul>
-			<li>€1 holds a numbered place in line. Places are offered in order when sales open.</li>
-			<li>The €1 counts towards the price, and is refundable at any time until you use it.</li>
+			<li>Founding backers pay €1,000 (CASE 01) or €250 (MA), object included.</li>
+			<li>Backing is refundable at any time before the object ships, and in full if it never ships.</li>
 		</ul>
 	</section>
 

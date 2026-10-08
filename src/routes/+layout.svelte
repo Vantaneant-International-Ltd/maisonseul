@@ -66,6 +66,26 @@
 		text-rendering: optimizeLegibility;
 	}
 
+	/* Long German compounds (GRÜNDUNGSUNTERSTÜTZER) must break on a phone */
+	:global(h1),
+	:global(h2),
+	:global(h3) {
+		hyphens: auto;
+		overflow-wrap: break-word;
+	}
+
+	/* Japanese: Outfit for Latin letters, the device's Japanese font for the rest */
+	:global(html[lang='ja'] body) {
+		font-family:
+			'Outfit',
+			'Hiragino Sans',
+			'Hiragino Kaku Gothic ProN',
+			'Noto Sans JP',
+			'Yu Gothic',
+			Meiryo,
+			sans-serif;
+	}
+
 	:global(body) {
 		font-family: var(--sans);
 		font-weight: 300;

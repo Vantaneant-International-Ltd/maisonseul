@@ -1,5 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import Wordmark from '$lib/Wordmark.svelte';
+	import LangSwitch from '$lib/LangSwitch.svelte';
+	import { copy, langOf, lp } from '$lib/i18n';
+
+	const lang = $derived(langOf($page.params.lang));
+	const c = $derived(copy[lang]);
 </script>
 
 <!--
@@ -8,24 +14,26 @@
 	brand-book cover, and passes through the gap between MAISON and SEUL.
 -->
 <svelte:head>
-	<title>Maison Seul</title>
-	<meta name="description" content="Maison Seul. Singular objects. Dublin. 2027." />
+	<title>{c.home.title}</title>
+	<meta name="description" content={c.home.description} />
 </svelte:head>
 
 <svg class="cut" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<line x1="57" y1="0" x2="43" y2="100" vector-effect="non-scaling-stroke" />
 </svg>
 
+<div class="corner"><LangSwitch /></div>
+
 <main>
 	<h1><Wordmark split live /></h1>
 </main>
 
 <footer>
-	<span>Singular objects.</span>
+	<span>{c.home.tagline}</span>
 	<nav aria-label="Main">
-		<a href="/case-01">CASE 01</a>
-		<a href="/permanent"><span class="kanji" lang="ja">間</span>&nbsp;MA</a>
-		<a href="/reserve">Reserve</a>
+		<a href={lp(lang, '/case-01')}>CASE 01</a>
+		<a href={lp(lang, '/permanent')}><span class="kanji" lang="ja">間</span>&nbsp;MA</a>
+		<a href={lp(lang, '/backers')}>{c.nav.back}</a>
 	</nav>
 </footer>
 
@@ -36,6 +44,14 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
+	}
+	.corner {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 1;
+		padding: clamp(0.25rem, 1.5vw, 1rem) clamp(0.5rem, 2.5vw, 1.5rem);
+		animation: arrive 1600ms ease 500ms both;
 	}
 	.cut line {
 		stroke: var(--hairline);
@@ -120,7 +136,8 @@
 	@media (prefers-reduced-motion: reduce) {
 		.cut,
 		h1,
-		footer {
+		footer,
+		.corner {
 			animation: none;
 		}
 	}

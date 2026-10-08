@@ -1,178 +1,87 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import CaseDrawing from '$lib/CaseDrawing.svelte';
-
-	import { PLACE_FEE } from '$lib/config';
+	import { copy, langOf, lp } from '$lib/i18n';
+	import { BACKERS } from '$lib/config';
 
 	// Product page, teaser mode: nothing is on sale yet. The one action on the
-	// site is a €1 place in line (see /reserve). Photographs follow the sample.
+	// site is founding backing (/backers). Photographs follow the sample.
+	const lang = $derived(langOf($page.params.lang));
+	const c = $derived(copy[lang]);
+	const t = $derived(c.case01);
 
-	// Gallery. Until photographs exist, each frame names the shot that fills it
-	// (numbers match the site image prompts).
-	const views = [
-		{ shot: '', name: 'Front' },
-		{ shot: 'Shot 1', name: 'Three-quarter' },
-		{ shot: 'Shot 4', name: 'Raw corner' },
-		{ shot: 'Shot 6', name: 'Interior' },
-		{ shot: 'Shot 7', name: 'Serial plate' }
-	];
 	let view = $state(0);
-
-	const carry = [
-		{
-			title: 'MacBook sleeve',
-			text: 'A padded sleeve in the lid, sized for MacBook Pro 16-inch and anything smaller.',
-			shot: 'MacBook sliding into the lid sleeve'
-		},
-		{
-			title: 'AirTag pocket',
-			text: 'A hidden pocket inside the frame. Drop an AirTag in once and forget it is there.',
-			shot: 'AirTag pocket, opened, inside the frame'
-		},
-		{
-			title: 'Cable pocket',
-			text: 'A flat zip pocket for a charger, cables and AirPods, so nothing rolls loose.',
-			shot: 'Charger and cables laid flat in the pocket'
-		}
-	];
-
-	const reasons = [
-		{ title: 'One raw corner.', text: 'Seven corners in graphite. One left in raw aluminium.', shot: 'Shot 4' },
-		{ title: 'Four screws.', text: 'Every wheel comes off with a screwdriver.', shot: 'Shot 3' },
-		{ title: 'It will mark.', text: 'Aluminium keeps every trip. That is the point.', shot: 'Shot 8' },
-		{ title: 'No logo.', text: 'Your number, engraved small beside the handle.', shot: 'Shot 5' }
-	];
-
-	const specs: { label: string; lines: string[] }[] = [
-		{
-			label: 'Details',
-			lines: [
-				'Aluminium frame, two latches, no zip',
-				'TSA-accepted combination locks',
-				'Four double spinner wheels, replaceable',
-				'Telescopic handle, replaceable'
-			]
-		},
-		{
-			label: 'Size and weight',
-			lines: [
-				'55 × 40 × 20 cm (21.7 × 15.7 × 7.9 in), wheels and handles included',
-				'Weight and capacity confirmed with the first sample'
-			]
-		},
-		{
-			label: 'Compatibility',
-			lines: [
-				'MacBook Pro 16-inch, 14-inch and MacBook Air in the lid sleeve',
-				'One AirTag in the frame pocket. AirTag not included',
-				'Cabin size limits of Ryanair (paid cabin bag), Aer Lingus, Lufthansa and British Airways',
-				'Lufthansa allows 8 kg in total, which leaves about 3.7 kg for your things. Airline rules change, so check before you fly'
-			]
-		},
-		{ label: 'Finish', lines: ['Graphite, matte anodised', 'One corner in raw aluminium'] },
-		{ label: 'Materials', lines: ['Aluminium-magnesium shell and frame', 'Polyester lining, pale grey'] },
-		{
-			label: 'In the box',
-			lines: ['CASE 01', 'Dust cover', 'Ownership card with your number', 'Care and repair card']
-		},
-		{
-			label: 'Shipping, returns and warranty',
-			lines: [
-				'14 days to return it unused, for a full refund',
-				'5 years on shell, frame, wheels, handle and latches. Dents and scratches are not covered'
-			]
-		}
-	];
-
-	const faq = [
-		{
-			q: 'Where is it made?',
-			a: 'Designed in Dublin. Made by one specialist aluminium factory, which we will name here before anything ships. Every batch is inspected before it leaves.'
-		},
-		{
-			q: 'What happens when the hundred are gone?',
-			a: 'Graphite is not made again. CASE 01 continues in a new finish, and parts stay in stock for every edition.'
-		},
-		{
-			q: 'What does the €1 do?',
-			a: 'It holds a numbered place in line. When CASE 01 opens, places are offered in order. It counts towards the price and is refundable until you use it.'
-		},
-		{ q: 'Is Maison Seul part of Apple?', a: 'No. We design around Apple devices because most of our owners carry them.' }
-	];
+	const backers = BACKERS.case01;
+	const count = $derived(c.backers.count.replace('{n}', String(backers.length)));
 </script>
 
 <svelte:head>
-	<title>CASE 01 / Maison Seul</title>
-	<meta name="description" content="CASE 01. An aluminium cabin case. Edition 001, one hundred pieces." />
+	<title>{t.title}</title>
+	<meta name="description" content={t.description} />
 </svelte:head>
 
 <main>
-	<!-- Buy box: the object first, as on an Apple-first product page -->
-	<section id="reserve" class="buy" aria-labelledby="case-h">
+	<!-- The object first, as on an Apple-first product page -->
+	<section id="back" class="buy" aria-labelledby="case-h">
 		<div class="gallery">
 			<div class="frame">
 				{#if view === 0}
 					<div class="drawing"><CaseDrawing /></div>
 				{:else}
-					<p class="ph">{views[view].name}. Photograph to follow.</p>
+					<p class="ph">{t.views[view]}. {t.followSuffix}</p>
 				{/if}
 			</div>
-			<div class="thumbs" role="group" aria-label="Views">
-				{#each views as v, i}
-					<button type="button" aria-pressed={view === i} onclick={() => (view = i)}>{v.name}</button>
+			<div class="thumbs" role="group" aria-label={t.viewsLabel}>
+				{#each t.views as v, i}
+					<button type="button" aria-pressed={view === i} onclick={() => (view = i)}>{v}</button>
 				{/each}
 			</div>
 		</div>
 
 		<div class="panel">
-			<p class="kicker">Case 01 / Cabin</p>
+			<p class="kicker">{t.kicker}</p>
 			<h1 id="case-h">CASE 01</h1>
-			<p class="variant">Graphite / Edition 001 / 100 pieces</p>
-			<p class="price">€525 <span>VAT included</span></p>
+			<p class="variant">{t.variant}</p>
+			<p class="price">{c.prices.case01} <span>{c.taxNote}</span></p>
 
-			<p class="status">Not on sale yet.</p>
-			<p class="plan-note">
-				{PLACE_FEE} holds a numbered place in line. It counts towards the price and is refundable
-				until you use it.
-			</p>
+			<p class="status">{t.status}</p>
+			<p class="plan-note">{t.backNote}</p>
 
-			<a class="cta" href="/reserve">Reserve a place, {PLACE_FEE}</a>
+			<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
 
-			<p class="note">Made once in this finish. Numbered 001 to 100 inside the lid.</p>
+			<p class="note">{t.note}</p>
 		</div>
 	</section>
 
 	<!-- One-line pitch -->
 	<section class="intro">
-		<h2>One case. Nothing else.</h2>
-		<p>
-			An aluminium cabin case with no logo, one raw corner, and room built in for what you
-			already carry. It is the first object from Maison Seul.
-		</p>
+		<h2>{t.introTitle}</h2>
+		<p>{t.intro}</p>
 	</section>
 
 	<!-- Apple-first: made around the devices in the bag -->
 	<section class="carry" aria-labelledby="carry-h">
 		<div class="head">
-			<h2 id="carry-h">Made for what you carry</h2>
-			<p>MacBook, AirTag, charger. Each has its place.</p>
+			<h2 id="carry-h">{t.carryTitle}</h2>
+			<p>{t.carrySub}</p>
 		</div>
 		<div class="cards three">
-			{#each carry as c}
+			{#each t.carry as item}
 				<article>
-					<div class="img"><p class="ph">Photograph to follow</p></div>
-					<h3>{c.title}</h3>
-					<p>{c.text}</p>
+					<div class="img"><p class="ph">{c.photo}</p></div>
+					<h3>{item.title}</h3>
+					<p>{item.text}</p>
 				</article>
 			{/each}
 		</div>
 	</section>
 
 	<!-- Four reasons, short -->
-	<section class="reasons" aria-label="Details">
+	<section class="reasons" aria-label={t.reasonsLabel}>
 		<div class="cards four">
-			{#each reasons as r}
+			{#each t.reasons as r}
 				<article>
-					<div class="img"><p class="ph">Photograph to follow</p></div>
+					<div class="img"><p class="ph">{c.photo}</p></div>
 					<h3>{r.title}</h3>
 					<p>{r.text}</p>
 				</article>
@@ -180,16 +89,31 @@
 		</div>
 	</section>
 
+	<!-- Founding backers: their initials go inside every CASE 01 -->
+	<section class="backers" aria-labelledby="backers-h">
+		<h2 id="backers-h">{t.backersTitle}</h2>
+		<p>{t.backersText}</p>
+		{#if backers.length}
+			<ul class="initials">
+				{#each backers as b}<li>{b}</li>{/each}
+			</ul>
+		{:else}
+			<p class="none">{c.backers.noneYet}</p>
+		{/if}
+		<p class="count">{count}</p>
+		<a class="ghost" href={lp(lang, '/backers')}>{t.cta}</a>
+	</section>
+
 	<!-- Specs: plain label and value blocks -->
 	<section id="details" class="specs" aria-labelledby="specs-h">
-		<h2 id="specs-h">Details</h2>
+		<h2 id="specs-h">{t.specsTitle}</h2>
 		<dl>
-			{#each specs as s}
+			{#each t.specs as sp}
 				<div class="row">
-					<dt>{s.label}</dt>
+					<dt>{sp.label}</dt>
 					<dd>
 						<ul>
-							{#each s.lines as l}<li>{l}</li>{/each}
+							{#each sp.lines as l}<li>{l}</li>{/each}
 						</ul>
 					</dd>
 				</div>
@@ -198,9 +122,9 @@
 	</section>
 
 	<section class="faq" aria-labelledby="faq-h">
-		<h2 id="faq-h">Questions</h2>
+		<h2 id="faq-h">{t.faqTitle}</h2>
 		<dl>
-			{#each faq as f}
+			{#each t.faq as f}
 				<div class="row">
 					<dt>{f.q}</dt>
 					<dd>{f.a}</dd>
@@ -209,11 +133,8 @@
 		</dl>
 	</section>
 
-	<ul class="trust" aria-label="Promises">
-		<li>Designed in Dublin</li>
-		<li>Numbered editions</li>
-		<li>Repairable</li>
-		<li>14-day returns</li>
+	<ul class="trust" aria-label={t.trustLabel}>
+		{#each t.trust as tr}<li>{tr}</li>{/each}
 	</ul>
 </main>
 
@@ -486,6 +407,46 @@
 	}
 	.trust li + li {
 		border-left: 1px solid var(--line);
+	}
+
+	/* ---------- founding backers ---------- */
+	.backers {
+		max-width: 52rem;
+		margin: 0 auto;
+		text-align: center;
+		border-top: 1px solid var(--line);
+	}
+	.backers > p {
+		margin: 1.25rem auto 0;
+		max-width: 38rem;
+		color: #d5d8d9;
+	}
+	.backers .none,
+	.backers .count {
+		color: var(--ink-dim);
+		font-size: 0.9375rem;
+	}
+	.initials {
+		list-style: none;
+		margin: 1.5rem auto 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem 1rem;
+		letter-spacing: 0.12em;
+	}
+	.ghost {
+		display: inline-flex;
+		align-items: center;
+		min-height: 3rem;
+		margin-top: 1.5rem;
+		padding: 0 1.75rem;
+		border: 1px solid var(--ink);
+		text-decoration: none;
+		font-size: 0.8125rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 	}
 
 	/* ---------- narrow screens ---------- */
