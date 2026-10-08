@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import Defaced from '$lib/Defaced.svelte';
 	import Cipher from '$lib/Cipher.svelte';
+	import Stack from '$lib/Stack.svelte';
+	import { LINE } from '$lib/lines';
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf } from '$lib/i18n';
 	import { BACKERS, PAYMENT_LINKS, STUDIO_EMAIL } from '$lib/config';
@@ -32,7 +34,7 @@
 		}
 	]);
 
-	const link = (key: 'case01' | 'ma') => PAYMENT_LINKS[key][currency];
+	const link = (key: 'case01' | 'ma') => PAYMENT_LINKS[key][currency] ?? '';
 	const emailHref = $derived(
 		`mailto:${STUDIO_EMAIL}?subject=` +
 			encodeURIComponent(t.emailSubject) +
@@ -56,9 +58,7 @@
 	<div class="objects">
 		{#each objects as o}
 			<article>
-				<p class="name">
-					{#if o.kanji}<span class="kanji" lang={o.script ?? 'ja'}>{o.kanji}</span>&nbsp;{/if}{o.name}
-				</p>
+				<p class="name"><Stack line={o.key === 'case01' ? LINE.skrin : LINE.ma} size="m" /></p>
 				<p class="sub">{o.item.sub}</p>
 				<p class="amount">{o.amount} <span>{t.amountLabel}</span></p>
 				<ul>
@@ -109,9 +109,6 @@
 		font-size: 1.75rem;
 		font-weight: 400;
 		letter-spacing: 0.04em;
-	}
-	.kanji {
-		font-family: var(--kanji);
 	}
 	.sub {
 		margin: 0;

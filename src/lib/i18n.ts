@@ -1,11 +1,35 @@
-// Languages, prices and all page text for English, German and Japanese.
+// Languages and all page text. English, German and Japanese are written by
+// hand here; Korean, Chinese, Arabic, Mongolian and Swedish are machine
+// translations in src/lib/copy/ and need a native read before promotion.
 //
 // English is the source. German and Japanese were written alongside it and
 // should be read by a native speaker before they are promoted.
 
-export type Lang = 'en' | 'de' | 'ja';
-export const LANGS: Lang[] = ['en', 'de', 'ja'];
-export const LANG_LABEL: Record<Lang, string> = { en: 'EN', de: 'DE', ja: '日本語' };
+import { LANGS, P, type Lang } from '$lib/prices';
+import { ko } from '$lib/copy/ko';
+import { zh } from '$lib/copy/zh';
+import { ar } from '$lib/copy/ar';
+import { mn } from '$lib/copy/mn';
+import { sv } from '$lib/copy/sv';
+
+export { LANGS, type Lang };
+
+// Native names, shown in the language menu.
+export const LANG_LABEL: Record<Lang, string> = {
+	en: 'English',
+	de: 'Deutsch',
+	ja: '日本語',
+	ko: '한국어',
+	zh: '中文',
+	ar: 'العربية',
+	mn: 'Монгол',
+	sv: 'Svenska'
+};
+// Short codes for the closed menu button.
+export const LANG_CODE: Record<Lang, string> = { en: 'EN', de: 'DE', ja: 'JA', ko: 'KO', zh: 'ZH', ar: 'AR', mn: 'MN', sv: 'SV' };
+// Machine-translated languages, flagged in the menu until a native speaker has read them.
+export const MACHINE: Lang[] = ['ko', 'zh', 'ar', 'mn', 'sv'];
+export const RTL: Lang[] = ['ar'];
 export const SITE = 'https://maisonseul.com';
 
 // Pages that exist in every language. Anything else (shipping, register) is
@@ -13,7 +37,7 @@ export const SITE = 'https://maisonseul.com';
 export const TRANSLATED = ['/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact'];
 
 export function langOf(param: string | undefined): Lang {
-	return param === 'de' || param === 'ja' ? param : 'en';
+	return (LANGS as string[]).includes(param ?? '') ? (param as Lang) : 'en';
 }
 
 /** A path in the given language: /skrin -> /de/skrin */
@@ -24,7 +48,7 @@ export function lp(lang: Lang, path: string): string {
 
 /** The language-free path of a URL: /de/skrin -> /skrin */
 export function basePath(pathname: string): string {
-	const m = pathname.match(/^\/(de|ja)(\/.*)?$/);
+	const m = pathname.match(/^\/(de|ja|ko|zh|ar|mn|sv)(\/.*)?$/);
 	const p = m ? (m[2] ?? '/') : pathname;
 	return p.replace(/\/$/, '') || '/';
 }
@@ -34,18 +58,6 @@ export function switchHref(pathname: string, target: Lang): string {
 	const b = basePath(pathname);
 	return lp(target, TRANSLATED.includes(b) ? b : '/');
 }
-
-// ---------------------------------------------------------------------------
-// Prices. Fixed per currency, not converted live.
-// case01 / ma: the normal price when sales open.
-// case01Back / maBack: founding backer amount, object included.
-// ---------------------------------------------------------------------------
-type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; qutnPoplin: string; qutnCanvas: string; si: string; currency: 'eur' | 'jpy' };
-const P: Record<Lang, Prices> = {
-	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', qutnPoplin: '€110', qutnCanvas: '€140', si: '€290', currency: 'eur' },
-	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', qutnPoplin: '110 €', qutnCanvas: '140 €', si: '290 €', currency: 'eur' },
-	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', qutnPoplin: '¥20,000', qutnCanvas: '¥26,000', si: '¥52,000', currency: 'jpy' }
-};
 
 // ---------------------------------------------------------------------------
 // English
@@ -1137,4 +1149,4 @@ const ja: Copy = {
 	}
 };
 
-export const copy: Record<Lang, Copy> = { en, de, ja };
+export const copy: Record<Lang, Copy> = { en, de, ja, ko, zh, ar, mn, sv };

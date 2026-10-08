@@ -3,6 +3,9 @@
 	import { page } from '$app/stores';
 	import Defaced from '$lib/Defaced.svelte';
 	import Cipher from '$lib/Cipher.svelte';
+	import Stack from '$lib/Stack.svelte';
+	import { LINE, type LineName } from '$lib/lines';
+	const BY_WORD: Record<string, LineName> = Object.fromEntries(Object.values(LINE).map((l) => [l.word, l]));
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import {
@@ -109,9 +112,7 @@
 							{/each}
 						</svg>
 					</div>
-					<p class="line mono">
-						{#if it.mark}<span class="mark" lang={it.script}>{it.mark}</span>{/if}{it.line}
-					</p>
+					<p class="line"><Stack line={BY_WORD[it.line]} size="s" /></p>
 					<p class="name">{it.name}</p>
 					{#if it.fits}
 						<p class="fitmarks kanji" lang="ja" aria-label={c.ma.fits.join(', ')}>{it.fits.join('  ')}</p>
@@ -284,11 +285,6 @@
 		font-size: 0.75rem;
 		letter-spacing: 0.12em;
 		color: var(--ink-dim);
-	}
-	.mark {
-		font-family: var(--kanji);
-		margin-right: 0.6em;
-		letter-spacing: 0.05em;
 	}
 	.name {
 		margin: 0.2rem 0 0;

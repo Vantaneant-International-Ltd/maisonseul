@@ -70,7 +70,7 @@
 	<nav aria-label="Main">
 		{#each nav as n}
 			<a href={lp(lang, n.href)} aria-current={here(n.href)}
-				>{#if n.kanji}<span class="kanji" lang={n.script ?? 'ja'}>{n.kanji}</span>&nbsp;{/if}{n.label}</a
+				>{#if n.kanji}<span class="kanji" lang={n.script ?? 'ja'} dir="ltr">{n.kanji}</span>&nbsp;{/if}{n.label}</a
 			>
 		{/each}
 		<a class="reserve" href={lp(lang, '/backers')} aria-current={here('/backers')}>{c.nav.back}</a>

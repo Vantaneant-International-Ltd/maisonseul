@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Cipher from '$lib/Cipher.svelte';
+	import Stack from '$lib/Stack.svelte';
+	import { LINE } from '$lib/lines';
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import { BACKERS } from '$lib/config';
@@ -58,7 +60,7 @@
 <main class="perm">
 	<section class="head">
 		<p class="kicker">{t.kicker}</p>
-		<h1><span class="kanji" lang="ja">間</span><span class="latin">MA</span></h1>
+		<h1><Stack line={LINE.ma} size="l" /></h1>
 		<p class="lead">{t.lead}</p>
 		<p class="lead second">{t.lead2}</p>
 		<p class="sign"><Cipher text={LINES.slowerHands} /></p>
@@ -109,9 +111,7 @@
 	</section>
 	{#each lines as L}
 		<section class="line-block" id={L.id}>
-			<h2 class="big">
-				{#if L.mark}<span class="mark" lang={L.script}>{L.mark}</span>{/if}<span class="word">{L.word}</span>
-			</h2>
+			<h2 class="big"><Stack line={LINE[L.id as keyof typeof LINE]} size="l" /></h2>
 			<p class="lead">{L.d.lead}</p>
 			<p class="lead second">{L.d.lead2}</p>
 
@@ -195,10 +195,6 @@
 	.kanji {
 		font-family: var(--kanji);
 		font-weight: 400;
-	}
-	h1 .latin {
-		font-size: 0.42em;
-		letter-spacing: 0.08em;
 	}
 	.sign {
 		margin: 1.5rem 0 0;
@@ -417,16 +413,6 @@
 		font-size: clamp(4rem, 12vw, 9rem);
 		line-height: 1;
 		text-transform: none;
-	}
-	.big .mark {
-		font-family: var(--kanji);
-		color: var(--ink-dim);
-		font-size: 0.62em;
-		margin-right: 0.3em;
-	}
-	.big .word {
-		font-size: 0.62em;
-		letter-spacing: 0.06em;
 	}
 	.cuts.two {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
