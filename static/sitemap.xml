@@ -24,14 +24,62 @@
 	<url><loc>https://maisonseul.com/ar/inventory</loc></url>
 	<url><loc>https://maisonseul.com/mn/inventory</loc></url>
 	<url><loc>https://maisonseul.com/sv/inventory</loc></url>
-	<url><loc>https://maisonseul.com/permanent</loc></url>
-	<url><loc>https://maisonseul.com/de/permanent</loc></url>
-	<url><loc>https://maisonseul.com/ja/permanent</loc></url>
-	<url><loc>https://maisonseul.com/ko/permanent</loc></url>
-	<url><loc>https://maisonseul.com/zh/permanent</loc></url>
-	<url><loc>https://maisonseul.com/ar/permanent</loc></url>
-	<url><loc>https://maisonseul.com/mn/permanent</loc></url>
-	<url><loc>https://maisonseul.com/sv/permanent</loc></url>
+	<url><loc>https://maisonseul.com/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/ma</loc></url>
+	<url><loc>https://maisonseul.com/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/grund</loc></url>
+	<url><loc>https://maisonseul.com/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/qutn</loc></url>
+	<url><loc>https://maisonseul.com/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/ovol</loc></url>
+	<url><loc>https://maisonseul.com/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/baram</loc></url>
+	<url><loc>https://maisonseul.com/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/de/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/ja/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/ko/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/zh/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/ar/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/mn/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/sv/inventory/si</loc></url>
+	<url><loc>https://maisonseul.com/made</loc></url>
+	<url><loc>https://maisonseul.com/de/made</loc></url>
+	<url><loc>https://maisonseul.com/ja/made</loc></url>
+	<url><loc>https://maisonseul.com/ko/made</loc></url>
+	<url><loc>https://maisonseul.com/zh/made</loc></url>
+	<url><loc>https://maisonseul.com/ar/made</loc></url>
+	<url><loc>https://maisonseul.com/mn/made</loc></url>
+	<url><loc>https://maisonseul.com/sv/made</loc></url>
 	<url><loc>https://maisonseul.com/house</loc></url>
 	<url><loc>https://maisonseul.com/de/house</loc></url>
 	<url><loc>https://maisonseul.com/ja/house</loc></url>

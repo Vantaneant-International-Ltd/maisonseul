@@ -34,7 +34,7 @@ export const SITE = 'https://maisonseul.com';
 
 // Pages that exist in every language. Anything else (shipping, register) is
 // English only and hidden until sales open.
-export const TRANSLATED = ['/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact'];
+export const TRANSLATED = ['/', '/skrin', '/inventory', '/inventory/ma', '/inventory/grund', '/inventory/qutn', '/inventory/ovol', '/inventory/baram', '/inventory/si', '/made', '/house', '/care', '/backers', '/contact'];
 
 export function langOf(param: string | undefined): Lang {
 	return (LANGS as string[]).includes(param ?? '') ? (param as Lang) : 'en';
@@ -67,7 +67,7 @@ const en = {
 	taxNote: 'VAT included',
 	bar: 'Designed in Dublin. Made in China.',
 	photo: 'Photograph to follow',
-	nav: { inventory: 'Inventory', permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
+	nav: { inventory: 'Inventory', made: 'Where it is made', permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
 		objects: 'Objects',
 		lines: 'The lines',
@@ -87,8 +87,8 @@ const en = {
 	},
 	home: {
 		title: 'Maison Seul',
-		description: 'Maison Seul. Singular objects. Designed in Dublin.',
-		tagline: 'Singular objects.'
+		description: 'Maison Seul. A design house in Dublin: one object, and clothes that stay.',
+		tagline: 'Fewer things. Better things.'
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
@@ -302,22 +302,24 @@ const en = {
 		],
 		set: 'Set'
 	},
+	made: { title: 'Where it is made / Maison Seul', description: 'The factories that make Maison Seul, where they are, and what each one makes.', h1: 'Where it is made.', lead: 'Everything is designed in Dublin and made in China by established manufacturers. These are the factories, where they are, and what each one makes. We name each one here before anything it makes ships.', factory: 'Factory', location: 'Location', makes: 'Makes', since: 'Making since', photos: 'Photographs to follow', tbc: 'Named before it ships', inspect: 'We inspect every batch before it leaves the factory.' },
+	ui: { menu: 'Menu', close: 'Close', piece: 'Piece', colour: 'Colour', ask: 'Ask the studio about it', notOnSale: 'Not on sale yet. It arrives when it is ready.', editionOf: 'Edition of 100', sort: 'Sort', sizes: 'Sizes for men and women.', made: 'Designed in Dublin. Made in China, inspected before it ships.', back: 'Back to inventory' },
 	house: {
 		title: 'The house / Maison Seul',
-		description: 'Maison Seul is a design house in Dublin. One object at a time.',
+		description: 'Maison Seul is a design house in Dublin. One object, and clothes that stay.',
 		kicker: 'The house',
 		h1: 'Fewer things. Better things.',
-		lead: 'Maison Seul is a design house in Dublin. We make one object at a time, and keep each one repairable for as long as you own it.',
+		lead: 'Maison Seul is a design house in Dublin. We make one object, in numbered editions, and a small permanent wardrobe of clothes. Everything is made to be kept.',
 		sections: [
 			{
-				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (T-shirts), QUTN (shirts), ÖVÖL (jackets), BARAM (joggers) and SĪ (loungewear) follow, each named in the language of the place that shaped it.']
+				h: 'An object, and a wardrobe',
+				p: ['Nothing is made to fill a catalogue. SKRIN, the cabin case, is the one object. Around it sits a permanent wardrobe: MA (denim), GRUND (T-shirts), QUTN (shirts), ÖVÖL (jackets), BARAM (joggers) and SĪ (loungewear), each named in the language of the place that shaped it.']
 			},
 			{
 				h: 'Editions and the permanent collection',
 				p: [
-					'Some objects come in numbered editions. Each finish is made once, in a set number, and every piece carries its number inside. The design stays; the next edition comes in a new finish.',
-					'Others are permanent. They are made continuously, never numbered and never discontinued, so the pair you buy now is still there when you need another.'
+					'SKRIN comes in numbered editions. Each finish is made once, in a set number, and every piece carries its number inside. The design stays; the next edition comes in a new finish.',
+					'The clothes are permanent. They are made continuously, never numbered and never discontinued, so the piece you buy now is still there when you need another.'
 				]
 			},
 			{
@@ -329,7 +331,7 @@ const en = {
 			{
 				h: 'Where it is made',
 				p: [
-					'Designed in Dublin. Made in China. For now, everything we make is made there: SKRIN by one specialist aluminium factory, MA and GRUND by garment makers we will choose with the same care. We will name each factory here before anything ships, and we inspect every batch before it leaves.', 'We would rather tell you where it is made than leave you to guess. If that changes, this page changes first.'
+					'Designed in Dublin. Made in China. For now, everything we make is made there: SKRIN by one specialist aluminium factory, the clothes by garment makers chosen with the same care. Each factory is shown on the Where it is made page and named there before anything ships, and we inspect every batch before it leaves.', 'We would rather tell you where it is made than leave you to guess. If that changes, this page changes first.'
 				]
 			},
 			{ h: 'Part of VNTA', p: ['Maison Seul is a VNTA house.'] }
@@ -337,7 +339,7 @@ const en = {
 	},
 	care: {
 		title: 'Care and repair / Maison Seul',
-		description: 'How to care for SKRIN, replace its parts, and get it repaired.',
+		description: 'How to care for SKRIN and the clothes, replace parts, and get things repaired.',
 		kicker: 'Care and repair',
 		h1: 'Four screws, and the parts to go with them.',
 		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so SKRIN can be kept going rather than replaced.',
@@ -347,6 +349,14 @@ const en = {
 			'Wipe the lining with a damp cloth. Let it dry open.',
 			'Store it empty, closed and upright, out of direct sun.',
 			'Dents and scratches are part of aluminium. They are not covered as faults, and we will not pretend they will not happen.'
+		],
+		clothesTitle: 'The clothes',
+		clothes: [
+			'Every piece has its care label inside. Follow it first.',
+			'Denim: wash rarely, cold and inside out. Hang to dry.',
+			'Cotton and fleece: wash at 30°C, inside out, with similar colours. Dry flat or hang.',
+			'Down: wash at 30°C on a gentle cycle, then tumble dry low until completely dry.',
+			'Silk: hand wash cold or dry clean. Dry flat, out of the sun.'
 		],
 		wheelTitle: 'Replace a wheel',
 		wheel: [
@@ -372,10 +382,10 @@ const en = {
 	},
 	backers: {
 		title: 'Founding backers / Maison Seul',
-		description: 'One hundred founding backers per object. Your object when it is ready, and your initials in every one ever made.',
+		description: 'One hundred founding backers for SKRIN. Your case when it is ready, and your initials in every one ever made.',
 		kicker: 'Founding backers',
 		h1: 'Make it possible.',
-		lead: 'Maison Seul is funded by the people who want its objects to exist. One hundred founding backers per object. In return, you become part of the object, for good.',
+		lead: 'Maison Seul is funded by the people who want it to exist. SKRIN, the first object, has one hundred founding backers. In return, you become part of it, for good.',
 		count: '{n} of 100 backers',
 		noneYet: 'None yet. Be the first.',
 		items: {
@@ -403,16 +413,16 @@ const en = {
 		terms: [
 			'When: when it is ready. No date is promised, and we write to backers at every stage.',
 			'If it never ships, you get all your money back.',
-			'You can ask for a full refund at any time before your object ships. If production has started, your initials may already be in made pieces.',
+			'You can ask for a full refund at any time before your case ships. If production has started, your initials may already be in made pieces.',
 			'Backing is a pre-order at a founding price, not an investment. It gives no share in the company.',
-			'One hundred backers per object. One backing per person, per object.',
-			`Normal prices when sales open: SKRIN ${P.en.case01}, MA ${P.en.ma}.`
+			'One hundred backers. One backing per person.',
+			`Normal price when sales open: ${P.en.case01}.`
 		],
 		paidNote: 'Payment is handled on a secure checkout page.',
 		emailNote: 'Checkout opens shortly. Until then, email us to put your name down. Nothing is charged.',
 		emailCta: 'Put my name down',
 		emailSubject: 'Founding backer',
-		emailBody: 'I would like to become a founding backer.\n\nObject: SKRIN / MA (delete one)\nInitials (up to 3 letters):\nName:\n'
+		emailBody: 'I would like to become a founding backer of SKRIN.\n\nInitials (up to 3 letters):\nName:\n'
 	},
 	contact: {
 		title: 'Contact / Maison Seul',
@@ -435,7 +445,7 @@ const de: Copy = {
 	taxNote: 'inkl. MwSt.',
 	bar: 'Entworfen in Dublin. Gefertigt in China.',
 	photo: 'Foto folgt',
-	nav: { inventory: 'Inventar', permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
+	nav: { inventory: 'Inventar', made: 'Wo gefertigt wird', permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
 		objects: 'Objekte',
 		lines: 'Die Linien',
@@ -455,8 +465,8 @@ const de: Copy = {
 	},
 	home: {
 		title: 'Maison Seul',
-		description: 'Maison Seul. Einzigartige Objekte. Entworfen in Dublin.',
-		tagline: 'Einzigartige Objekte.'
+		description: 'Maison Seul. Ein Designhaus in Dublin: ein Objekt und Kleidung, die bleibt.',
+		tagline: 'Weniger Dinge. Bessere Dinge.'
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
@@ -670,22 +680,24 @@ const de: Copy = {
 		],
 		set: 'Set'
 	},
+	made: { title: 'Wo gefertigt wird / Maison Seul', description: 'Die Fabriken, die für Maison Seul fertigen, wo sie sind und was jede macht.', h1: 'Wo gefertigt wird.', lead: 'Alles wird in Dublin entworfen und in China von etablierten Herstellern gefertigt. Hier sind die Fabriken, wo sie sind und was jede macht. Wir nennen jede hier, bevor etwas von ihr versendet wird.', factory: 'Fabrik', location: 'Ort', makes: 'Fertigt', since: 'Fertigt seit', photos: 'Fotos folgen', tbc: 'Wird vor dem Versand genannt', inspect: 'Wir prüfen jede Charge, bevor sie die Fabrik verlässt.' },
+	ui: { menu: 'Menü', close: 'Schließen', piece: 'Stück', colour: 'Farbe', ask: 'Beim Studio nachfragen', notOnSale: 'Noch nicht im Verkauf. Es kommt, wenn es fertig ist.', editionOf: 'Edition von 100', sort: 'Sortieren', sizes: 'Größen für Herren und Damen.', made: 'Entworfen in Dublin. Gefertigt in China, vor dem Versand geprüft.', back: 'Zurück zum Inventar' },
 	house: {
 		title: 'Das Haus / Maison Seul',
-		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt nach dem anderen.',
+		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt und Kleidung, die bleibt.',
 		kicker: 'Das Haus',
 		h1: 'Weniger Dinge. Bessere Dinge.',
-		lead: 'Maison Seul ist ein Designhaus in Dublin. Wir machen ein Objekt nach dem anderen und halten jedes reparierbar, solange Sie es besitzen.',
+		lead: 'Maison Seul ist ein Designhaus in Dublin. Wir machen ein Objekt in nummerierten Editionen und eine kleine, ständige Garderobe. Alles ist dafür gemacht, behalten zu werden.',
 		sections: [
 			{
-				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (T-Shirts), QUTN (Hemden), ÖVÖL (Jacken), BARAM (Jogger) und SĪ (Loungewear) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
+				h: 'Ein Objekt und eine Garderobe',
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN, der Kabinenkoffer, ist das eine Objekt. Um ihn herum steht eine ständige Garderobe: MA (Denim), GRUND (T-Shirts), QUTN (Hemden), ÖVÖL (Jacken), BARAM (Jogger) und SĪ (Loungewear), jedes benannt in der Sprache des Ortes, der es geprägt hat.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
 				p: [
-					'Manche Objekte erscheinen in nummerierten Editionen. Jede Ausführung wird einmal in einer festen Stückzahl gefertigt, und jedes Stück trägt seine Nummer. Das Design bleibt; die nächste Edition kommt in einer neuen Ausführung.',
-					'Andere sind dauerhaft. Sie werden fortlaufend gefertigt, nie nummeriert und nie eingestellt, damit das Paar, das Sie jetzt kaufen, noch da ist, wenn Sie ein weiteres brauchen.'
+					'SKRIN erscheint in nummerierten Editionen. Jede Ausführung wird einmal in einer festen Stückzahl gefertigt, und jedes Stück trägt seine Nummer. Das Design bleibt; die nächste Edition kommt in einer neuen Ausführung.',
+					'Die Kleidung ist dauerhaft. Sie wird fortlaufend gefertigt, nie nummeriert und nie eingestellt, damit das Stück, das Sie jetzt kaufen, noch da ist, wenn Sie ein weiteres brauchen.'
 				]
 			},
 			{
@@ -697,7 +709,7 @@ const de: Copy = {
 			{
 				h: 'Wo gefertigt wird',
 				p: [
-					'Entworfen in Dublin. Gefertigt in China. Derzeit wird alles, was wir machen, dort gefertigt: SKRIN von einer spezialisierten Aluminiummanufaktur, MA und GRUND von Bekleidungsherstellern, die wir mit derselben Sorgfalt auswählen. Wir nennen jede Fabrik hier, bevor etwas versendet wird, und prüfen jede Charge vor dem Versand.', 'Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen. Wenn sich das ändert, ändert sich zuerst diese Seite.'
+					'Entworfen in Dublin. Gefertigt in China. Derzeit wird alles, was wir machen, dort gefertigt: SKRIN von einer spezialisierten Aluminiummanufaktur, die Kleidung von Bekleidungsherstellern, die wir mit derselben Sorgfalt auswählen. Jede Fabrik erscheint auf der Seite „Wo gefertigt wird“ und wird dort genannt, bevor etwas versendet wird, und wir prüfen jede Charge, bevor sie die Fabrik verlässt.', 'Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen. Wenn sich das ändert, ändert sich zuerst diese Seite.'
 				]
 			},
 			{ h: 'Teil von VNTA', p: ['Maison Seul ist ein Haus von VNTA.'] }
@@ -705,7 +717,7 @@ const de: Copy = {
 	},
 	care: {
 		title: 'Pflege und Reparatur / Maison Seul',
-		description: 'So pflegen Sie SKRIN, tauschen Teile aus und lassen ihn reparieren.',
+		description: 'So pflegen Sie SKRIN und die Kleidung, tauschen Teile aus und lassen Dinge reparieren.',
 		kicker: 'Pflege und Reparatur',
 		h1: 'Vier Schrauben und die passenden Teile dazu.',
 		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit SKRIN weiterlebt, statt ersetzt zu werden.',
@@ -715,6 +727,14 @@ const de: Copy = {
 			'Das Futter mit einem feuchten Tuch abwischen und offen trocknen lassen.',
 			'Leer, geschlossen und aufrecht lagern, ohne direkte Sonne.',
 			'Dellen und Kratzer gehören zu Aluminium. Sie gelten nicht als Mängel, und wir tun nicht so, als würden sie nicht entstehen.'
+		],
+		clothesTitle: 'Die Kleidung',
+		clothes: [
+			'Jedes Stück hat sein Pflegeetikett innen. Folgen Sie zuerst diesem.',
+			'Denim: selten waschen, kalt und auf links. Zum Trocknen aufhängen.',
+			'Baumwolle und Fleece: bei 30 °C waschen, auf links, mit ähnlichen Farben. Liegend trocknen oder aufhängen.',
+			'Daunen: bei 30 °C im Schonwaschgang waschen, dann bei niedriger Temperatur im Trockner trocknen, bis alles vollständig trocken ist.',
+			'Seide: kalt von Hand waschen oder chemisch reinigen. Liegend trocknen, ohne direkte Sonne.'
 		],
 		wheelTitle: 'Ein Rad tauschen',
 		wheel: [
@@ -740,10 +760,10 @@ const de: Copy = {
 	},
 	backers: {
 		title: 'Gründungsunterstützer / Maison Seul',
-		description: 'Hundert Gründungsunterstützer pro Objekt. Ihr Objekt, sobald es fertig ist, und Ihre Initialen in jedem, das je gefertigt wird.',
+		description: 'Hundert Gründungsunterstützer für SKRIN. Ihr Koffer, sobald er fertig ist, und Ihre Initialen in jedem, der je gefertigt wird.',
 		kicker: 'Gründungsunterstützer',
 		h1: 'Machen Sie es möglich.',
-		lead: 'Maison Seul wird von den Menschen finanziert, die wollen, dass seine Objekte existieren. Hundert Gründungsunterstützer pro Objekt. Dafür werden Sie Teil des Objekts, für immer.',
+		lead: 'Maison Seul wird von den Menschen finanziert, die wollen, dass es existiert. SKRIN, das erste Objekt, hat hundert Gründungsunterstützer. Dafür werden Sie ein Teil davon, für immer.',
 		count: '{n} von 100 Unterstützern',
 		noneYet: 'Noch niemand. Seien Sie der Erste.',
 		items: {
@@ -771,16 +791,16 @@ const de: Copy = {
 		terms: [
 			'Wann: wenn es fertig ist. Wir versprechen kein Datum und schreiben den Unterstützern bei jedem Schritt.',
 			'Wird es nie ausgeliefert, erhalten Sie Ihr gesamtes Geld zurück.',
-			'Sie können jederzeit vor dem Versand Ihres Objekts die volle Erstattung verlangen. Hat die Produktion begonnen, sind Ihre Initialen womöglich schon in gefertigten Stücken.',
+			'Sie können jederzeit vor dem Versand Ihres Koffers die volle Erstattung verlangen. Hat die Produktion begonnen, sind Ihre Initialen womöglich schon in gefertigten Stücken.',
 			'Die Unterstützung ist eine Vorbestellung zum Gründungspreis, keine Geldanlage. Sie verschafft keinen Anteil am Unternehmen.',
-			'Hundert Unterstützer pro Objekt. Eine Unterstützung pro Person und Objekt.',
-			`Reguläre Preise zum Verkaufsstart: SKRIN ${P.de.case01}, MA ${P.de.ma}.`
+			'Hundert Unterstützer. Eine Unterstützung pro Person.',
+			`Regulärer Preis zum Verkaufsstart: ${P.de.case01}.`
 		],
 		paidNote: 'Die Zahlung erfolgt auf einer sicheren Bezahlseite.',
 		emailNote: 'Die Bezahlseite öffnet bald. Bis dahin schreiben Sie uns, um sich vormerken zu lassen. Es wird nichts berechnet.',
 		emailCta: 'Mich vormerken',
 		emailSubject: 'Gründungsunterstützer',
-		emailBody: 'Ich möchte Gründungsunterstützer werden.\n\nObjekt: SKRIN / MA (bitte eines löschen)\nInitialen (bis zu 3 Buchstaben):\nName:\n'
+		emailBody: 'Ich möchte Gründungsunterstützer von SKRIN werden.\n\nInitialen (bis zu 3 Buchstaben):\nName:\n'
 	},
 	contact: {
 		title: 'Kontakt / Maison Seul',
@@ -801,7 +821,7 @@ const ja: Copy = {
 	taxNote: '関税・輸入消費税は含まれません',
 	bar: 'ダブリンでデザイン。中国で製造。',
 	photo: '写真は後日掲載',
-	nav: { inventory: '一覧', permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
+	nav: { inventory: '一覧', made: '製造拠点', permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
 		objects: 'オブジェ',
 		lines: 'ライン',
@@ -821,8 +841,8 @@ const ja: Copy = {
 	},
 	home: {
 		title: 'Maison Seul',
-		description: 'Maison Seul。唯一のもの。ダブリンでデザイン。',
-		tagline: '唯一のもの。'
+		description: 'Maison Seul。ダブリンのデザインハウス。ひとつのオブジェと、なくならない服。',
+		tagline: 'より少なく。より良く。'
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
@@ -1026,22 +1046,24 @@ const ja: Copy = {
 		],
 		set: 'セット'
 	},
+	made: { title: '製造拠点 / Maison Seul', description: 'Maison Seulをつくる工場、その場所、それぞれがつくるもの。', h1: 'どこでつくるか。', lead: 'すべてダブリンでデザインし、中国の実績ある工場で製造しています。工場の場所と、それぞれがつくるものをここに載せます。各工場の名前は、そこでつくったものを出荷する前に公表します。', factory: '工場', location: '所在地', makes: 'つくるもの', since: '創業', photos: '写真は後日掲載', tbc: '出荷前に公表', inspect: 'すべてのロットを工場出荷前に検品します。' },
+	ui: { menu: 'メニュー', close: '閉じる', piece: 'アイテム', colour: 'カラー', ask: 'スタジオに問い合わせる', notOnSale: 'まだ販売していません。準備ができたらお届けします。', editionOf: '100点限定', sort: '並び替え', sizes: 'メンズとウィメンズのサイズ。', made: 'デザインはダブリン、製造は中国。出荷前に検品します。', back: '一覧に戻る' },
 	house: {
 		title: 'メゾンについて / Maison Seul',
-		description: 'Maison Seulはダブリンのデザインハウス。ひとつずつ作ります。',
+		description: 'Maison Seulはダブリンのデザインハウス。ひとつのオブジェと、なくならない服。',
 		kicker: 'メゾンについて',
 		h1: 'より少なく。より良く。',
-		lead: 'Maison Seulはダブリンのデザインハウスです。ひとつずつオブジェを作り、持ち続けるかぎり修理できるようにします。',
+		lead: 'Maison Seulはダブリンのデザインハウスです。ナンバリング・エディションのオブジェをひとつと、少数の常設の服を作っています。どれも、長く持ち続けるために作られています。',
 		sections: [
 			{
-				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（Tシャツ）、QUTN（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）、SĪ（ラウンジウェア）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
+				h: 'ひとつのオブジェと、ワードローブ',
+				p: ['カタログを埋めるために作るものはありません。機内持ち込みケースのSKRINが、ただひとつのオブジェです。そのまわりに、常設のワードローブがあります。MA（デニム）、GRUND（Tシャツ）、QUTN（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）、SĪ（ラウンジウェア）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
 			},
 			{
 				h: 'エディションと常設コレクション',
 				p: [
-					'ナンバリングされたエディションで作るオブジェがあります。それぞれの仕上げは決まった数だけ一度きり作り、一点ずつ番号が入ります。デザインは変わらず、次のエディションは新しい仕上げで。',
-					'常設のものもあります。作り続け、番号はつけず、廃番にもしません。いま買った一本が、次に必要になったときにもそこにあるように。'
+					'SKRINはナンバリングされたエディションで作ります。それぞれの仕上げは決まった数だけ一度きり作り、一点ずつ番号が入ります。デザインは変わらず、次のエディションは新しい仕上げで。',
+					'服は常設です。作り続け、番号はつけず、廃番にもしません。いま買った一着が、次に必要になったときにもそこにあるように。'
 				]
 			},
 			{
@@ -1053,7 +1075,7 @@ const ja: Copy = {
 			{
 				h: 'どこで作るか',
 				p: [
-					'デザインはダブリン。製造は中国。現在、私たちが作るものはすべて中国で作られています。SKRINはアルミニウム専門の工場ひとつで、MAとGRUNDは同じ基準で選ぶ衣料工場で。工場名は出荷前にここで公表し、すべてのロットを出荷前に検品します。', 'どこで作られているかは、推測させるより、きちんとお伝えしたい。変わるときは、まずこのページを書き換えます。'
+					'デザインはダブリン。製造は中国。現在、私たちが作るものはすべて中国で作られています。SKRINはアルミニウム専門の工場ひとつで、服は同じ基準で選ぶ衣料工場で。各工場は「どこでつくるか」のページに掲載し、出荷前にそこで名前を公表します。すべてのロットは工場出荷前に検品します。', 'どこで作られているかは、推測させるより、きちんとお伝えしたい。変わるときは、まずこのページを書き換えます。'
 				]
 			},
 			{ h: 'VNTAの一員', p: ['Maison SeulはVNTAのメゾンです。'] }
@@ -1061,7 +1083,7 @@ const ja: Copy = {
 	},
 	care: {
 		title: 'ケアと修理 / Maison Seul',
-		description: 'SKRINのお手入れ、部品の交換、修理について。',
+		description: 'SKRINと服のお手入れ、部品の交換、修理について。',
 		kicker: 'ケアと修理',
 		h1: 'ネジは4本。部品もそろっています。',
 		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、SKRINは買い替えずに使い続けられます。',
@@ -1071,6 +1093,14 @@ const ja: Copy = {
 			'内張りは湿らせた布で拭き、開いたまま乾かしてください。',
 			'中を空にし、閉じて立てた状態で、直射日光を避けて保管してください。',
 			'へこみや傷はアルミニウムの一部です。欠陥としては扱いません。生じないふりもしません。'
+		],
+		clothesTitle: '服のお手入れ',
+		clothes: [
+			'どの服にも内側に洗濯表示があります。まずはそれに従ってください。',
+			'デニム：洗うのはたまに。冷水で、裏返して。吊るして乾かしてください。',
+			'コットンとフリース：30°Cで、裏返して、似た色のものと一緒に洗ってください。平干しか吊り干しで。',
+			'ダウン：30°Cの弱水流で洗い、低温のタンブル乾燥で完全に乾かしてください。',
+			'シルク：冷水で手洗いするか、ドライクリーニングに。直射日光を避けて平干ししてください。'
 		],
 		wheelTitle: 'ホイールの交換',
 		wheel: [
@@ -1096,10 +1126,10 @@ const ja: Copy = {
 	},
 	backers: {
 		title: '創設支援者 / Maison Seul',
-		description: '各オブジェにつき創設支援者は100人。完成したオブジェと、これから作られるすべてに刻まれるあなたのイニシャル。',
+		description: 'SKRINの創設支援者は100人。完成したケースと、これから作られるすべてに刻まれるあなたのイニシャル。',
 		kicker: '創設支援者',
 		h1: 'これを可能にする。',
-		lead: 'Maison Seulは、そのオブジェが存在してほしいと願う人々の支援でつくられます。各オブジェにつき創設支援者は100人。その見返りに、あなたはオブジェの一部になります。ずっと。',
+		lead: 'Maison Seulは、それが存在してほしいと願う人々の支援でつくられます。最初のオブジェ、SKRINの創設支援者は100人。その見返りに、あなたはその一部になります。ずっと。',
 		count: '支援者 {n} / 100',
 		noneYet: 'まだいません。最初のひとりに。',
 		items: {
@@ -1127,16 +1157,16 @@ const ja: Copy = {
 		terms: [
 			'時期：準備ができたら。日付はお約束しません。各段階で支援者にお知らせします。',
 			'もし出荷に至らなければ、全額を返金します。',
-			'オブジェの発送前であれば、いつでも全額返金を申し出られます。製造が始まっている場合、イニシャルはすでに製品に入っていることがあります。',
+			'ケースの発送前であれば、いつでも全額返金を申し出られます。製造が始まっている場合、イニシャルはすでに製品に入っていることがあります。',
 			'支援は創設価格での予約購入であり、投資ではありません。会社の持分は伴いません。',
-			'各オブジェにつき支援者は100人まで。おひとりさま、1オブジェにつき1口まで。',
-			`販売開始時の通常価格：SKRIN ${P.ja.case01}、MA ${P.ja.ma}。`
+			'支援者は100人まで。おひとりさま1口まで。',
+			`販売開始時の通常価格：${P.ja.case01}。`
 		],
 		paidNote: 'お支払いは安全な決済ページで行います。',
 		emailNote: 'まもなく決済を開始します。それまではメールでお名前をお知らせください。料金はかかりません。',
 		emailCta: '名前を登録する',
 		emailSubject: '創設支援者',
-		emailBody: '創設支援者になりたいです。\n\nオブジェ：SKRIN / MA（どちらかを削除）\nイニシャル（3文字まで）：\nお名前：\n'
+		emailBody: 'SKRINの創設支援者になりたいです。\n\nイニシャル（3文字まで）：\nお名前：\n'
 	},
 	contact: {
 		title: 'お問い合わせ / Maison Seul',

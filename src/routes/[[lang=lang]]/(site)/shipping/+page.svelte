@@ -30,7 +30,7 @@
 	<section>
 		<h2>Founding backers</h2>
 		<ul>
-			<li>Founding backers pay €1,000 (SKRIN) or €250 (MA), object included.</li>
+			<li>Founding backers pay €1,000 for SKRIN, the case included. Founding backing is for SKRIN only.</li>
 			<li>Backing is refundable at any time before the object ships, and in full if it never ships.</li>
 		</ul>
 	</section>

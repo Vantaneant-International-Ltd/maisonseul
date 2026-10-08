@@ -3,7 +3,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 // Keep in step with src/lib/prices.ts (LANGS) and src/lib/i18n.ts (TRANSLATED).
 const LANGS = ['en', 'de', 'ja', 'ko', 'zh', 'ar', 'mn', 'sv'];
-const PAGES = ['/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact'];
+const PAGES = ['/', '/skrin', '/inventory', '/inventory/ma', '/inventory/grund', '/inventory/qutn', '/inventory/ovol', '/inventory/baram', '/inventory/si', '/made', '/house', '/care', '/backers', '/contact'];
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,6 +20,7 @@ const config = {
 			// Every page in every language, plus the hidden English-only pages.
 			entries: [
 				...LANGS.flatMap((l) => PAGES.map((p) => (l === 'en' ? p : p === '/' ? `/${l}` : `/${l}${p}`))),
+				...LANGS.map((l) => (l === 'en' ? '/permanent' : `/${l}/permanent`)),
 				'/case-01', '/de/case-01', '/ja/case-01', '/shipping', '/register'
 			]
 		}

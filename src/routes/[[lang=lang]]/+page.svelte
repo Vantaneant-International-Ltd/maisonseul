@@ -143,8 +143,6 @@
 		padding: 0 clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.25rem);
 		font-size: 0.75rem;
 		font-weight: 400;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
 	footer nav {

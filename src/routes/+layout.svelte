@@ -16,7 +16,7 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Maison Seul" />
 	<meta property="og:title" content="Maison Seul" />
-	<meta property="og:description" content="Singular objects. Dublin. 2027." />
+	<meta property="og:description" content="Fewer things. Better things. Dublin." />
 	<meta property="og:url" content="https://maisonseul.com/" />
 	<meta property="og:image" content="https://maisonseul.com/og.png" />
 	<meta property="og:image:width" content="1200" />
@@ -161,8 +161,6 @@
 	}
 
 	/* Labels in the brand book are set in mono */
-	:global(.kicker),
-	:global(dt),
 	:global(.mono) {
 		font-family: var(--mono);
 	}

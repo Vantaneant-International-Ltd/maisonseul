@@ -25,6 +25,11 @@
 </svelte:head>
 
 <main>
+	<nav class="crumbs" aria-label="Breadcrumb">
+		<a href={lp(lang, '/inventory')}>{c.nav.inventory}</a>
+		<span aria-hidden="true">/</span>
+		<a href={lp(lang, '/inventory?c=objects')}>{c.inventory.cats.objects}</a>
+	</nav>
 	<!-- The object first, as on an Apple-first product page -->
 	<section id="back" class="buy" aria-labelledby="case-h">
 		<div class="gallery">
@@ -152,13 +157,11 @@
 		font-weight: 400;
 		font-size: clamp(1.75rem, 3.4vw, 2.75rem);
 		line-height: 1.1;
-		text-transform: uppercase;
 	}
 	.ph {
 		margin: 0;
 		font-size: 0.8125rem;
 		letter-spacing: 0.06em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
 
@@ -223,9 +226,9 @@
 		color: var(--ink-dim);
 	}
 	.kicker {
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		margin: 0 0 1rem;
+		font-size: 0.9375rem;
+		color: var(--ink-dim);
 	}
 	h1 {
 		margin: 0;
@@ -263,8 +266,6 @@
 		color: var(--void);
 		text-decoration: none;
 		font-size: 0.8125rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
 	}
 	.cta:hover {
 		background: #ffffff;
@@ -371,8 +372,6 @@
 	}
 	dt {
 		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
 		color: var(--paper-dim);
 		padding-top: 0.15rem;
 	}
@@ -409,8 +408,6 @@
 		padding: 1.5rem var(--gutter);
 		text-align: center;
 		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
 	.trust li + li {
@@ -442,7 +439,6 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 0.5rem 1rem;
-		letter-spacing: 0.12em;
 	}
 	.ghost {
 		display: inline-flex;
@@ -453,8 +449,6 @@
 		border: 1px solid var(--ink);
 		text-decoration: none;
 		font-size: 0.8125rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
 	}
 
 	/* ---------- narrow screens ---------- */
@@ -488,5 +482,21 @@
 		.trust li {
 			padding: 1.25rem 0.5rem;
 		}
+	}
+	.crumbs {
+		display: flex;
+		gap: 0.6rem;
+		max-width: 84rem;
+		margin: 0 auto;
+		padding: 1.5rem var(--gutter) 0;
+		font-size: 0.875rem;
+		color: var(--ink-dim);
+	}
+	.crumbs a {
+		color: var(--ink-dim);
+		text-decoration: none;
+	}
+	.crumbs a:hover {
+		color: var(--ink);
 	}
 </style>

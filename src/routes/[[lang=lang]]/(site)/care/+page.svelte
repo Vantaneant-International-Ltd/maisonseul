@@ -27,6 +27,13 @@
 	</section>
 
 	<section>
+		<h2>{t.clothesTitle}</h2>
+		<ul>
+			{#each t.clothes as item}<li>{item}</li>{/each}
+		</ul>
+	</section>
+
+	<section>
 		<h2>{t.wheelTitle}</h2>
 		<ol>
 			{#each t.wheel as step}<li>{step}</li>{/each}
