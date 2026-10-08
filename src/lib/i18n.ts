@@ -66,7 +66,7 @@ const en = {
 	prices: P.en,
 	taxNote: 'VAT included',
 	bar: 'Designed in Dublin. Made in China.',
-	photo: 'Photograph to follow',
+	photo: 'After sample',
 	nav: { inventory: 'Inventory', made: 'Where it is made', permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
 		objects: 'Objects',
@@ -92,19 +92,19 @@ const en = {
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
-		description: 'SKRIN. An aluminium cabin case. Edition 001, one hundred pieces. One hundred founding backers.',
+		description: 'SKRIN. An aluminium cabin case, in development. Edition 001 planned at one hundred pieces.',
 		kicker: 'Object 01 / Cabin case',
-		variant: 'Graphite / Edition 001 / 100 pieces',
+		variant: 'Graphite / Edition 001 / 100 planned',
 		status: 'Not on sale yet.',
 		target: 'Aiming for winter 2027.',
-		backNote: 'One hundred founding backers make SKRIN possible. Each receives a case, and their initials are engraved inside every SKRIN ever made.',
+		backNote: 'One hundred founding backers will make SKRIN possible. Each receives a case, and their initials will be engraved inside every SKRIN made.',
 		cta: `Become a founding backer, ${P.en.case01Back}`,
 		backersTitle: 'Founding backers',
-		backersText: 'Their initials are engraved on a plate inside the lid of every SKRIN ever made. Every ownership card names them and says why.',
-		note: 'Made once in this finish. Numbered 001 to 100 inside the lid.',
+		backersText: 'Their initials will be engraved on a plate inside the lid of every SKRIN made. Every ownership card will name them and say why.',
+		note: 'Edition 001 will be made once in this finish, each case numbered inside the lid.',
 		viewsLabel: 'Views',
 		views: ['Front', 'Three-quarter', 'Raw corner', 'Interior', 'Serial plate'],
-		followSuffix: 'Photograph to follow.',
+		followSuffix: 'After sample.',
 		introTitle: 'One case. Nothing else.',
 		intro:
 			'An aluminium cabin case with no logo, one raw corner, and room built in for what you already carry. It is the first object from Maison Seul.',
@@ -118,11 +118,11 @@ const en = {
 		reasonsLabel: 'Details',
 		reasons: [
 			{ title: 'One raw corner.', text: 'Seven corners in graphite. One left in raw aluminium.' },
-			{ title: 'Four screws.', text: 'Every wheel comes off with a screwdriver.' },
+			{ title: 'Four screws.', text: 'Designed so every wheel comes off with a screwdriver.' },
 			{ title: 'It will mark.', text: 'Aluminium keeps every trip. That is the point.' },
-			{ title: 'No logo.', text: 'Your number, engraved small beside the handle.' }
+			{ title: 'No logo.', text: 'Your number will be engraved small beside the handle.' }
 		],
-		specsTitle: 'Details',
+		specsTitle: 'Details, as designed',
 		specs: [
 			{
 				label: 'Details',
@@ -155,8 +155,8 @@ const en = {
 			{
 				label: 'Returns and warranty',
 				lines: [
-					'14 days to return it unused, for a full refund',
-					'5 years on shell, frame, wheels, handle and latches. Dents and scratches are not covered'
+					'When sales open: 14 days to return it unused, for a full refund',
+					'Planned: 5 years on shell, frame, wheels, handle and latches. Dents and scratches will not be covered'
 				]
 			}
 		],
@@ -164,15 +164,15 @@ const en = {
 		faq: [
 			{
 				q: 'Where is it made?',
-				a: 'Designed in Dublin. Made in China, by one specialist aluminium factory, which we will name here before anything ships. Every batch is inspected before it leaves.'
+				a: 'Designed in Dublin. Made in China by a specialist aluminium manufacturer. The factory will be named before production, and every production batch will be inspected before it leaves.'
 			},
 			{
 				q: 'What happens when the hundred are gone?',
-				a: 'Graphite is not made again. SKRIN continues in a new finish, and parts stay in stock for every edition.'
+				a: 'Graphite will not be made again. SKRIN will continue in a new finish, and replacement parts will remain available for every edition.'
 			},
 			{
 				q: 'What is a founding backer?',
-				a: `One of 100 people who fund SKRIN before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials are engraved inside every SKRIN ever made, and your name is on every ownership card. If it never ships, you get your money back.`
+				a: `One of 100 people who fund SKRIN before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials will be engraved inside every SKRIN made, and your name will be on every ownership card. If it never ships, you get your money back.`
 			},
 			{
 				q: 'Is Maison Seul part of Apple?',
@@ -180,7 +180,7 @@ const en = {
 			}
 		],
 		trustLabel: 'Promises',
-		trust: ['Designed in Dublin, made in China', 'Numbered editions', 'Repairable', '14-day returns']
+		trust: ['Designed in Dublin, made in China', 'Numbered editions', 'Repairable by design', '14-day returns when sales open']
 	},
 	ma: {
 		title: 'Permanent / Maison Seul',
@@ -303,14 +303,14 @@ const en = {
 		],
 		set: 'Set'
 	},
-	made: { title: 'Where it is made / Maison Seul', description: 'The factories that make Maison Seul, where they are, and what each one makes.', h1: 'Where it is made.', lead: 'Everything is designed in Dublin and made in China by established manufacturers. These are the factories, where they are, and what each one makes. We name each one here before anything it makes ships.', factory: 'Factory', location: 'Location', makes: 'Makes', since: 'Making since', photos: 'Photographs to follow', tbc: 'Named before it ships', inspect: 'We inspect every batch before it leaves the factory.' },
-	ui: { menu: 'Menu', close: 'Close', piece: 'Piece', colour: 'Colour', ask: 'Ask the studio about it', notOnSale: 'Not on sale yet. It arrives when it is ready.', editionOf: 'Edition of 100', sort: 'Sort', sizes: 'Sizes for men and women.', made: 'Designed in Dublin. Made in China, inspected before it ships.', back: 'Back to inventory' },
+	made: { title: 'Where it is made / Maison Seul', description: 'Where Maison Seul is made, and what each manufacturer will make.', h1: 'Where it is made.', lead: 'Everything is designed in Dublin and will be made in China by established manufacturers. Manufacturing partners will be published here before production.', factory: 'Factory', location: 'Location', makes: 'Makes', since: 'Making since', photos: 'Photographs to follow', tbc: 'Named before it ships', inspect: 'Every production batch will be inspected before it leaves the factory.' },
+	ui: { menu: 'Menu', close: 'Close', piece: 'Piece', colour: 'Colour', ask: 'Ask the studio about it', notOnSale: 'Not on sale yet. It arrives when it is ready.', editionOf: 'Edition of 100', sort: 'Sort', sizes: 'Sizes for men and women.', made: 'Designed in Dublin. Made in China. Every batch will be inspected before it ships.', back: 'Back to inventory', inDev: 'In development', specNote: 'Specification in development. Final details are confirmed at sampling.' },
 	house: {
 		title: 'The house / Maison Seul',
 		description: 'Maison Seul is a design house in Dublin. One object, and clothes that stay.',
 		kicker: 'The house',
 		h1: 'Fewer things. Better things.',
-		lead: 'Maison Seul is a design house in Dublin. We make one object, in numbered editions, and a small permanent wardrobe of clothes. Everything is made to be kept.',
+		lead: 'Maison Seul is a design house in Dublin. We are making one object, in numbered editions, and a small permanent wardrobe of clothes. Everything is designed to be kept.',
 		sections: [
 			{
 				h: 'An object, and a wardrobe',
@@ -319,20 +319,20 @@ const en = {
 			{
 				h: 'Editions and the permanent collection',
 				p: [
-					'SKRIN comes in numbered editions. Each finish is made once, in a set number, and every piece carries its number inside. The design stays; the next edition comes in a new finish.',
-					'The clothes are permanent. They are made continuously, never numbered and never discontinued, so the piece you buy now is still there when you need another.'
+					'SKRIN will come in numbered editions. Each finish will be made once, in a set number, and every piece will carry its number inside. The design stays; the next edition comes in a new finish.',
+					'The clothes will be permanent: made continuously, never numbered and never discontinued, so the piece you buy is still there when you need another.'
 				]
 			},
 			{
 				h: 'Kept longer',
 				p: [
-					'Every part that wears can be replaced, and we keep those parts in stock for every edition. Dents and scratches are not faults. Aluminium keeps a record of where it has been.'
+					'Every part that wears is designed to be replaced, and replacement parts will remain available for every edition. Dents and scratches are not faults. Aluminium keeps a record of where it has been.'
 				]
 			},
 			{
 				h: 'Where it is made',
 				p: [
-					'Designed in Dublin. Made in China. For now, everything we make is made there: SKRIN by one specialist aluminium factory, the clothes by garment makers chosen with the same care. Each factory is shown on the Where it is made page and named there before anything ships, and we inspect every batch before it leaves.', 'We would rather tell you where it is made than leave you to guess. If that changes, this page changes first.'
+					'Designed in Dublin. Made in China: SKRIN by a specialist aluminium manufacturer, the clothes by garment makers chosen with the same care. Manufacturing partners will be published before production, and every production batch will be inspected before it leaves.', 'We would rather tell you where it is made than leave you to guess. If that changes, this page changes first.'
 				]
 			},
 			{ h: 'Part of VNTA', p: ['Maison Seul is a VNTA house.'] }
@@ -343,7 +343,7 @@ const en = {
 		description: 'How to care for SKRIN and the clothes, replace parts, and get things repaired.',
 		kicker: 'Care and repair',
 		h1: 'Four screws, and the parts to go with them.',
-		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so SKRIN can be kept going rather than replaced.',
+		lead: 'The wheels, handle and latches are designed to come off with a screwdriver. Replacement parts will remain available for every edition, so SKRIN can be kept going rather than replaced.',
 		everydayTitle: 'Everyday care',
 		everyday: [
 			'Wipe the shell with a soft damp cloth. A little mild soap if needed. Nothing abrasive.',
@@ -366,7 +366,7 @@ const en = {
 			'Lift the old wheel away.',
 			'Fit the new wheel and tighten the four screws evenly. Do not overtighten.'
 		],
-		wheelAfter: 'The handle, latches and feet come off the same way. A full guide comes with the case.',
+		wheelAfter: 'The handle, latches and feet come off the same way. A full guide will come with the case.',
 		partsTitle: 'Spare parts',
 		partsHead: ['Part', 'Note'],
 		parts: [
@@ -376,7 +376,7 @@ const en = {
 			['Corner guard', 'Graphite or raw aluminium.'],
 			['Foot', 'Set of two.']
 		],
-		partsAfter: 'Free within the 5-year warranty. After that, sold at cost plus postage. Prices are published when sales open.',
+		partsAfter: 'Planned: free within the 5-year warranty, then at cost plus postage. Prices will be published when sales open.',
 		repairTitle: 'Repair by us',
 		repairBefore: 'Email',
 		repairAfter: 'with your serial number and a photo of the problem. We will send the part, or arrange a repair if it needs one.'
@@ -445,7 +445,7 @@ const de: Copy = {
 	prices: P.de,
 	taxNote: 'inkl. MwSt.',
 	bar: 'Entworfen in Dublin. Gefertigt in China.',
-	photo: 'Foto folgt',
+	photo: 'Nach dem Muster',
 	nav: { inventory: 'Inventar', made: 'Wo gefertigt wird', permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
 		objects: 'Objekte',
@@ -471,19 +471,19 @@ const de: Copy = {
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
-		description: 'SKRIN. Ein Kabinenkoffer aus Aluminium. Edition 001, hundert Stück. Hundert Gründungsunterstützer.',
+		description: 'SKRIN. Ein Kabinenkoffer aus Aluminium, in Entwicklung. Edition 001 ist mit hundert Stück geplant.',
 		kicker: 'Objekt 01 / Handgepäck',
-		variant: 'Graphit / Edition 001 / 100 Stück',
+		variant: 'Graphit / Edition 001 / 100 geplant',
 		status: 'Noch nicht im Verkauf.',
 		target: 'Geplant für Winter 2027.',
-		backNote: 'Hundert Gründungsunterstützer machen SKRIN möglich. Jeder erhält einen Koffer, und ihre Initialen werden in jeden SKRIN graviert, der je gefertigt wird.',
+		backNote: 'Hundert Gründungsunterstützer werden SKRIN möglich machen. Jeder erhält einen Koffer, und ihre Initialen werden in jeden gefertigten SKRIN graviert.',
 		cta: `Gründungsunterstützer werden, ${P.de.case01Back}`,
 		backersTitle: 'Gründungsunterstützer',
-		backersText: 'Ihre Initialen sind auf einer Plakette im Deckel jedes je gefertigten SKRIN graviert. Jede Eigentümerkarte nennt sie und sagt, warum.',
-		note: 'In dieser Ausführung nur einmal gefertigt. Im Deckel nummeriert, 001 bis 100.',
+		backersText: 'Ihre Initialen werden auf einer Plakette im Deckel jedes gefertigten SKRIN graviert. Jede Eigentümerkarte wird sie nennen und sagen, warum.',
+		note: 'Edition 001 wird in dieser Ausführung nur einmal gefertigt, jeder Koffer im Deckel nummeriert.',
 		viewsLabel: 'Ansichten',
 		views: ['Vorne', 'Dreiviertel', 'Rohe Ecke', 'Innen', 'Seriennummer'],
-		followSuffix: 'Foto folgt.',
+		followSuffix: 'Nach dem Muster.',
 		introTitle: 'Ein Koffer. Sonst nichts.',
 		intro:
 			'Ein Kabinenkoffer aus Aluminium, ohne Logo, mit einer rohen Ecke und Platz für das, was Sie ohnehin dabeihaben. Das erste Objekt von Maison Seul.',
@@ -497,11 +497,11 @@ const de: Copy = {
 		reasonsLabel: 'Details',
 		reasons: [
 			{ title: 'Eine rohe Ecke.', text: 'Sieben Ecken in Graphit. Eine bleibt rohes Aluminium.' },
-			{ title: 'Vier Schrauben.', text: 'Jedes Rad lässt sich mit einem Schraubendreher abnehmen.' },
+			{ title: 'Vier Schrauben.', text: 'So gestaltet, dass sich jedes Rad mit einem Schraubendreher abnehmen lässt.' },
 			{ title: 'Er wird Spuren tragen.', text: 'Aluminium behält jede Reise. Genau darum geht es.' },
-			{ title: 'Kein Logo.', text: 'Ihre Nummer, klein neben dem Griff graviert.' }
+			{ title: 'Kein Logo.', text: 'Ihre Nummer wird klein neben dem Griff graviert.' }
 		],
-		specsTitle: 'Details',
+		specsTitle: 'Details, wie entworfen',
 		specs: [
 			{
 				label: 'Details',
@@ -534,8 +534,8 @@ const de: Copy = {
 			{
 				label: 'Rückgabe und Garantie',
 				lines: [
-					'14 Tage Rückgabe, unbenutzt, mit voller Erstattung',
-					'5 Jahre auf Schale, Rahmen, Rollen, Griff und Verschlüsse. Dellen und Kratzer sind nicht abgedeckt'
+					'Ab Verkaufsstart: 14 Tage Rückgabe, unbenutzt, mit voller Erstattung',
+					'Geplant: 5 Jahre auf Schale, Rahmen, Rollen, Griff und Verschlüsse. Dellen und Kratzer werden nicht abgedeckt'
 				]
 			}
 		],
@@ -543,15 +543,15 @@ const de: Copy = {
 		faq: [
 			{
 				q: 'Wo wird er hergestellt?',
-				a: 'Entworfen in Dublin. Gefertigt in China, von einer spezialisierten Aluminiummanufaktur, die wir hier nennen, bevor etwas versendet wird. Jede Charge wird vor dem Versand geprüft.'
+				a: 'Entworfen in Dublin. Gefertigt in China von einem spezialisierten Aluminiumhersteller. Die Fabrik wird vor der Produktion genannt, und jede Produktionscharge wird vor dem Versand geprüft.'
 			},
 			{
 				q: 'Was passiert, wenn alle hundert vergeben sind?',
-				a: 'Graphit wird nicht wieder hergestellt. SKRIN geht in einer neuen Ausführung weiter, und Ersatzteile bleiben für jede Edition auf Lager.'
+				a: 'Graphit wird nicht wieder hergestellt. SKRIN wird in einer neuen Ausführung weitergehen, und Ersatzteile bleiben für jede Edition erhältlich.'
 			},
 			{
 				q: 'Was ist ein Gründungsunterstützer?',
-				a: `Einer von 100 Menschen, die SKRIN finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden je gefertigten SKRIN graviert, und Ihr Name steht auf jeder Eigentümerkarte. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
+				a: `Einer von 100 Menschen, die SKRIN finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden gefertigten SKRIN graviert, und Ihr Name wird auf jeder Eigentümerkarte stehen. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
 			},
 			{
 				q: 'Gehört Maison Seul zu Apple?',
@@ -559,7 +559,7 @@ const de: Copy = {
 			}
 		],
 		trustLabel: 'Versprechen',
-		trust: ['Entworfen in Dublin, gefertigt in China', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
+		trust: ['Entworfen in Dublin, gefertigt in China', 'Nummerierte Editionen', 'Reparierbar konstruiert', '14 Tage Rückgabe ab Verkaufsstart']
 	},
 	ma: {
 		title: 'Ständige Kollektion / Maison Seul',
@@ -682,14 +682,14 @@ const de: Copy = {
 		],
 		set: 'Set'
 	},
-	made: { title: 'Wo gefertigt wird / Maison Seul', description: 'Die Fabriken, die für Maison Seul fertigen, wo sie sind und was jede macht.', h1: 'Wo gefertigt wird.', lead: 'Alles wird in Dublin entworfen und in China von etablierten Herstellern gefertigt. Hier sind die Fabriken, wo sie sind und was jede macht. Wir nennen jede hier, bevor etwas von ihr versendet wird.', factory: 'Fabrik', location: 'Ort', makes: 'Fertigt', since: 'Fertigt seit', photos: 'Fotos folgen', tbc: 'Wird vor dem Versand genannt', inspect: 'Wir prüfen jede Charge, bevor sie die Fabrik verlässt.' },
-	ui: { menu: 'Menü', close: 'Schließen', piece: 'Stück', colour: 'Farbe', ask: 'Beim Studio nachfragen', notOnSale: 'Noch nicht im Verkauf. Es kommt, wenn es fertig ist.', editionOf: 'Edition von 100', sort: 'Sortieren', sizes: 'Größen für Herren und Damen.', made: 'Entworfen in Dublin. Gefertigt in China, vor dem Versand geprüft.', back: 'Zurück zum Inventar' },
+	made: { title: 'Wo gefertigt wird / Maison Seul', description: 'Wo Maison Seul gefertigt wird und was jeder Hersteller fertigen wird.', h1: 'Wo gefertigt wird.', lead: 'Alles wird in Dublin entworfen und wird in China von etablierten Herstellern gefertigt. Die Fertigungspartner werden hier vor der Produktion veröffentlicht.', factory: 'Fabrik', location: 'Ort', makes: 'Fertigt', since: 'Fertigt seit', photos: 'Fotos folgen', tbc: 'Wird vor dem Versand genannt', inspect: 'Jede Produktionscharge wird geprüft, bevor sie die Fabrik verlässt.' },
+	ui: { menu: 'Menü', close: 'Schließen', piece: 'Stück', colour: 'Farbe', ask: 'Beim Studio nachfragen', notOnSale: 'Noch nicht im Verkauf. Es kommt, wenn es fertig ist.', editionOf: 'Edition von 100', sort: 'Sortieren', sizes: 'Größen für Herren und Damen.', made: 'Entworfen in Dublin. Gefertigt in China. Jede Charge wird vor dem Versand geprüft.', back: 'Zurück zum Inventar', inDev: 'In Entwicklung', specNote: 'Spezifikation in Entwicklung. Die endgültigen Details werden mit dem Muster bestätigt.' },
 	house: {
 		title: 'Das Haus / Maison Seul',
 		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt und Kleidung, die bleibt.',
 		kicker: 'Das Haus',
 		h1: 'Weniger Dinge. Bessere Dinge.',
-		lead: 'Maison Seul ist ein Designhaus in Dublin. Wir machen ein Objekt in nummerierten Editionen und eine kleine, ständige Garderobe. Alles ist dafür gemacht, behalten zu werden.',
+		lead: 'Maison Seul ist ein Designhaus in Dublin. Wir entwickeln ein Objekt in nummerierten Editionen und eine kleine, ständige Garderobe. Alles ist dafür entworfen, behalten zu werden.',
 		sections: [
 			{
 				h: 'Ein Objekt und eine Garderobe',
@@ -698,20 +698,20 @@ const de: Copy = {
 			{
 				h: 'Editionen und die ständige Kollektion',
 				p: [
-					'SKRIN erscheint in nummerierten Editionen. Jede Ausführung wird einmal in einer festen Stückzahl gefertigt, und jedes Stück trägt seine Nummer. Das Design bleibt; die nächste Edition kommt in einer neuen Ausführung.',
-					'Die Kleidung ist dauerhaft. Sie wird fortlaufend gefertigt, nie nummeriert und nie eingestellt, damit das Stück, das Sie jetzt kaufen, noch da ist, wenn Sie ein weiteres brauchen.'
+					'SKRIN wird in nummerierten Editionen erscheinen. Jede Ausführung wird einmal in einer festen Stückzahl gefertigt, und jedes Stück wird seine Nummer tragen. Das Design bleibt; die nächste Edition kommt in einer neuen Ausführung.',
+					'Die Kleidung wird dauerhaft sein: fortlaufend gefertigt, nie nummeriert und nie eingestellt, damit das Stück, das Sie kaufen, noch da ist, wenn Sie ein weiteres brauchen.'
 				]
 			},
 			{
 				h: 'Länger behalten',
 				p: [
-					'Jedes Teil, das sich abnutzt, lässt sich ersetzen, und wir halten diese Teile für jede Edition auf Lager. Dellen und Kratzer sind keine Mängel. Aluminium bewahrt, wo es gewesen ist.'
+					'Jedes Teil, das sich abnutzt, ist austauschbar konstruiert, und Ersatzteile bleiben für jede Edition erhältlich. Dellen und Kratzer sind keine Mängel. Aluminium bewahrt, wo es gewesen ist.'
 				]
 			},
 			{
 				h: 'Wo gefertigt wird',
 				p: [
-					'Entworfen in Dublin. Gefertigt in China. Derzeit wird alles, was wir machen, dort gefertigt: SKRIN von einer spezialisierten Aluminiummanufaktur, die Kleidung von Bekleidungsherstellern, die wir mit derselben Sorgfalt auswählen. Jede Fabrik erscheint auf der Seite „Wo gefertigt wird“ und wird dort genannt, bevor etwas versendet wird, und wir prüfen jede Charge, bevor sie die Fabrik verlässt.', 'Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen. Wenn sich das ändert, ändert sich zuerst diese Seite.'
+					'Entworfen in Dublin. Gefertigt in China: SKRIN von einem spezialisierten Aluminiumhersteller, die Kleidung von Bekleidungsherstellern, die wir mit derselben Sorgfalt auswählen. Die Fertigungspartner werden vor der Produktion veröffentlicht, und jede Produktionscharge wird geprüft, bevor sie die Fabrik verlässt.', 'Wir sagen Ihnen lieber, wo gefertigt wird, als Sie raten zu lassen. Wenn sich das ändert, ändert sich zuerst diese Seite.'
 				]
 			},
 			{ h: 'Teil von VNTA', p: ['Maison Seul ist ein Haus von VNTA.'] }
@@ -722,7 +722,7 @@ const de: Copy = {
 		description: 'So pflegen Sie SKRIN und die Kleidung, tauschen Teile aus und lassen Dinge reparieren.',
 		kicker: 'Pflege und Reparatur',
 		h1: 'Vier Schrauben und die passenden Teile dazu.',
-		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit SKRIN weiterlebt, statt ersetzt zu werden.',
+		lead: 'Rollen, Griff und Verschlüsse sind so konstruiert, dass sie sich mit einem Schraubendreher abnehmen lassen. Ersatzteile bleiben für jede Edition erhältlich, damit SKRIN weiterlebt, statt ersetzt zu werden.',
 		everydayTitle: 'Alltägliche Pflege',
 		everyday: [
 			'Die Schale mit einem weichen, feuchten Tuch abwischen. Bei Bedarf etwas milde Seife. Nichts Scheuerndes.',
@@ -745,7 +745,7 @@ const de: Copy = {
 			'Das alte Rad abnehmen.',
 			'Das neue Rad ansetzen und die vier Schrauben gleichmäßig anziehen. Nicht überdrehen.'
 		],
-		wheelAfter: 'Griff, Verschlüsse und Füße lassen sich genauso abnehmen. Eine vollständige Anleitung liegt dem Koffer bei.',
+		wheelAfter: 'Griff, Verschlüsse und Füße lassen sich genauso abnehmen. Eine vollständige Anleitung wird dem Koffer beiliegen.',
 		partsTitle: 'Ersatzteile',
 		partsHead: ['Teil', 'Hinweis'],
 		parts: [
@@ -755,7 +755,7 @@ const de: Copy = {
 			['Eckschutz', 'Graphit oder rohes Aluminium.'],
 			['Fuß', 'Zweierset.']
 		],
-		partsAfter: 'Innerhalb der 5-jährigen Garantie kostenlos. Danach zum Selbstkostenpreis zuzüglich Porto. Preise werden zum Verkaufsstart veröffentlicht.',
+		partsAfter: 'Geplant: innerhalb der 5-jährigen Garantie kostenlos, danach zum Selbstkostenpreis zuzüglich Porto. Preise werden zum Verkaufsstart veröffentlicht.',
 		repairTitle: 'Reparatur durch uns',
 		repairBefore: 'Schreiben Sie an',
 		repairAfter: 'mit Ihrer Seriennummer und einem Foto des Problems. Wir senden das Teil oder organisieren eine Reparatur, falls nötig.'
@@ -822,7 +822,7 @@ const ja: Copy = {
 	prices: P.ja,
 	taxNote: '関税・輸入消費税は含まれません',
 	bar: 'ダブリンでデザイン。中国で製造。',
-	photo: '写真は後日掲載',
+	photo: 'サンプル完成後に掲載',
 	nav: { inventory: '一覧', made: '製造拠点', permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
 		objects: 'オブジェ',
@@ -848,19 +848,19 @@ const ja: Copy = {
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
-		description: 'SKRIN。アルミニウムの機内持ち込みケース。エディション001、100点限定。創設支援者100人。',
+		description: 'SKRIN。開発中のアルミニウムの機内持ち込みケース。エディション001は100点を予定しています。',
 		kicker: 'オブジェ 01 / 機内持ち込み',
-		variant: 'グラファイト / エディション001 / 100点限定',
+		variant: 'グラファイト / エディション001 / 100点予定',
 		status: 'まだ販売していません。',
 		target: '2027年冬を目指しています。',
-		backNote: '100人の創設支援者がSKRINを実現します。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのSKRINの内側に刻印されます。',
+		backNote: '100人の創設支援者が、SKRINを実現することになります。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのSKRINの内側に刻印する予定です。',
 		cta: `創設支援者になる ${P.ja.case01Back}`,
 		backersTitle: '創設支援者',
-		backersText: '支援者のイニシャルは、すべてのSKRINの蓋の内側のプレートに刻印されます。すべてのオーナーカードに、その名前と理由を記します。',
-		note: 'この仕上げは一度きりの製作。蓋の内側に001から100の番号入り。',
+		backersText: '支援者のイニシャルは、これから作られるすべてのSKRINの蓋の内側のプレートに刻印する予定です。すべてのオーナーカードに、その名前と理由を記す予定です。',
+		note: 'エディション001はこの仕上げで一度きり製作する予定です。各ケースの蓋の内側に番号が入ります。',
 		viewsLabel: '表示',
 		views: ['正面', '斜め', '無垢のコーナー', '内側', 'シリアルプレート'],
-		followSuffix: '写真は後日掲載。',
+		followSuffix: 'サンプル完成後に掲載。',
 		introTitle: 'ひとつのケース。それだけ。',
 		intro:
 			'ロゴのないアルミニウムの機内持ち込みケース。無垢のコーナーがひとつ。いつも持ち歩くもののための場所。Maison Seulの最初のオブジェです。',
@@ -874,11 +874,11 @@ const ja: Copy = {
 		reasonsLabel: '特徴',
 		reasons: [
 			{ title: '無垢のコーナーをひとつ。', text: '7つのコーナーはグラファイト。ひとつだけ無垢のアルミニウム。' },
-			{ title: 'ネジは4本。', text: 'すべてのホイールはドライバーひとつで外せます。' },
+			{ title: 'ネジは4本。', text: 'すべてのホイールをドライバーひとつで外せるよう設計しています。' },
 			{ title: '傷は残る。', text: 'アルミニウムはすべての旅を刻む。それでいい。' },
-			{ title: 'ロゴはない。', text: 'ハンドルの横に、小さくあなたの番号を刻印。' }
+			{ title: 'ロゴはない。', text: 'ハンドルの横に、小さくあなたの番号を刻印する予定です。' }
 		],
-		specsTitle: '仕様',
+		specsTitle: '仕様（設計時点）',
 		specs: [
 			{
 				label: '仕様',
@@ -907,22 +907,22 @@ const ja: Copy = {
 			{ label: '同梱物', lines: ['SKRIN', '保存袋', '番号入りオーナーカード', 'ケア・修理カード'] },
 			{
 				label: '返品と保証',
-				lines: ['未使用であれば14日以内に返品、全額返金', 'シェル、フレーム、ホイール、ハンドル、ラッチに5年保証。へこみや傷は対象外']
+				lines: ['販売開始後：未使用であれば14日以内に返品、全額返金', '予定：シェル、フレーム、ホイール、ハンドル、ラッチに5年保証。へこみや傷は対象外となります']
 			}
 		],
 		faqTitle: 'よくある質問',
 		faq: [
 			{
 				q: 'どこで作られていますか?',
-				a: 'デザインはダブリン。製造は中国、アルミニウム専門の工場ひとつに任せています。工場名は出荷前にここで公表します。すべてのロットは出荷前に検品します。'
+				a: 'デザインはダブリン。製造は中国のアルミニウム専門メーカーが担います。工場名は生産開始前に公表し、すべての生産ロットを出荷前に検品する予定です。'
 			},
 			{
 				q: '100点が完売したら?',
-				a: 'グラファイトは再生産しません。SKRINは新しい仕上げで続き、交換部品はすべてのエディション分を在庫します。'
+				a: 'グラファイトは再生産しない予定です。SKRINは新しい仕上げで続き、交換部品はすべてのエディション向けに引き続き提供します。'
 			},
 			{
 				q: '創設支援者とは?',
-				a: `SKRINが生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをすべてのSKRINの内側に刻印し、すべてのオーナーカードにお名前を記します。もし出荷に至らなければ、全額を返金します。`
+				a: `SKRINが生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをこれから作られるすべてのSKRINの内側に刻印し、すべてのオーナーカードにお名前を記す予定です。もし出荷に至らなければ、全額を返金します。`
 			},
 			{
 				q: 'Maison SeulはAppleの関連会社ですか?',
@@ -930,7 +930,7 @@ const ja: Copy = {
 			}
 		],
 		trustLabel: '約束',
-		trust: ['ダブリンでデザイン、中国で製造', 'ナンバリング・エディション', '修理できる', '14日間返品可']
+		trust: ['ダブリンでデザイン、中国で製造', 'ナンバリング・エディション', '修理できる設計', '販売開始後14日間返品可']
 	},
 	ma: {
 		title: '常設コレクション / Maison Seul',
@@ -1049,14 +1049,14 @@ const ja: Copy = {
 		],
 		set: 'セット'
 	},
-	made: { title: '製造拠点 / Maison Seul', description: 'Maison Seulをつくる工場、その場所、それぞれがつくるもの。', h1: 'どこでつくるか。', lead: 'すべてダブリンでデザインし、中国の実績ある工場で製造しています。工場の場所と、それぞれがつくるものをここに載せます。各工場の名前は、そこでつくったものを出荷する前に公表します。', factory: '工場', location: '所在地', makes: 'つくるもの', since: '創業', photos: '写真は後日掲載', tbc: '出荷前に公表', inspect: 'すべてのロットを工場出荷前に検品します。' },
-	ui: { menu: 'メニュー', close: '閉じる', piece: 'アイテム', colour: 'カラー', ask: 'スタジオに問い合わせる', notOnSale: 'まだ販売していません。準備ができたらお届けします。', editionOf: '100点限定', sort: '並び替え', sizes: 'メンズとウィメンズのサイズ。', made: 'デザインはダブリン、製造は中国。出荷前に検品します。', back: '一覧に戻る' },
+	made: { title: '製造拠点 / Maison Seul', description: 'Maison Seulをどこでつくるか、そして各メーカーがつくる予定のもの。', h1: 'どこでつくるか。', lead: 'すべてダブリンでデザインし、中国の実績あるメーカーで製造する予定です。製造パートナーは生産開始前にここで公表します。', factory: '工場', location: '所在地', makes: 'つくるもの', since: '創業', photos: '写真は後日掲載', tbc: '出荷前に公表', inspect: 'すべての生産ロットを工場出荷前に検品する予定です。' },
+	ui: { menu: 'メニュー', close: '閉じる', piece: 'アイテム', colour: 'カラー', ask: 'スタジオに問い合わせる', notOnSale: 'まだ販売していません。準備ができたらお届けします。', editionOf: '100点限定', sort: '並び替え', sizes: 'メンズとウィメンズのサイズ。', made: 'デザインはダブリン、製造は中国。すべてのロットを出荷前に検品する予定です。', back: '一覧に戻る', inDev: '開発中', specNote: '仕様は開発中です。最終的な詳細はサンプル製作時に確定します。' },
 	house: {
 		title: 'メゾンについて / Maison Seul',
 		description: 'Maison Seulはダブリンのデザインハウス。ひとつのオブジェと、なくならない服。',
 		kicker: 'メゾンについて',
 		h1: 'より少なく。より良く。',
-		lead: 'Maison Seulはダブリンのデザインハウスです。ナンバリング・エディションのオブジェをひとつと、少数の常設の服を作っています。どれも、長く持ち続けるために作られています。',
+		lead: 'Maison Seulはダブリンのデザインハウスです。ナンバリング・エディションのオブジェをひとつと、少数の常設の服をつくろうとしています。どれも、長く持ち続けるためにデザインしています。',
 		sections: [
 			{
 				h: 'ひとつのオブジェと、ワードローブ',
@@ -1065,20 +1065,20 @@ const ja: Copy = {
 			{
 				h: 'エディションと常設コレクション',
 				p: [
-					'SKRINはナンバリングされたエディションで作ります。それぞれの仕上げは決まった数だけ一度きり作り、一点ずつ番号が入ります。デザインは変わらず、次のエディションは新しい仕上げで。',
-					'服は常設です。作り続け、番号はつけず、廃番にもしません。いま買った一着が、次に必要になったときにもそこにあるように。'
+					'SKRINはナンバリングされたエディションで作る予定です。それぞれの仕上げは決まった数だけ一度きり作り、一点ずつ番号が入ります。デザインは変わらず、次のエディションは新しい仕上げで。',
+					'服は常設にする予定です。作り続け、番号はつけず、廃番にもしません。買った一着が、次に必要になったときにもそこにあるように。'
 				]
 			},
 			{
 				h: '長く持つ',
 				p: [
-					'消耗する部品はすべて交換でき、どのエディションの部品も在庫しています。へこみや傷は欠陥ではありません。アルミニウムは、どこにいたかを記憶します。'
+					'消耗する部品はすべて交換できるよう設計し、交換部品はどのエディション向けにも引き続き提供します。へこみや傷は欠陥ではありません。アルミニウムは、どこにいたかを記憶します。'
 				]
 			},
 			{
 				h: 'どこで作るか',
 				p: [
-					'デザインはダブリン。製造は中国。現在、私たちが作るものはすべて中国で作られています。SKRINはアルミニウム専門の工場ひとつで、服は同じ基準で選ぶ衣料工場で。各工場は「どこでつくるか」のページに掲載し、出荷前にそこで名前を公表します。すべてのロットは工場出荷前に検品します。', 'どこで作られているかは、推測させるより、きちんとお伝えしたい。変わるときは、まずこのページを書き換えます。'
+					'デザインはダブリン。製造は中国。SKRINはアルミニウム専門メーカーで、服は同じ基準で選ぶ衣料メーカーで。製造パートナーは生産開始前に公表し、すべての生産ロットを工場出荷前に検品する予定です。', 'どこで作られているかは、推測させるより、きちんとお伝えしたい。変わるときは、まずこのページを書き換えます。'
 				]
 			},
 			{ h: 'VNTAの一員', p: ['Maison SeulはVNTAのメゾンです。'] }
@@ -1089,7 +1089,7 @@ const ja: Copy = {
 		description: 'SKRINと服のお手入れ、部品の交換、修理について。',
 		kicker: 'ケアと修理',
 		h1: 'ネジは4本。部品もそろっています。',
-		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、SKRINは買い替えずに使い続けられます。',
+		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せるよう設計しています。交換部品はどのエディション向けにも引き続き提供するので、SKRINは買い替えずに使い続けられます。',
 		everydayTitle: '日々のお手入れ',
 		everyday: [
 			'シェルはやわらかく湿らせた布で拭いてください。必要なら中性洗剤を少量。研磨剤は使わないでください。',
@@ -1112,7 +1112,7 @@ const ja: Copy = {
 			'古いホイールを取り外します。',
 			'新しいホイールを付け、4本のネジを均等に締めます。締めすぎないでください。'
 		],
-		wheelAfter: 'ハンドル、ラッチ、脚も同じ方法で外せます。詳しいガイドはケースに同梱されます。',
+		wheelAfter: 'ハンドル、ラッチ、脚も同じ方法で外せます。詳しいガイドはケースに同梱する予定です。',
 		partsTitle: '交換部品',
 		partsHead: ['部品', '備考'],
 		parts: [
@@ -1122,7 +1122,7 @@ const ja: Copy = {
 			['コーナーガード', 'グラファイトまたは無垢のアルミニウム。'],
 			['脚', '2個セット。']
 		],
-		partsAfter: '5年保証の期間内は無料。期間後は原価に送料を加えた価格で販売します。価格は販売開始時に公開します。',
+		partsAfter: '予定：5年保証の期間内は無料、期間後は原価に送料を加えた価格で販売します。価格は販売開始時に公開します。',
 		repairTitle: '修理のご依頼',
 		repairBefore: 'シリアル番号と不具合の写真を添えて',
 		repairAfter: 'までメールしてください。部品をお送りするか、必要に応じて修理を手配します。'

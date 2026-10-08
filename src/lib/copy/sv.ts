@@ -6,7 +6,7 @@ export const sv: Copy = {
 	prices: P.sv,
 	taxNote: 'inkl. moms',
 	bar: 'Formgiven i Dublin. Tillverkad i Kina.',
-	photo: 'Fotografi kommer',
+	photo: 'Efter provexemplar',
 	nav: { made: 'Var det tillverkas', inventory: 'Sortiment', permanent: 'Permanent', house: 'Huset', care: 'Skötsel', contact: 'Kontakt', back: 'Stödjare', language: 'Språk' },
 	foot: {
 		objects: 'Föremål',
@@ -32,19 +32,19 @@ export const sv: Copy = {
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
-		description: 'SKRIN. En kabinväska i aluminium. Utgåva 001, hundra exemplar. Hundra grundande stödjare.',
+		description: 'SKRIN. En kabinväska i aluminium, under utveckling. Utgåva 001 planeras i hundra exemplar.',
 		kicker: 'Föremål 01 / Kabinväska',
-		variant: 'Grafit / Utgåva 001 / 100 exemplar',
+		variant: 'Grafit / Utgåva 001 / 100 planerade',
 		status: 'Ännu inte till salu.',
 		target: 'Vi siktar på vintern 2027.',
-		backNote: 'Hundra grundande stödjare gör SKRIN möjlig. Var och en får en väska, och deras initialer graveras inuti varje SKRIN som någonsin tillverkas.',
+		backNote: 'Hundra grundande stödjare kommer att göra SKRIN möjlig. Var och en får en väska, och deras initialer kommer att graveras inuti varje SKRIN som tillverkas.',
 		cta: `Bli grundande stödjare, ${P.sv.case01Back}`,
 		backersTitle: 'Grundande stödjare',
-		backersText: 'Deras initialer är graverade på en platta inuti locket på varje SKRIN som någonsin tillverkas. Varje ägarkort nämner dem och säger varför.',
-		note: 'Tillverkas en gång i den här finishen. Numrerad 001 till 100 inuti locket.',
+		backersText: 'Deras initialer kommer att graveras på en platta inuti locket på varje SKRIN som tillverkas. Varje ägarkort kommer att nämna dem och säga varför.',
+		note: 'Utgåva 001 kommer att tillverkas en gång i den här finishen, och varje väska numreras inuti locket.',
 		viewsLabel: 'Vyer',
 		views: ['Framifrån', 'Trekvart', 'Rått hörn', 'Insida', 'Serienummerplatta'],
-		followSuffix: 'Fotografi kommer.',
+		followSuffix: 'Efter provexemplar.',
 		introTitle: 'En väska. Inget annat.',
 		intro:
 			'En kabinväska i aluminium utan logotyp, med ett rått hörn och plats inbyggd för det du redan bär med dig. Det första föremålet från Maison Seul.',
@@ -58,11 +58,11 @@ export const sv: Copy = {
 		reasonsLabel: 'Detaljer',
 		reasons: [
 			{ title: 'Ett rått hörn.', text: 'Sju hörn i grafit. Ett lämnat i rå aluminium.' },
-			{ title: 'Fyra skruvar.', text: 'Varje hjul lossas med en skruvmejsel.' },
+			{ title: 'Fyra skruvar.', text: 'Formgiven så att varje hjul lossas med en skruvmejsel.' },
 			{ title: 'Den får märken.', text: 'Aluminium minns varje resa. Det är meningen.' },
-			{ title: 'Ingen logotyp.', text: 'Ditt nummer, graverat i liten storlek bredvid handtaget.' }
+			{ title: 'Ingen logotyp.', text: 'Ditt nummer kommer att graveras i liten storlek bredvid handtaget.' }
 		],
-		specsTitle: 'Detaljer',
+		specsTitle: 'Detaljer, som formgivna',
 		specs: [
 			{
 				label: 'Detaljer',
@@ -95,8 +95,8 @@ export const sv: Copy = {
 			{
 				label: 'Returer och garanti',
 				lines: [
-					'14 dagar att returnera den oanvänd, mot full återbetalning',
-					'5 år på skal, ram, hjul, handtag och spännen. Bucklor och repor omfattas inte'
+					'När försäljningen öppnar: 14 dagar att returnera den oanvänd, mot full återbetalning',
+					'Planerat: 5 år på skal, ram, hjul, handtag och spännen. Bucklor och repor kommer inte att omfattas'
 				]
 			}
 		],
@@ -104,15 +104,15 @@ export const sv: Copy = {
 		faq: [
 			{
 				q: 'Var tillverkas den?',
-				a: 'Formgiven i Dublin. Tillverkad i Kina, av en specialiserad aluminiumfabrik som vi namnger här innan något skickas. Varje parti kontrolleras innan det lämnar fabriken.'
+				a: 'Formgiven i Dublin. Tillverkad i Kina av en specialiserad aluminiumtillverkare. Fabriken namnges före produktionen, och varje produktionsparti kommer att kontrolleras innan det lämnar fabriken.'
 			},
 			{
 				q: 'Vad händer när de hundra är borta?',
-				a: 'Grafit tillverkas inte igen. SKRIN fortsätter i en ny finish, och reservdelar finns kvar i lager för varje utgåva.'
+				a: 'Grafit kommer inte att tillverkas igen. SKRIN kommer att fortsätta i en ny finish, och reservdelar kommer att finnas tillgängliga för varje utgåva.'
 			},
 			{
 				q: 'Vad är en grundande stödjare?',
-				a: `En av 100 personer som finansierar SKRIN innan den finns. För ${P.sv.case01Back} får du en väska när den är klar, dina initialer graveras inuti varje SKRIN som någonsin tillverkas, och ditt namn står på varje ägarkort. Om den aldrig levereras får du tillbaka dina pengar.`
+				a: `En av 100 personer som finansierar SKRIN innan den finns. För ${P.sv.case01Back} får du en väska när den är klar, dina initialer kommer att graveras inuti varje SKRIN som tillverkas, och ditt namn kommer att stå på varje ägarkort. Om den aldrig levereras får du tillbaka dina pengar.`
 			},
 			{
 				q: 'Är Maison Seul en del av Apple?',
@@ -120,7 +120,7 @@ export const sv: Copy = {
 			}
 		],
 		trustLabel: 'Löften',
-		trust: ['Formgiven i Dublin, tillverkad i Kina', 'Numrerade utgåvor', 'Reparerbar', '14 dagars ångerrätt']
+		trust: ['Formgiven i Dublin, tillverkad i Kina', 'Numrerade utgåvor', 'Reparerbar genom design', '14 dagars ångerrätt när försäljningen öppnar']
 	},
 	ma: {
 		title: 'Permanent / Maison Seul',
@@ -243,14 +243,14 @@ export const sv: Copy = {
 		],
 		set: 'Set'
 	},
-	made: { title: 'Var det tillverkas / Maison Seul', description: 'Fabrikerna som tillverkar för Maison Seul, var de ligger och vad var och en gör.', h1: 'Var det tillverkas.', lead: 'Allt formges i Dublin och tillverkas i Kina av etablerade tillverkare. Här är fabrikerna, var de ligger och vad var och en gör. Vi namnger varje fabrik här innan något den har gjort skickas.', factory: 'Fabrik', location: 'Plats', makes: 'Tillverkar', since: 'Tillverkar sedan', photos: 'Bilder kommer', tbc: 'Namnges före leverans', inspect: 'Vi kontrollerar varje parti innan det lämnar fabriken.' },
-	ui: { menu: 'Meny', close: 'Stäng', piece: 'Plagg', colour: 'Färg', ask: 'Fråga studion om den', notOnSale: 'Inte till salu än. Den kommer när den är klar.', editionOf: 'Upplaga om 100', sort: 'Sortera', sizes: 'Storlekar för män och kvinnor.', made: 'Formgiven i Dublin. Tillverkad i Kina, kontrollerad före leverans.', back: 'Tillbaka till sortimentet' },
+	made: { title: 'Var det tillverkas / Maison Seul', description: 'Var Maison Seul tillverkas, och vad varje tillverkare kommer att göra.', h1: 'Var det tillverkas.', lead: 'Allt formges i Dublin och kommer att tillverkas i Kina av etablerade tillverkare. Tillverkningspartnerna publiceras här före produktionen.', factory: 'Fabrik', location: 'Plats', makes: 'Tillverkar', since: 'Tillverkar sedan', photos: 'Bilder kommer', tbc: 'Namnges före leverans', inspect: 'Varje produktionsparti kommer att kontrolleras innan det lämnar fabriken.' },
+	ui: { menu: 'Meny', close: 'Stäng', piece: 'Plagg', colour: 'Färg', ask: 'Fråga studion om den', notOnSale: 'Inte till salu än. Den kommer när den är klar.', editionOf: 'Upplaga om 100', sort: 'Sortera', sizes: 'Storlekar för män och kvinnor.', made: 'Formgiven i Dublin. Tillverkad i Kina. Varje parti kommer att kontrolleras före leverans.', back: 'Tillbaka till sortimentet', inDev: 'Under utveckling', specNote: 'Specifikationen är under utveckling. Slutliga detaljer bekräftas vid provtillverkningen.' },
 	house: {
 		title: 'Huset / Maison Seul',
 		description: 'Maison Seul är ett designhus i Dublin. Ett föremål, och kläder som består.',
 		kicker: 'Huset',
 		h1: 'Färre saker. Bättre saker.',
-		lead: 'Maison Seul är ett designhus i Dublin. Vi gör ett föremål, i numrerade utgåvor, och en liten permanent garderob av kläder. Allt är gjort för att behållas.',
+		lead: 'Maison Seul är ett designhus i Dublin. Vi håller på att göra ett föremål, i numrerade utgåvor, och en liten permanent garderob av kläder. Allt är formgivet för att behållas.',
 		sections: [
 			{
 				h: 'Ett föremål, och en garderob',
@@ -259,20 +259,20 @@ export const sv: Copy = {
 			{
 				h: 'Utgåvor och den permanenta kollektionen',
 				p: [
-					'SKRIN kommer i numrerade utgåvor. Varje finish tillverkas en gång, i ett bestämt antal, och varje exemplar bär sitt nummer på insidan. Designen består; nästa utgåva kommer i en ny finish.',
-					'Kläderna är permanenta. De tillverkas fortlöpande, numreras aldrig och utgår aldrig, så att plagget du köper nu fortfarande finns när du behöver ett till.'
+					'SKRIN kommer att finnas i numrerade utgåvor. Varje finish kommer att tillverkas en gång, i ett bestämt antal, och varje exemplar kommer att bära sitt nummer på insidan. Designen består; nästa utgåva kommer i en ny finish.',
+					'Kläderna kommer att vara permanenta: tillverkade fortlöpande, aldrig numrerade och aldrig utgående, så att plagget du köper fortfarande finns när du behöver ett till.'
 				]
 			},
 			{
 				h: 'Behålls längre',
 				p: [
-					'Varje del som slits kan bytas ut, och vi har de delarna i lager för varje utgåva. Bucklor och repor är inte fel. Aluminium bär spår av var det har varit.'
+					'Varje del som slits är formgiven för att kunna bytas ut, och reservdelar kommer att finnas tillgängliga för varje utgåva. Bucklor och repor är inte fel. Aluminium bär spår av var det har varit.'
 				]
 			},
 			{
 				h: 'Var det tillverkas',
 				p: [
-					'Formgiven i Dublin. Tillverkad i Kina. Just nu tillverkas allt vi gör där: SKRIN av en specialiserad aluminiumfabrik, kläderna av klädtillverkare som valts med samma omsorg. Varje fabrik visas på sidan Var det tillverkas och namnges där innan något skickas, och vi kontrollerar varje parti innan det lämnar fabriken.', 'Vi berättar hellre var det tillverkas än låter dig gissa. Om det ändras, ändras den här sidan först.'
+					'Formgiven i Dublin. Tillverkad i Kina: SKRIN av en specialiserad aluminiumtillverkare, kläderna av klädtillverkare som valts med samma omsorg. Tillverkningspartnerna publiceras före produktionen, och varje produktionsparti kommer att kontrolleras innan det lämnar fabriken.', 'Vi berättar hellre var det tillverkas än låter dig gissa. Om det ändras, ändras den här sidan först.'
 				]
 			},
 			{ h: 'En del av VNTA', p: ['Maison Seul är ett hus inom VNTA.'] }
@@ -283,7 +283,7 @@ export const sv: Copy = {
 		description: 'Hur du sköter SKRIN och kläderna, byter delar och får saker reparerade.',
 		kicker: 'Skötsel och reparation',
 		h1: 'Fyra skruvar, och delarna som hör till.',
-		lead: 'Hjulen, handtaget och spännena lossas med en skruvmejsel. Vi har delarna för varje utgåva, så att SKRIN kan hållas i bruk i stället för att ersättas.',
+		lead: 'Hjulen, handtaget och spännena är formgivna för att lossas med en skruvmejsel. Reservdelar kommer att finnas tillgängliga för varje utgåva, så att SKRIN kan hållas i bruk i stället för att ersättas.',
 		everydayTitle: 'Daglig skötsel',
 		everyday: [
 			'Torka av skalet med en mjuk, fuktig trasa. Lite mild tvål vid behov. Inget slipande.',
@@ -306,7 +306,7 @@ export const sv: Copy = {
 			'Lyft bort det gamla hjulet.',
 			'Sätt dit det nya hjulet och dra åt de fyra skruvarna jämnt. Dra inte åt för hårt.'
 		],
-		wheelAfter: 'Handtaget, spännena och fötterna lossas på samma sätt. En fullständig guide följer med väskan.',
+		wheelAfter: 'Handtaget, spännena och fötterna lossas på samma sätt. En fullständig guide kommer att följa med väskan.',
 		partsTitle: 'Reservdelar',
 		partsHead: ['Del', 'Kommentar'],
 		parts: [
@@ -316,7 +316,7 @@ export const sv: Copy = {
 			['Hörnskydd', 'Grafit eller rå aluminium.'],
 			['Fot', 'Två i ett set.']
 		],
-		partsAfter: 'Kostnadsfritt inom 5 års garanti. Därefter till självkostnadspris plus porto. Priserna publiceras när försäljningen öppnar.',
+		partsAfter: 'Planerat: kostnadsfritt inom 5 års garanti, därefter till självkostnadspris plus porto. Priserna kommer att publiceras när försäljningen öppnar.',
 		repairTitle: 'Reparation hos oss',
 		repairBefore: 'Mejla',
 		repairAfter: 'med ditt serienummer och ett foto av problemet. Vi skickar delen, eller ordnar en reparation om det behövs.'

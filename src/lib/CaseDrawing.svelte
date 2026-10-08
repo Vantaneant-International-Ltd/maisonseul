@@ -14,7 +14,7 @@
 	<path d="M294 522 H320 A30 30 0 0 0 350 492 V466" fill="none" stroke="#15191c" stroke-width="11" stroke-linecap="round" />
 	<rect x="344" y="186" width="12" height="46" rx="3" fill="#15191c" />
 	<rect x="344" y="346" width="12" height="46" rx="3" fill="#15191c" />
-	<text x="268" y="71" font-family="Outfit, sans-serif" font-size="9" letter-spacing="1" fill="#a9aeb1">017</text>
+	<text x="268" y="71" font-family="Outfit, sans-serif" font-size="9" letter-spacing="1" fill="#a9aeb1">___</text>
 	<rect x="74" y="524" width="16" height="30" rx="6" fill="#0d1012" stroke="#2e3438" />
 	<rect x="94" y="524" width="16" height="30" rx="6" fill="#0d1012" stroke="#2e3438" />
 	<rect x="290" y="524" width="16" height="30" rx="6" fill="#0d1012" stroke="#2e3438" />

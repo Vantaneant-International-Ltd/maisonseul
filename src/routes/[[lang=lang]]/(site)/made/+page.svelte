@@ -32,7 +32,7 @@
 					{#if f.photos.length}
 						{#each f.photos as ph}<img src="/factories/{ph.file}" alt={ph.alt} loading="lazy" />{/each}
 					{:else}
-						<p>{t.photos}</p>
+						<svg class="blank" viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><line x1="104" y1="0" x2="72" y2="90" stroke="rgba(242,243,241,0.22)" stroke-width="1" vector-effect="non-scaling-stroke" /></svg>
 					{/if}
 				</div>
 				<dl>
@@ -44,7 +44,7 @@
 							{/each}
 						</dd>
 					</div>
-					<div><dt>{t.factory}</dt><dd>{f.name || t.tbc}</dd></div>
+					{#if f.name}<div><dt>{t.factory}</dt><dd>{f.name}</dd></div>{/if}
 					<div><dt>{t.location}</dt><dd>{f.city ? `${f.city}, China` : 'China'}</dd></div>
 					{#if f.since}<div><dt>{t.since}</dt><dd>{f.since}</dd></div>{/if}
 				</dl>
@@ -97,6 +97,10 @@
 	}
 	.photos img:first-child {
 		grid-column: 1 / -1;
+	}
+	.blank {
+		width: 100%;
+		height: 100%;
 	}
 	.photos.empty {
 		display: grid;
