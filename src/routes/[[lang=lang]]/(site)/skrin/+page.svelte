@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Cipher from '$lib/Cipher.svelte';
+	import Stack from '$lib/Stack.svelte';
+	import { LINE } from '$lib/lines';
 	import { LINES } from '$lib/cipher';
 	import CaseDrawing from '$lib/CaseDrawing.svelte';
 	import { copy, langOf, lp } from '$lib/i18n';
@@ -42,7 +44,7 @@
 
 		<div class="panel">
 			<p class="kicker">{t.kicker}</p>
-			<h1 id="case-h"><span class="runes" lang="non-Runr">ᛌᚴᚱᛁᚿ</span>SKRIN</h1>
+			<h1 id="case-h"><Stack line={LINE.skrin} size="l" /></h1>
 			<p class="variant">{t.variant}</p>
 			<p class="price">{c.prices.case01} <span>{c.taxNote}</span></p>
 
@@ -230,14 +232,6 @@
 		font-weight: 400;
 		font-size: clamp(2.75rem, 6vw, 5rem);
 		line-height: 1;
-	}
-	h1 .runes {
-		display: block;
-		margin-bottom: 0.35em;
-		font-family: var(--kanji);
-		font-size: 0.42em;
-		letter-spacing: 0.3em;
-		color: var(--ink-dim);
 	}
 	.sign {
 		margin: 1.25rem 0 0;

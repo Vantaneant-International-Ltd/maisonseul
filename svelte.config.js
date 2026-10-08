@@ -1,6 +1,10 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+// Keep in step with src/lib/prices.ts (LANGS) and src/lib/i18n.ts (TRANSLATED).
+const LANGS = ['en', 'de', 'ja', 'ko', 'zh', 'ar', 'mn', 'sv'];
+const PAGES = ['/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact'];
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: vitePreprocess(),
@@ -13,8 +17,11 @@ const config = {
 			base: ''
 		},
 		prerender: {
-			// Every page in English, German and Japanese, plus the hidden English-only pages.
-			entries: ['/case-01', '/de/case-01', '/ja/case-01', '/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact', '/de', '/de/skrin', '/de/inventory', '/de/permanent', '/de/house', '/de/care', '/de/backers', '/de/contact', '/ja', '/ja/skrin', '/ja/inventory', '/ja/permanent', '/ja/house', '/ja/care', '/ja/backers', '/ja/contact', '/shipping', '/register']
+			// Every page in every language, plus the hidden English-only pages.
+			entries: [
+				...LANGS.flatMap((l) => PAGES.map((p) => (l === 'en' ? p : p === '/' ? `/${l}` : `/${l}${p}`))),
+				'/case-01', '/de/case-01', '/ja/case-01', '/shipping', '/register'
+			]
 		}
 	}
 };

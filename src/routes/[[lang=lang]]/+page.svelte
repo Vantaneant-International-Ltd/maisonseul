@@ -43,7 +43,7 @@
 <footer>
 	<span>{c.home.tagline}</span>
 	<nav aria-label="Main">
-		<a href={lp(lang, '/skrin')}><span class="kanji" lang="non-Runr">ᛌᚴᚱᛁᚿ</span>&nbsp;SKRIN</a>
+		<a href={lp(lang, '/skrin')}><span class="kanji" lang="non-Runr" dir="ltr">ᛌᚴᚱᛁᚿ</span>&nbsp;SKRIN</a>
 		<a href={lp(lang, '/inventory')}>{c.nav.inventory}</a>
 		<a href={lp(lang, '/backers')}>{c.nav.back}</a>
 	</nav>

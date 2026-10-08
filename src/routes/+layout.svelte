@@ -131,6 +131,19 @@
 	}
 
 	/* Japanese: Outfit for Latin letters, the device's Japanese font for the rest */
+	/* Other scripts: Outfit for Latin letters, the device's own font for the rest */
+	:global(html[lang='ko'] body) {
+		font-family: 'Outfit', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+	}
+	:global(html[lang='zh'] body) {
+		font-family: 'Outfit', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+	}
+	:global(html[lang='ar'] body) {
+		font-family: 'Outfit', 'Geeza Pro', 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+	}
+	:global(html[lang='mn'] body) {
+		font-family: 'Outfit', 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	}
 	:global(html[lang='ja'] body) {
 		font-family:
 			'Outfit',
