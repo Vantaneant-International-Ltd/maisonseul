@@ -53,7 +53,7 @@
 			<p class="variant">{t.variant}</p>
 			<p class="price">{c.prices.case01} <span>{c.taxNote}</span></p>
 
-			<p class="status">{t.status}</p>
+			<p class="status">{t.status} {t.target}</p>
 			<p class="plan-note">{t.backNote}</p>
 
 			<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
