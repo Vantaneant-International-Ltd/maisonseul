@@ -7,6 +7,11 @@
 	text. The hairline cuts the frame in two, as it does on the brand-book cover,
 	and passes through the gap between MAISON and SEUL.
 -->
+<svelte:head>
+	<title>Maison Seul</title>
+	<meta name="description" content="Maison Seul. Singular objects. Dublin. 2027." />
+</svelte:head>
+
 <svg class="cut" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<line x1="57" y1="0" x2="43" y2="100" vector-effect="non-scaling-stroke" />
 </svg>
