@@ -14,7 +14,8 @@
 	const objects = $derived([
 		{
 			key: 'case01' as const,
-			name: 'CASE 01',
+			name: 'KI',
+				kanji: '器',
 			amount: c.prices.case01Back,
 			item: t.items.case01
 		},

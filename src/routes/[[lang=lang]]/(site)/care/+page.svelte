@@ -5,7 +5,7 @@
 
 	const lang = $derived(langOf($page.params.lang));
 	const t = $derived(copy[lang].care);
-	const repairHref = `mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent('CASE 01 / Repair')}`;
+	const repairHref = `mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent('KI / Repair')}`;
 </script>
 
 <svelte:head>

@@ -10,19 +10,19 @@ export const SITE = 'https://maisonseul.com';
 
 // Pages that exist in every language. Anything else (shipping, register) is
 // English only and hidden until sales open.
-export const TRANSLATED = ['/', '/case-01', '/permanent', '/house', '/care', '/backers', '/contact'];
+export const TRANSLATED = ['/', '/ki', '/permanent', '/house', '/care', '/backers', '/contact'];
 
 export function langOf(param: string | undefined): Lang {
 	return param === 'de' || param === 'ja' ? param : 'en';
 }
 
-/** A path in the given language: /case-01 -> /de/case-01 */
+/** A path in the given language: /ki -> /de/ki */
 export function lp(lang: Lang, path: string): string {
 	if (lang === 'en') return path;
 	return path === '/' ? `/${lang}` : `/${lang}${path}`;
 }
 
-/** The language-free path of a URL: /de/case-01 -> /case-01 */
+/** The language-free path of a URL: /de/ki -> /ki */
 export function basePath(pathname: string): string {
 	const m = pathname.match(/^\/(de|ja)(\/.*)?$/);
 	const p = m ? (m[2] ?? '/') : pathname;
@@ -73,15 +73,15 @@ const en = {
 		tagline: 'Singular objects.'
 	},
 	case01: {
-		title: 'CASE 01 / Maison Seul',
-		description: 'CASE 01. An aluminium cabin case. Edition 001, one hundred pieces. One hundred founding backers.',
-		kicker: 'Case 01 / Cabin',
+		title: 'KI / Maison Seul',
+		description: 'KI. An aluminium cabin case. Edition 001, one hundred pieces. One hundred founding backers.',
+		kicker: 'Object 01 / Cabin case',
 		variant: 'Graphite / Edition 001 / 100 pieces',
 		status: 'Not on sale yet.',
-		backNote: 'One hundred founding backers make CASE 01 possible. Each receives a case, and their initials are engraved inside every CASE 01 ever made.',
+		backNote: 'One hundred founding backers make KI possible. Each receives a case, and their initials are engraved inside every KI ever made.',
 		cta: `Become a founding backer, ${P.en.case01Back}`,
 		backersTitle: 'Founding backers',
-		backersText: 'Their initials are engraved on a plate inside the lid of every CASE 01 ever made. Every ownership card names them and says why.',
+		backersText: 'Their initials are engraved on a plate inside the lid of every KI ever made. Every ownership card names them and says why.',
 		note: 'Made once in this finish. Numbered 001 to 100 inside the lid.',
 		viewsLabel: 'Views',
 		views: ['Front', 'Three-quarter', 'Raw corner', 'Interior', 'Serial plate'],
@@ -132,7 +132,7 @@ const en = {
 			},
 			{ label: 'Finish', lines: ['Graphite, matte anodised', 'One corner in raw aluminium'] },
 			{ label: 'Materials', lines: ['Aluminium-magnesium shell and frame', 'Polyester lining, pale grey'] },
-			{ label: 'In the box', lines: ['CASE 01', 'Dust cover', 'Ownership card with your number', 'Care and repair card'] },
+			{ label: 'In the box', lines: ['KI', 'Dust cover', 'Ownership card with your number', 'Care and repair card'] },
 			{
 				label: 'Returns and warranty',
 				lines: [
@@ -149,11 +149,11 @@ const en = {
 			},
 			{
 				q: 'What happens when the hundred are gone?',
-				a: 'Graphite is not made again. CASE 01 continues in a new finish, and parts stay in stock for every edition.'
+				a: 'Graphite is not made again. KI continues in a new finish, and parts stay in stock for every edition.'
 			},
 			{
 				q: 'What is a founding backer?',
-				a: `One of 100 people who fund CASE 01 before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials are engraved inside every CASE 01 ever made, and your name is on every ownership card. If it never ships, you get your money back.`
+				a: `One of 100 people who fund KI before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials are engraved inside every KI ever made, and your name is on every ownership card. If it never ships, you get your money back.`
 			},
 			{
 				q: 'Is Maison Seul part of Apple?',
@@ -215,7 +215,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. CASE 01 is the first object. MA, permanent denim, and JI, a T-shirt and longsleeve, follow.']
+				p: ['Nothing is made to fill a catalogue. KI is the first object. MA, permanent denim, and JI, a T-shirt and longsleeve, follow.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -241,10 +241,10 @@ const en = {
 	},
 	care: {
 		title: 'Care and repair / Maison Seul',
-		description: 'How to care for CASE 01, replace its parts, and get it repaired.',
+		description: 'How to care for KI, replace its parts, and get it repaired.',
 		kicker: 'Care and repair',
 		h1: 'Four screws, and the parts to go with them.',
-		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so CASE 01 can be kept going rather than replaced.',
+		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so KI can be kept going rather than replaced.',
 		everydayTitle: 'Everyday care',
 		everyday: [
 			'Wipe the shell with a soft damp cloth. A little mild soap if needed. Nothing abrasive.',
@@ -286,11 +286,11 @@ const en = {
 			case01: {
 				sub: 'Aluminium cabin case. Edition 001.',
 				gives: [
-					'A CASE 01, when it is ready',
-					"Your initials, up to three letters, engraved on the backers' plate inside every CASE 01 ever made",
+					'A KI, when it is ready',
+					"Your initials, up to three letters, engraved on the backers' plate inside every KI ever made",
 					'Your name and the reason on every ownership card'
 				],
-				cta: `Back CASE 01, ${P.en.case01Back}`
+				cta: `Back KI, ${P.en.case01Back}`
 			},
 			ma: {
 				sub: 'Denim in three styles. Permanent.',
@@ -310,13 +310,13 @@ const en = {
 			'You can ask for a full refund at any time before your object ships. If production has started, your initials may already be in made pieces.',
 			'Backing is a pre-order at a founding price, not an investment. It gives no share in the company.',
 			'One hundred backers per object. One backing per person, per object.',
-			`Normal prices when sales open: CASE 01 ${P.en.case01}, MA ${P.en.ma}.`
+			`Normal prices when sales open: KI ${P.en.case01}, MA ${P.en.ma}.`
 		],
 		paidNote: 'Payment is handled on a secure checkout page.',
 		emailNote: 'Checkout opens shortly. Until then, email us to put your name down. Nothing is charged.',
 		emailCta: 'Put my name down',
 		emailSubject: 'Founding backer',
-		emailBody: 'I would like to become a founding backer.\n\nObject: CASE 01 / MA (delete one)\nInitials (up to 3 letters):\nName:\n'
+		emailBody: 'I would like to become a founding backer.\n\nObject: KI / MA (delete one)\nInitials (up to 3 letters):\nName:\n'
 	},
 	contact: {
 		title: 'Contact / Maison Seul',
@@ -357,15 +357,15 @@ const de: Copy = {
 		tagline: 'Einzigartige Objekte.'
 	},
 	case01: {
-		title: 'CASE 01 / Maison Seul',
-		description: 'CASE 01. Ein Kabinenkoffer aus Aluminium. Edition 001, hundert Stück. Hundert Gründungsunterstützer.',
-		kicker: 'Case 01 / Handgepäck',
+		title: 'KI / Maison Seul',
+		description: 'KI. Ein Kabinenkoffer aus Aluminium. Edition 001, hundert Stück. Hundert Gründungsunterstützer.',
+		kicker: 'Objekt 01 / Handgepäck',
 		variant: 'Graphit / Edition 001 / 100 Stück',
 		status: 'Noch nicht im Verkauf.',
-		backNote: 'Hundert Gründungsunterstützer machen CASE 01 möglich. Jeder erhält einen Koffer, und ihre Initialen werden in jeden CASE 01 graviert, der je gefertigt wird.',
+		backNote: 'Hundert Gründungsunterstützer machen KI möglich. Jeder erhält einen Koffer, und ihre Initialen werden in jeden KI graviert, der je gefertigt wird.',
 		cta: `Gründungsunterstützer werden, ${P.de.case01Back}`,
 		backersTitle: 'Gründungsunterstützer',
-		backersText: 'Ihre Initialen sind auf einer Plakette im Deckel jedes je gefertigten CASE 01 graviert. Jede Eigentümerkarte nennt sie und sagt, warum.',
+		backersText: 'Ihre Initialen sind auf einer Plakette im Deckel jedes je gefertigten KI graviert. Jede Eigentümerkarte nennt sie und sagt, warum.',
 		note: 'In dieser Ausführung nur einmal gefertigt. Im Deckel nummeriert, 001 bis 100.',
 		viewsLabel: 'Ansichten',
 		views: ['Vorne', 'Dreiviertel', 'Rohe Ecke', 'Innen', 'Seriennummer'],
@@ -416,7 +416,7 @@ const de: Copy = {
 			},
 			{ label: 'Oberfläche', lines: ['Graphit, matt eloxiert', 'Eine Ecke aus rohem Aluminium'] },
 			{ label: 'Material', lines: ['Schale und Rahmen aus Aluminium-Magnesium', 'Innenfutter aus Polyester, hellgrau'] },
-			{ label: 'Lieferumfang', lines: ['CASE 01', 'Staubhülle', 'Eigentümerkarte mit Ihrer Nummer', 'Pflege- und Reparaturkarte'] },
+			{ label: 'Lieferumfang', lines: ['KI', 'Staubhülle', 'Eigentümerkarte mit Ihrer Nummer', 'Pflege- und Reparaturkarte'] },
 			{
 				label: 'Rückgabe und Garantie',
 				lines: [
@@ -433,11 +433,11 @@ const de: Copy = {
 			},
 			{
 				q: 'Was passiert, wenn alle hundert vergeben sind?',
-				a: 'Graphit wird nicht wieder hergestellt. CASE 01 geht in einer neuen Ausführung weiter, und Ersatzteile bleiben für jede Edition auf Lager.'
+				a: 'Graphit wird nicht wieder hergestellt. KI geht in einer neuen Ausführung weiter, und Ersatzteile bleiben für jede Edition auf Lager.'
 			},
 			{
 				q: 'Was ist ein Gründungsunterstützer?',
-				a: `Einer von 100 Menschen, die CASE 01 finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden je gefertigten CASE 01 graviert, und Ihr Name steht auf jeder Eigentümerkarte. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
+				a: `Einer von 100 Menschen, die KI finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden je gefertigten KI graviert, und Ihr Name steht auf jeder Eigentümerkarte. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
 			},
 			{
 				q: 'Gehört Maison Seul zu Apple?',
@@ -499,7 +499,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. CASE 01 ist das erste Objekt. MA, dauerhaftes Denim, und JI, ein T-Shirt und ein Longsleeve, folgen.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. KI ist das erste Objekt. MA, dauerhaftes Denim, und JI, ein T-Shirt und ein Longsleeve, folgen.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -525,10 +525,10 @@ const de: Copy = {
 	},
 	care: {
 		title: 'Pflege und Reparatur / Maison Seul',
-		description: 'So pflegen Sie CASE 01, tauschen Teile aus und lassen ihn reparieren.',
+		description: 'So pflegen Sie KI, tauschen Teile aus und lassen ihn reparieren.',
 		kicker: 'Pflege und Reparatur',
 		h1: 'Vier Schrauben und die passenden Teile dazu.',
-		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit CASE 01 weiterlebt, statt ersetzt zu werden.',
+		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit KI weiterlebt, statt ersetzt zu werden.',
 		everydayTitle: 'Alltägliche Pflege',
 		everyday: [
 			'Die Schale mit einem weichen, feuchten Tuch abwischen. Bei Bedarf etwas milde Seife. Nichts Scheuerndes.',
@@ -570,11 +570,11 @@ const de: Copy = {
 			case01: {
 				sub: 'Kabinenkoffer aus Aluminium. Edition 001.',
 				gives: [
-					'Ein CASE 01, sobald er fertig ist',
-					'Ihre Initialen, bis zu drei Buchstaben, auf der Unterstützerplakette im Deckel jedes je gefertigten CASE 01',
+					'Ein KI, sobald er fertig ist',
+					'Ihre Initialen, bis zu drei Buchstaben, auf der Unterstützerplakette im Deckel jedes je gefertigten KI',
 					'Ihr Name und der Grund auf jeder Eigentümerkarte'
 				],
-				cta: `CASE 01 unterstützen, ${P.de.case01Back}`
+				cta: `KI unterstützen, ${P.de.case01Back}`
 			},
 			ma: {
 				sub: 'Denim in drei Schnitten. Dauerhaft.',
@@ -594,13 +594,13 @@ const de: Copy = {
 			'Sie können jederzeit vor dem Versand Ihres Objekts die volle Erstattung verlangen. Hat die Produktion begonnen, sind Ihre Initialen womöglich schon in gefertigten Stücken.',
 			'Die Unterstützung ist eine Vorbestellung zum Gründungspreis, keine Geldanlage. Sie verschafft keinen Anteil am Unternehmen.',
 			'Hundert Unterstützer pro Objekt. Eine Unterstützung pro Person und Objekt.',
-			`Reguläre Preise zum Verkaufsstart: CASE 01 ${P.de.case01}, MA ${P.de.ma}.`
+			`Reguläre Preise zum Verkaufsstart: KI ${P.de.case01}, MA ${P.de.ma}.`
 		],
 		paidNote: 'Die Zahlung erfolgt auf einer sicheren Bezahlseite.',
 		emailNote: 'Die Bezahlseite öffnet bald. Bis dahin schreiben Sie uns, um sich vormerken zu lassen. Es wird nichts berechnet.',
 		emailCta: 'Mich vormerken',
 		emailSubject: 'Gründungsunterstützer',
-		emailBody: 'Ich möchte Gründungsunterstützer werden.\n\nObjekt: CASE 01 / MA (bitte eines löschen)\nInitialen (bis zu 3 Buchstaben):\nName:\n'
+		emailBody: 'Ich möchte Gründungsunterstützer werden.\n\nObjekt: KI / MA (bitte eines löschen)\nInitialen (bis zu 3 Buchstaben):\nName:\n'
 	},
 	contact: {
 		title: 'Kontakt / Maison Seul',
@@ -639,15 +639,15 @@ const ja: Copy = {
 		tagline: '唯一のもの。'
 	},
 	case01: {
-		title: 'CASE 01 / Maison Seul',
-		description: 'CASE 01。アルミニウムの機内持ち込みケース。エディション001、100点限定。創設支援者100人。',
-		kicker: 'Case 01 / 機内持ち込み',
+		title: 'KI / Maison Seul',
+		description: 'KI。アルミニウムの機内持ち込みケース。エディション001、100点限定。創設支援者100人。',
+		kicker: 'オブジェ 01 / 機内持ち込み',
 		variant: 'グラファイト / エディション001 / 100点限定',
 		status: 'まだ販売していません。',
-		backNote: '100人の創設支援者がCASE 01を実現します。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのCASE 01の内側に刻印されます。',
+		backNote: '100人の創設支援者がKIを実現します。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのKIの内側に刻印されます。',
 		cta: `創設支援者になる ${P.ja.case01Back}`,
 		backersTitle: '創設支援者',
-		backersText: '支援者のイニシャルは、すべてのCASE 01の蓋の内側のプレートに刻印されます。すべてのオーナーカードに、その名前と理由を記します。',
+		backersText: '支援者のイニシャルは、すべてのKIの蓋の内側のプレートに刻印されます。すべてのオーナーカードに、その名前と理由を記します。',
 		note: 'この仕上げは一度きりの製作。蓋の内側に001から100の番号入り。',
 		viewsLabel: '表示',
 		views: ['正面', '斜め', '無垢のコーナー', '内側', 'シリアルプレート'],
@@ -695,7 +695,7 @@ const ja: Copy = {
 			},
 			{ label: '仕上げ', lines: ['グラファイト、マットアルマイト', 'コーナーひとつは無垢のアルミニウム'] },
 			{ label: '素材', lines: ['アルミニウム・マグネシウム合金のシェルとフレーム', 'ポリエステルの内張り、ペールグレー'] },
-			{ label: '同梱物', lines: ['CASE 01', '保存袋', '番号入りオーナーカード', 'ケア・修理カード'] },
+			{ label: '同梱物', lines: ['KI', '保存袋', '番号入りオーナーカード', 'ケア・修理カード'] },
 			{
 				label: '返品と保証',
 				lines: ['未使用であれば14日以内に返品、全額返金', 'シェル、フレーム、ホイール、ハンドル、ラッチに5年保証。へこみや傷は対象外']
@@ -709,11 +709,11 @@ const ja: Copy = {
 			},
 			{
 				q: '100点が完売したら?',
-				a: 'グラファイトは再生産しません。CASE 01は新しい仕上げで続き、交換部品はすべてのエディション分を在庫します。'
+				a: 'グラファイトは再生産しません。KIは新しい仕上げで続き、交換部品はすべてのエディション分を在庫します。'
 			},
 			{
 				q: '創設支援者とは?',
-				a: `CASE 01が生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをすべてのCASE 01の内側に刻印し、すべてのオーナーカードにお名前を記します。もし出荷に至らなければ、全額を返金します。`
+				a: `KIが生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをすべてのKIの内側に刻印し、すべてのオーナーカードにお名前を記します。もし出荷に至らなければ、全額を返金します。`
 			},
 			{
 				q: 'Maison SeulはAppleの関連会社ですか?',
@@ -771,7 +771,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはCASE 01。続いて、常設のデニムMAと、TシャツとロングスリーブのJI。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはKI。続いて、常設のデニムMAと、TシャツとロングスリーブのJI。']
 			},
 			{
 				h: 'エディションと常設コレクション',
@@ -797,10 +797,10 @@ const ja: Copy = {
 	},
 	care: {
 		title: 'ケアと修理 / Maison Seul',
-		description: 'CASE 01のお手入れ、部品の交換、修理について。',
+		description: 'KIのお手入れ、部品の交換、修理について。',
 		kicker: 'ケアと修理',
 		h1: 'ネジは4本。部品もそろっています。',
-		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、CASE 01は買い替えずに使い続けられます。',
+		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、KIは買い替えずに使い続けられます。',
 		everydayTitle: '日々のお手入れ',
 		everyday: [
 			'シェルはやわらかく湿らせた布で拭いてください。必要なら中性洗剤を少量。研磨剤は使わないでください。',
@@ -842,11 +842,11 @@ const ja: Copy = {
 			case01: {
 				sub: 'アルミニウムの機内持ち込みケース。エディション001。',
 				gives: [
-					'完成したCASE 01をひとつ',
-					'イニシャル（3文字まで）を、すべてのCASE 01の蓋の内側にある支援者プレートに刻印',
+					'完成したKIをひとつ',
+					'イニシャル（3文字まで）を、すべてのKIの蓋の内側にある支援者プレートに刻印',
 					'すべてのオーナーカードにお名前と理由を記載'
 				],
-				cta: `CASE 01を支援する ${P.ja.case01Back}`
+				cta: `KIを支援する ${P.ja.case01Back}`
 			},
 			ma: {
 				sub: '3型のデニム。常設。',
@@ -866,13 +866,13 @@ const ja: Copy = {
 			'オブジェの発送前であれば、いつでも全額返金を申し出られます。製造が始まっている場合、イニシャルはすでに製品に入っていることがあります。',
 			'支援は創設価格での予約購入であり、投資ではありません。会社の持分は伴いません。',
 			'各オブジェにつき支援者は100人まで。おひとりさま、1オブジェにつき1口まで。',
-			`販売開始時の通常価格：CASE 01 ${P.ja.case01}、MA ${P.ja.ma}。`
+			`販売開始時の通常価格：KI ${P.ja.case01}、MA ${P.ja.ma}。`
 		],
 		paidNote: 'お支払いは安全な決済ページで行います。',
 		emailNote: 'まもなく決済を開始します。それまではメールでお名前をお知らせください。料金はかかりません。',
 		emailCta: '名前を登録する',
 		emailSubject: '創設支援者',
-		emailBody: '創設支援者になりたいです。\n\nオブジェ：CASE 01 / MA（どちらかを削除）\nイニシャル（3文字まで）：\nお名前：\n'
+		emailBody: '創設支援者になりたいです。\n\nオブジェ：KI / MA（どちらかを削除）\nイニシャル（3文字まで）：\nお名前：\n'
 	},
 	contact: {
 		title: 'お問い合わせ / Maison Seul',
