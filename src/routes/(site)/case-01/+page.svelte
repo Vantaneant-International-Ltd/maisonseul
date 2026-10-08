@@ -169,7 +169,7 @@
 		<h2>One case. Nothing else.</h2>
 		<p>
 			An aluminium cabin case with no logo, one raw corner, and room built in for what you
-			already carry. It is the first object from Maison Seul, and for now the only one.
+			already carry. It is the first object from Maison Seul.
 		</p>
 	</section>
 

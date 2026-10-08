@@ -8,12 +8,14 @@
 
 	const nav = [
 		{ href: '/case-01', label: 'CASE 01' },
+		{ href: '/permanent', label: 'Permanent' },
 		{ href: '/house', label: 'The house' },
 		{ href: '/care', label: 'Care' },
 		{ href: '/contact', label: 'Contact' }
 	];
 	const footLinks = [
 		{ href: '/case-01', label: 'CASE 01' },
+		{ href: '/permanent', label: 'Permanent collection' },
 		{ href: '/house', label: 'The house' },
 		{ href: '/care', label: 'Care and repair' },
 		{ href: '/shipping', label: 'Shipping, returns and warranty' },
@@ -27,7 +29,7 @@
 	<meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
-<p class="bar">Designed in Dublin. Made in numbered editions.</p>
+<p class="bar">Designed in Dublin.</p>
 
 <header class="top">
 	<a class="home" href="/case-01" aria-label="Maison Seul, CASE 01"><Wordmark /></a>
