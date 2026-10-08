@@ -88,6 +88,12 @@
 		font-display: swap;
 		unicode-range: U+BC14, U+B78C;
 	}
+	@font-face {
+		font-family: 'MS Script';
+		src: url('/fonts/noto-kufi-qutn.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+0642, U+0637, U+0646;
+	}
 	:global(:root) {
 		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */
 		--void: #121619;

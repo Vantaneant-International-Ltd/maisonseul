@@ -31,6 +31,7 @@
 			links: [
 				{ href: '/permanent', label: c.foot.ma },
 				{ href: '/permanent#grund', label: c.foot.ji },
+				{ href: '/permanent#qutn', label: c.foot.qutn },
 				{ href: '/permanent#ovol', label: c.foot.ovol },
 				{ href: '/permanent#baram', label: c.foot.baram }
 			]

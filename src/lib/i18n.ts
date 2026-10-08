@@ -40,11 +40,11 @@ export function switchHref(pathname: string, target: Lang): string {
 // case01 / ma: the normal price when sales open.
 // case01Back / maBack: founding backer amount, object included.
 // ---------------------------------------------------------------------------
-type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; currency: 'eur' | 'jpy' };
+type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; qutnPoplin: string; qutnCanvas: string; currency: 'eur' | 'jpy' };
 const P: Record<Lang, Prices> = {
-	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', currency: 'eur' },
-	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', currency: 'eur' },
-	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', currency: 'jpy' }
+	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', qutnPoplin: '€110', qutnCanvas: '€140', currency: 'eur' },
+	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', qutnPoplin: '110 €', qutnCanvas: '140 €', currency: 'eur' },
+	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', qutnPoplin: '¥20,000', qutnCanvas: '¥26,000', currency: 'jpy' }
 };
 
 // ---------------------------------------------------------------------------
@@ -60,9 +60,10 @@ const en = {
 		objects: 'Objects',
 		permanent: 'Permanent',
 		ma: 'MA, denim',
-		ji: 'GRUND, shirts',
+		ji: 'GRUND, T-shirts',
 		ovol: 'ÖVÖL, jackets',
 		baram: 'BARAM, joggers',
+		qutn: 'QUTN, shirts',
 		house: 'The house',
 		care: 'Care and repair',
 		back: 'Founding backers',
@@ -169,7 +170,7 @@ const en = {
 	},
 	ma: {
 		title: 'Permanent / Maison Seul',
-		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve. ÖVÖL, a light and a heavy jacket. BARAM, balloon joggers.',
+		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve. ÖVÖL, a light and a heavy jacket. QUTN, poplin and canvas shirts. BARAM, balloon joggers.',
 		kicker: 'Permanent collection',
 		lead: 'Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
 		lead2: 'Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made continuously, and always there.',
@@ -237,6 +238,21 @@ const en = {
 			'No logo outside. The name is printed inside the waistband.'
 		]
 	},
+	qutn: {
+		lead: 'Shirts. Qutn is Arabic for cotton, written قطن. The English word cotton comes from it, and the long-staple cotton that makes the finest poplin grows along the Nile.',
+		lead2: 'The proportions of a nineties shirt: boxy, a dropped shoulder, a long straight hem worn in or out. Buttons hidden under a plain placket. No pocket, no logo.',
+		pieces: [
+			{ name: 'Poplin', line: 'Crisp and light. Worn on its own.' },
+			{ name: 'Canvas', line: 'Heavier, worn open as an overshirt.' }
+		],
+		coloursLabel: 'Three colours',
+		colours: ['Blinding White', 'Unlit', 'Concrete'],
+		details: [
+			'Poplin: tightly woven two-ply cotton.',
+			'Canvas: a dense cotton canvas that softens with wear.',
+			'Concealed placket. The name is printed inside the yoke.'
+		]
+	},
 	house: {
 		title: 'The house / Maison Seul',
 		description: 'Maison Seul is a design house in Dublin. One object at a time.',
@@ -246,7 +262,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (shirts), ÖVÖL (jackets) and BARAM (joggers) follow, each named in the language of the place that shaped it.']
+				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (T-shirts), QUTN (shirts), ÖVÖL (jackets) and BARAM (joggers) follow, each named in the language of the place that shaped it.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -375,9 +391,10 @@ const de: Copy = {
 		objects: 'Objekte',
 		permanent: 'Ständige Kollektion',
 		ma: 'MA, Denim',
-		ji: 'GRUND, Shirts',
+		ji: 'GRUND, T-Shirts',
 		ovol: 'ÖVÖL, Jacken',
 		baram: 'BARAM, Jogger',
+		qutn: 'QUTN, Hemden',
 		house: 'Das Haus',
 		care: 'Pflege und Reparatur',
 		back: 'Gründungsunterstützer',
@@ -484,7 +501,7 @@ const de: Copy = {
 	},
 	ma: {
 		title: 'Ständige Kollektion / Maison Seul',
-		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve. ÖVÖL, eine leichte und eine schwere Jacke. BARAM, Ballon-Jogger.',
+		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve. ÖVÖL, eine leichte und eine schwere Jacke. QUTN, Hemden aus Popeline und Canvas. BARAM, Ballon-Jogger.',
 		kicker: 'Ständige Kollektion',
 		lead: 'Denim in drei Schnitten: Loose, Baggy und Barrel. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
 		lead2: 'Proportionen aus dem Tokio der Neunziger, neu gezeichnet mit den Linien eines Gebäudes. Keine Edition. Fortlaufend gefertigt und immer erhältlich.',
@@ -552,6 +569,21 @@ const de: Copy = {
 			'Kein Logo außen. Der Name steht innen im Bund.'
 		]
 	},
+	qutn: {
+		lead: 'Hemden. Qutn ist Arabisch für Baumwolle, geschrieben قطن. Das englische Wort cotton stammt davon, und die langstapelige Baumwolle für den feinsten Popeline wächst am Nil.',
+		lead2: 'Die Proportionen eines Hemdes der Neunziger: kastig, tiefe Schulter, langer gerader Saum, drinnen oder draußen getragen. Knöpfe unter einer schlichten Leiste verdeckt. Keine Tasche, kein Logo.',
+		pieces: [
+			{ name: 'Poplin', line: 'Knackig und leicht. Für sich getragen.' },
+			{ name: 'Canvas', line: 'Schwerer, offen als Overshirt getragen.' }
+		],
+		coloursLabel: 'Drei Farben',
+		colours: ['Blinding White', 'Unlit', 'Concrete'],
+		details: [
+			'Poplin: dicht gewebte, zweifach gezwirnte Baumwolle.',
+			'Canvas: ein dichter Baumwoll-Canvas, der mit dem Tragen weicher wird.',
+			'Verdeckte Knopfleiste. Der Name steht innen an der Passe.'
+		]
+	},
 	house: {
 		title: 'Das Haus / Maison Seul',
 		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt nach dem anderen.',
@@ -561,7 +593,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (Shirts), ÖVÖL (Jacken) und BARAM (Jogger) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (T-Shirts), QUTN (Hemden), ÖVÖL (Jacken) und BARAM (Jogger) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -688,9 +720,10 @@ const ja: Copy = {
 		objects: 'オブジェ',
 		permanent: '常設コレクション',
 		ma: 'MA デニム',
-		ji: 'GRUND シャツ',
+		ji: 'GRUND Tシャツ',
 		ovol: 'ÖVÖL ジャケット',
 		baram: 'BARAM ジョガー',
+		qutn: 'QUTN シャツ',
 		house: 'メゾンについて',
 		care: 'ケアと修理',
 		back: '創設支援者',
@@ -791,7 +824,7 @@ const ja: Copy = {
 	},
 	ma: {
 		title: '常設コレクション / Maison Seul',
-		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDはTシャツとロングスリーブ。ÖVÖLは軽量と厚手のジャケット。BARAMはバルーンジョガー。',
+		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDはTシャツとロングスリーブ。ÖVÖLは軽量と厚手のジャケット。QUTNはポプリンとキャンバスのシャツ。BARAMはバルーンジョガー。',
 		kicker: '常設コレクション',
 		lead: 'Loose、Baggy、Barrelの3型のデニム。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
 		lead2: '90年代の東京のシルエットを、建築の線で描き直しました。限定ではありません。作り続け、いつでも手に入ります。',
@@ -855,6 +888,21 @@ const ja: Copy = {
 			'表にロゴなし。名前はウエストの内側に。'
 		]
 	},
+	qutn: {
+		lead: 'シャツ。Qutn（قطن）はアラビア語で「綿」。英語のcottonの語源であり、最上のポプリンを生む超長綿はナイル川沿いで育ちます。',
+		lead2: '90年代のシャツのプロポーション。ボックス型、落ちた肩、裾はまっすぐ長く、入れても出しても。ボタンは比翼で隠し、ポケットもロゴもありません。',
+		pieces: [
+			{ name: 'Poplin', line: 'ハリがあって軽い。一枚で。' },
+			{ name: 'Canvas', line: '厚手。前を開けてシャツジャケットとして。' }
+		],
+		coloursLabel: '3色',
+		colours: ['Blinding White', 'Unlit', 'Concrete'],
+		details: [
+			'Poplin：高密度に織った双糸のコットン。',
+			'Canvas：着るほどに柔らかくなる高密度コットンキャンバス。',
+			'比翼仕立て。名前はヨークの内側に。'
+		]
+	},
 	house: {
 		title: 'メゾンについて / Maison Seul',
 		description: 'Maison Seulはダブリンのデザインハウス。ひとつずつ作ります。',
@@ -864,7 +912,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（Tシャツ）、QUTN（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
 			},
 			{
 				h: 'エディションと常設コレクション',
