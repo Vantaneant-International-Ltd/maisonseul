@@ -1,58 +1,47 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import Defaced from '$lib/Defaced.svelte';
-	import Cipher from '$lib/Cipher.svelte';
 	import Stack from '$lib/Stack.svelte';
-	import { LINE, type LineName } from '$lib/lines';
-	const BY_WORD: Record<string, LineName> = Object.fromEntries(Object.values(LINE).map((l) => [l.word, l]));
-	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
-	import {
-		SWATCH, CASE, MA_BAGGY, PJ_SHIRT, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER,
-		type Drawing
-	} from '$lib/drawings';
+	import { SWATCH } from '$lib/drawings';
+	import { catalogue, type Cat, type Line, type Piece } from '$lib/catalogue';
 
-	// Everything the house makes, on one page, filterable. Each piece links to
-	// the page that tells its story. Numbers run in the order things were made.
+	// Everything the house makes, on one page. Filter by kind, sort by price,
+	// and every card opens that line's page.
 	const lang = $derived(langOf($page.params.lang));
 	const c = $derived(copy[lang]);
 	const t = $derived(c.inventory);
 
-	type Cat = 'objects' | 'tops' | 'outer' | 'bottoms' | 'lounge';
-	type Item = {
-		line: string; mark?: string; script?: string; name: string;
-		cat: Cat; price: string; permanent: boolean; href: string; drawing: Drawing;
-		colours?: string[];
-		fits?: string[];
-	};
+	type Card = { key: string; line: Line; name: string; price: string; drawing: Piece['drawing']; href: string; order: number };
 
-	const items = $derived<Item[]>([
-		{ line: 'SKRIN', mark: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr', name: 'Graphite', cat: 'objects', price: c.prices.case01, permanent: false, href: '/skrin', drawing: CASE, colours: ['Graphite'] },
-		{ line: 'MA', mark: '間', script: 'ja', name: c.ma.denim, cat: 'bottoms', price: c.prices.ma, permanent: true, href: '/permanent', drawing: MA_BAGGY, fits: ['一', '二', '三'] },
-		{ line: 'GRUND', name: c.ji.pieces[0].name, cat: 'tops', price: c.prices.jiTee, permanent: true, href: '/permanent#grund', drawing: TEE, colours: c.ji.colours },
-		{ line: 'GRUND', name: c.ji.pieces[1].name, cat: 'tops', price: c.prices.jiLong, permanent: true, href: '/permanent#grund', drawing: LONG, colours: c.ji.colours },
-		{ line: 'QUTN', mark: 'قطن', script: 'ar', name: c.qutn.pieces[0].name, cat: 'tops', price: c.prices.qutnPoplin, permanent: true, href: '/permanent#qutn', drawing: SHIRT, colours: c.qutn.colours },
-		{ line: 'QUTN', mark: 'قطن', script: 'ar', name: c.qutn.pieces[1].name, cat: 'tops', price: c.prices.qutnCanvas, permanent: true, href: '/permanent#qutn', drawing: OVERSHIRT, colours: c.qutn.colours },
-		{ line: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', name: c.ovol.pieces[0].name, cat: 'outer', price: c.prices.ovolLight, permanent: true, href: '/permanent#ovol', drawing: SHELL, colours: c.ovol.colours },
-		{ line: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', name: c.ovol.pieces[1].name, cat: 'outer', price: c.prices.ovolHeavy, permanent: true, href: '/permanent#ovol', drawing: PUFFER, colours: c.ovol.colours },
-		{ line: 'BARAM', mark: '바람', script: 'ko', name: c.baram.pieces[0].name, cat: 'bottoms', price: c.prices.baram, permanent: true, href: '/permanent#baram', drawing: JOGGER, colours: c.baram.colours },
-		{ line: 'SĪ', mark: '絲', script: 'zh-Hant', name: c.si.set, cat: 'lounge', price: c.prices.si, permanent: true, href: '/permanent#si', drawing: PJ_SHIRT, colours: c.si.colours }
-	]);
+	// One card per piece, except where a line is sold as one thing (MA fits, the SĪ set, SKRIN).
+	const cards = $derived.by(() => {
+		const out: Card[] = [];
+		for (const L of catalogue(c)) {
+			if (L.oneCard) {
+				const i = L.id === 'ma' ? 1 : 0;
+				out.push({ key: L.id, line: L, name: L.cardName, price: L.pieces[i].price, drawing: L.pieces[i].drawing, href: L.href, order: out.length });
+			} else {
+				L.pieces.forEach((pc, i) =>
+					out.push({ key: `${L.id}-${i}`, line: L, name: pc.name, price: pc.price, drawing: pc.drawing, href: `${L.href}?p=${i}`, order: out.length })
+				);
+			}
+		}
+		return out;
+	});
 
 	const CATS: ('all' | Cat)[] = ['all', 'objects', 'tops', 'outer', 'bottoms', 'lounge'];
 	let current = $state<'all' | Cat>('all');
-	type Sort = 'no' | 'low' | 'high';
-	let sort = $state<Sort>('no');
-	const amount = (p: string) => Number(p.replace(/[^0-9]/g, ''));
+	let sort = $state<'order' | 'low' | 'high'>('order');
+	const amount = (s: string) => Number(s.replace(/[^0-9]/g, ''));
 	const shown = $derived.by(() => {
-		const list = current === 'all' ? items : items.filter((i) => i.cat === current);
-		if (sort === 'no') return list;
+		const list = current === 'all' ? cards : cards.filter((k) => k.line.cat === current);
+		if (sort === 'order') return list;
 		return [...list].sort((a, b) => (sort === 'low' ? 1 : -1) * (amount(a.price) - amount(b.price)));
 	});
-	const countOf = (k: 'all' | Cat) => (k === 'all' ? items.length : items.filter((i) => i.cat === k).length);
+	const countOf = (k: 'all' | Cat) => (k === 'all' ? cards.length : cards.filter((x) => x.line.cat === k).length);
 
-	// The filter lives in the address (?c=tops) so a filtered view can be shared.
+	// The filter lives in the address (?c=tops) so a view can be shared.
 	onMount(() => {
 		const q = new URLSearchParams(location.search).get('c');
 		if (q && (CATS as string[]).includes(q)) current = q as Cat;
@@ -64,7 +53,6 @@
 		else url.searchParams.set('c', k);
 		history.replaceState(history.state, '', url);
 	}
-	const no = (i: number) => String(items.indexOf(shown[i]) + 1).padStart(3, '0');
 </script>
 
 <svelte:head>
@@ -73,56 +61,60 @@
 </svelte:head>
 
 <main class="inv">
-	<p class="kicker">{t.kicker}</p>
-	<Defaced text={t.h1} />
-	<p class="lead">{t.lead}</p>
-	<p class="sign"><Cipher text={LINES.meant} /></p>
+	<header class="head">
+		<h1>{t.kicker}</h1>
+		<p class="lead">{t.lead}</p>
+	</header>
 
-	<div class="filters mono" role="group" aria-label={t.filterLabel}>
-		{#each CATS as k}
-			<button type="button" aria-pressed={current === k} onclick={() => choose(k)}>
-				#{t.cats[k]}<sup>{countOf(k)}</sup>
-			</button>
-		{/each}
-	</div>
-	<div class="bar2">
-		<p class="total mono" aria-live="polite">{t.pieces.replace('{n}', String(shown.length))}</p>
-		<div class="sort mono" role="group" aria-label={t.sortLabel}>
-			{#each [['no', t.sortNo], ['low', t.sortLow], ['high', t.sortHigh]] as [k, label]}
-				<button type="button" aria-pressed={sort === k} onclick={() => (sort = k as Sort)}>{label}</button>
+	<div class="tools">
+		<div class="filters" role="group" aria-label={t.filterLabel}>
+			{#each CATS as k}
+				<button type="button" aria-pressed={current === k} onclick={() => choose(k)}>
+					{t.cats[k]}<span class="n">{countOf(k)}</span>
+				</button>
 			{/each}
 		</div>
+		<label class="sort">
+			<span>{c.ui.sort}</span>
+			<select bind:value={sort}>
+				<option value="order">{t.sortNo}</option>
+				<option value="low">{t.sortLow}</option>
+				<option value="high">{t.sortHigh}</option>
+			</select>
+		</label>
 	</div>
 
-	<ul class="grid">
-		{#each shown as it, i (it.line + it.name)}
+	<ul class="grid" aria-live="polite">
+		{#each shown as card (card.key)}
 			<li>
-				<a href={lp(lang, it.href)}>
-					<div class="draw">
-						<span class="no mono">{no(i)}</span>
-						<svg viewBox={it.drawing.box} role="img" aria-label="{it.line} {it.name}">
-							{#each it.drawing.paths as pth}
+				<a href={lp(lang, card.href)}>
+					<div class="tile">
+						<svg viewBox={card.drawing.box} aria-hidden="true">
+							{#each card.drawing.paths as pth}
 								<path
 									d={pth.d}
 									fill="none"
 									stroke={pth.dim ? '#a9aeb1' : '#f2f3f1'}
 									stroke-width={pth.dim ? 1 : 1.5}
 									stroke-linejoin="round"
+									vector-effect="non-scaling-stroke"
 								/>
 							{/each}
 						</svg>
+						{#if card.line.edition}<span class="flag">{c.ui.editionOf}</span>{/if}
 					</div>
-					<p class="line"><Stack line={BY_WORD[it.line]} size="s" /></p>
-					<p class="name">{it.name}</p>
-					{#if it.fits}
-						<p class="fitmarks kanji" lang="ja" aria-label={c.ma.fits.join(', ')}>{it.fits.join('  ')}</p>
-					{/if}
-					{#if it.colours}
-						<p class="dots" aria-label={it.colours.join(', ')}>
-							{#each it.colours as col}<span title={col} style="background:{SWATCH[col] ?? '#2a3035'}"></span>{/each}
+					<div class="info">
+						<Stack line={card.line.name} size="s" />
+						<p class="name">{card.name}</p>
+						<p class="row">
+							<span class="price">{card.price}</span>
+							{#if card.line.colours.length}
+								<span class="dots" aria-label={card.line.colours.join(', ')}>
+									{#each card.line.colours as col}<i style="background:{SWATCH[col] ?? '#2c3236'}"></i>{/each}
+								</span>
+							{/if}
 						</p>
-					{/if}
-					<p class="meta"><span>{it.price}</span><span class="mono">{it.permanent ? t.permanent : t.edition}</span></p>
+					</div>
 				</a>
 			</li>
 		{/each}
@@ -131,199 +123,199 @@
 
 <style>
 	.inv {
-		max-width: 80rem;
+		max-width: 84rem;
 		margin: 0 auto;
-		padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+		padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter) clamp(4rem, 8vw, 6rem);
 	}
-	.kicker {
-		margin: 0 0 1rem;
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--ink-dim);
-	}
-	.inv :global(h1) {
+	h1 {
 		margin: 0;
 		font-weight: 400;
-		font-size: clamp(2.25rem, 5vw, 3.75rem);
+		font-size: clamp(2.25rem, 4.5vw, 3.25rem);
 		line-height: 1.05;
 	}
 	.lead {
-		max-width: 40rem;
-		margin: 1.25rem 0 0;
-		font-size: 1.125rem;
-		color: #d5d8d9;
+		max-width: 36rem;
+		margin: 0.9rem 0 0;
+		font-size: 1.0625rem;
+		color: var(--ink-dim);
 	}
-	.sign {
-		margin: 1rem 0 0;
+
+	.tools {
+		position: sticky;
+		top: 4.25rem;
+		z-index: 5;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem 2rem;
+		margin-top: clamp(2rem, 4vw, 3rem);
+		padding: 0.75rem 0;
+		background: var(--void);
+		border-bottom: 1px solid var(--line);
 	}
 	.filters {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem 1.75rem;
-		margin-top: clamp(2.5rem, 6vw, 4rem);
-		padding-top: 1.25rem;
-		border-top: 1px solid var(--line);
+		gap: 0.5rem;
+		overflow-x: auto;
+		scrollbar-width: none;
+		margin: 0 calc(var(--gutter) * -1);
+		padding: 0 var(--gutter);
+	}
+	.filters::-webkit-scrollbar {
+		display: none;
 	}
 	.filters button {
-		min-height: 44px;
-		padding: 0;
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		min-height: 40px;
+		padding: 0 1rem;
 		background: none;
-		border: 0;
+		border: 1px solid var(--line);
+		border-radius: 999px;
 		color: var(--ink-dim);
 		font: inherit;
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font-size: 0.9375rem;
 		cursor: pointer;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease,
+			background 160ms ease;
 	}
-	.filters button:hover,
-	.filters button[aria-pressed='true'] {
+	.filters button:hover {
 		color: var(--ink);
+		border-color: var(--hairline);
 	}
 	.filters button[aria-pressed='true'] {
-		text-decoration: line-through;
-		text-decoration-thickness: 1px;
+		background: var(--ink);
+		border-color: var(--ink);
+		color: var(--void);
 	}
-	sup {
-		margin-left: 0.2em;
-		font-size: 0.7em;
-		color: var(--ink-dim);
-	}
-	.total {
-		margin: 0.25rem 0 0;
+	.n {
 		font-size: 0.75rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--ink-dim);
-	}
-	.bar2 {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: space-between;
-		gap: 0.5rem 1.5rem;
+		opacity: 0.6;
 	}
 	.sort {
-		display: flex;
-		gap: 1.25rem;
-	}
-	.sort button {
-		min-height: 44px;
-		padding: 0;
-		background: none;
-		border: 0;
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		font-size: 0.9375rem;
 		color: var(--ink-dim);
+	}
+	.sort select {
+		min-height: 40px;
+		padding: 0 2rem 0 0.9rem;
+		background: var(--void)
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23f2f3f1'/%3E%3C/svg%3E")
+			no-repeat right 0.8rem center;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		color: var(--ink);
 		font: inherit;
-		font-size: 0.75rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font-size: 0.9375rem;
+		appearance: none;
 		cursor: pointer;
 	}
-	.sort button[aria-pressed='true'],
-	.sort button:hover {
-		color: var(--ink);
-	}
-	.fitmarks {
-		margin: 0.45rem 0 0;
-		font-family: var(--kanji);
-		font-size: 0.875rem;
-		letter-spacing: 0.2em;
-		color: var(--ink-dim);
-	}
-	.dots {
-		display: flex;
-		gap: 0.35rem;
-		margin: 0.5rem 0 0;
-	}
-	.dots span {
-		width: 0.7rem;
-		height: 0.7rem;
-		border: 1px solid var(--hairline);
-	}
+
 	.grid {
 		list-style: none;
 		margin: 2rem 0 0;
 		padding: 0;
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 2.5rem 1.25rem;
+		gap: 3rem 1.25rem;
 	}
 	.grid a {
 		display: block;
 		color: inherit;
 		text-decoration: none;
 	}
-	.draw {
+	.tile {
 		position: relative;
 		aspect-ratio: 4 / 5;
 		display: grid;
 		place-items: center;
-		padding: 1.5rem;
+		padding: 14% 18%;
 		background: var(--raised);
-		border: 1px solid var(--line);
-		transition: border-color 200ms ease;
+		transition: background 200ms ease;
 	}
-	.grid a:hover .draw,
-	.grid a:focus-visible .draw {
-		border-color: var(--hairline);
-	}
-	.draw svg {
+	.tile svg {
 		width: 100%;
 		height: 100%;
+		transition: transform 300ms ease;
 	}
-	.no {
+	.grid a:hover .tile,
+	.grid a:focus-visible .tile {
+		background: #20262a;
+	}
+	.grid a:hover .tile svg {
+		transform: scale(1.03);
+	}
+	.flag {
 		position: absolute;
-		top: 0.75rem;
-		left: 0.85rem;
-		font-size: 0.6875rem;
-		letter-spacing: 0.12em;
+		left: 0.9rem;
+		bottom: 0.8rem;
+		font-size: 0.75rem;
 		color: var(--ink-dim);
 	}
-	.line {
-		margin: 0.9rem 0 0;
-		font-size: 0.75rem;
-		letter-spacing: 0.12em;
-		color: var(--ink-dim);
+	.info {
+		padding-top: 1rem;
 	}
 	.name {
-		margin: 0.2rem 0 0;
-		font-size: 1.125rem;
-		text-transform: uppercase;
+		margin: 0.6rem 0 0;
+		font-size: 1rem;
 	}
-	.meta {
+	.row {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
-		margin: 0.35rem 0 0;
+		margin: 0.2rem 0 0;
+	}
+	.price {
 		font-size: 0.9375rem;
-	}
-	.meta .mono {
-		font-size: 0.6875rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
-		align-self: center;
 	}
-	@media (max-width: 1000px) {
+	.dots {
+		display: inline-flex;
+		gap: 0.3rem;
+	}
+	.dots i {
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0 1px rgba(242, 243, 241, 0.35);
+	}
+
+	@media (max-width: 1100px) {
 		.grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+	@media (max-width: 860px) {
+		.tools {
+			top: 4.25rem;
+			flex-direction: column;
+			align-items: stretch;
+		}
+		.sort {
+			justify-content: flex-end;
 		}
 	}
 	@media (max-width: 680px) {
 		.grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 2rem 0.75rem;
+			gap: 2.25rem 0.75rem;
 		}
-		.draw {
-			padding: 1rem;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.tile svg {
+			transition: none;
 		}
-		.meta {
-			flex-direction: column;
-			gap: 0.1rem;
-		}
-		.meta .mono {
-			align-self: flex-start;
+		.grid a:hover .tile svg {
+			transform: none;
 		}
 	}
 </style>

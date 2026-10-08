@@ -24,13 +24,6 @@
 				script: 'non-Runr',
 			amount: c.prices.case01Back,
 			item: t.items.case01
-		},
-		{
-			key: 'ma' as const,
-			name: 'MA',
-			kanji: '間',
-			amount: c.prices.maBack,
-			item: t.items.ma
 		}
 	]);
 
@@ -58,7 +51,7 @@
 	<div class="objects">
 		{#each objects as o}
 			<article>
-				<p class="name"><Stack line={o.key === 'case01' ? LINE.skrin : LINE.ma} size="m" /></p>
+				<p class="name"><Stack line={LINE.skrin} size="m" /></p>
 				<p class="sub">{o.item.sub}</p>
 				<p class="amount">{o.amount} <span>{t.amountLabel}</span></p>
 				<ul>
@@ -73,7 +66,7 @@
 			</article>
 		{/each}
 	</div>
-	<p class="small">{link('case01') || link('ma') ? t.paidNote : t.emailNote}</p>
+	<p class="small">{link('case01') ? t.paidNote : t.emailNote}</p>
 
 	<section>
 		<h2>{t.termsTitle}</h2>
@@ -92,7 +85,7 @@
 	}
 	.objects {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 34rem);
 		gap: 1.5rem;
 		margin-top: 3rem;
 	}
@@ -123,8 +116,6 @@
 	}
 	.amount span {
 		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
 	article ul {
@@ -147,8 +138,6 @@
 		text-align: center;
 		text-decoration: none;
 		font-size: 0.8125rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
 	}
 	.cta:hover {
 		background: #ffffff;

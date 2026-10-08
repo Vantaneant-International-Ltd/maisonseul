@@ -1,29 +1,37 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { afterNavigate } from '$app/navigation';
 	import Wordmark from '$lib/Wordmark.svelte';
 	import LangSwitch from '$lib/LangSwitch.svelte';
-	import { basePath, copy, langOf, lp } from '$lib/i18n';
+	import { LANGS, LANG_LABEL, MACHINE, basePath, copy, langOf, lp, switchHref } from '$lib/i18n';
 	import { STUDIO_EMAIL } from '$lib/config';
 	import Cipher from '$lib/Cipher.svelte';
 	import { LINES } from '$lib/cipher';
 
-	// Everything past the home page, in English, German or Japanese. Public, in
-	// teaser mode: nothing is on sale, and the one action is founding backing.
+	// Everything past the home page. One quiet header row; on phones a single
+	// Menu button opens a full-screen sheet. Nothing is on sale; the one
+	// action is founding backing.
 	let { children } = $props();
 
 	const lang = $derived(langOf($page.params.lang));
 	const c = $derived(copy[lang]);
 	const base = $derived(basePath($page.url.pathname));
-	const here = (href: string) => (base === href ? 'page' : undefined);
+	const here = (href: string) =>
+		base === href || (href === '/inventory' && base.startsWith('/inventory')) ? 'page' : undefined;
 
 	const nav = $derived([
-		{ href: '/skrin', label: 'SKRIN', kanji: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr' },
 		{ href: '/inventory', label: c.nav.inventory },
 		{ href: '/house', label: c.nav.house },
-		{ href: '/care', label: c.nav.care },
 		{ href: '/contact', label: c.nav.contact }
 	]);
-	// Footer in three groups so the list stays short as objects are added.
+	const sheetLinks = $derived([
+		{ href: '/inventory', label: c.nav.inventory },
+		{ href: '/house', label: c.nav.house },
+		{ href: '/made', label: c.nav.made },
+		{ href: '/care', label: c.nav.care },
+		{ href: '/contact', label: c.nav.contact },
+		{ href: '/backers', label: c.nav.back }
+	]);
 	const footGroups = $derived([
 		{
 			head: c.nav.inventory,
@@ -37,45 +45,72 @@
 			]
 		},
 		{
-			head: c.foot.lines,
-			links: [
-				{ href: '/skrin', label: 'SKRIN' },
-				{ href: '/permanent', label: 'MA' },
-				{ href: '/permanent#grund', label: 'GRUND' },
-				{ href: '/permanent#qutn', label: 'QUTN' },
-				{ href: '/permanent#ovol', label: 'ÖVÖL' },
-				{ href: '/permanent#baram', label: 'BARAM' },
-				{ href: '/permanent#si', label: 'SĪ' }
-			]
-		},
-		{
 			head: 'Maison Seul',
 			links: [
 				{ href: '/house', label: c.foot.house },
+				{ href: '/made', label: c.nav.made },
 				{ href: '/care', label: c.foot.care },
 				{ href: '/backers', label: c.foot.back },
 				{ href: '/contact', label: c.foot.contact }
 			]
 		}
 	]);
+
+	let open = $state(false);
+	let menuButton: HTMLButtonElement | undefined = $state();
+	afterNavigate(() => (open = false));
+	function close() {
+		open = false;
+		menuButton?.focus();
+	}
+	$effect(() => {
+		document.documentElement.style.overflow = open ? 'hidden' : '';
+	});
 </script>
 
-<div class="bar">
-	<p class="mono">{c.bar}</p>
-	<LangSwitch />
-</div>
+<svelte:window onkeydown={(e) => e.key === 'Escape' && open && close()} />
 
 <header class="top">
-	<a class="home" href={lp(lang, '/skrin')} aria-label="Maison Seul, SKRIN"><Wordmark /></a>
-	<nav aria-label="Main">
+	<a class="home" href={lp(lang, '/')} aria-label="Maison Seul"><Wordmark /></a>
+	<nav class="primary" aria-label="Main">
 		{#each nav as n}
-			<a href={lp(lang, n.href)} aria-current={here(n.href)}
-				>{#if n.kanji}<span class="kanji" lang={n.script ?? 'ja'} dir="ltr">{n.kanji}</span>&nbsp;{/if}{n.label}</a
-			>
+			<a href={lp(lang, n.href)} aria-current={here(n.href)}>{n.label}</a>
 		{/each}
-		<a class="reserve" href={lp(lang, '/backers')} aria-current={here('/backers')}>{c.nav.back}</a>
 	</nav>
+	<div class="end">
+		<a class="backers" href={lp(lang, '/backers')} aria-current={here('/backers')}>{c.nav.back}</a>
+		<span class="lang"><LangSwitch /></span>
+		<button
+			class="menu-btn"
+			type="button"
+			bind:this={menuButton}
+			aria-expanded={open}
+			aria-controls="sheet"
+			onclick={() => (open = true)}>{c.ui.menu}</button
+		>
+	</div>
 </header>
+
+{#if open}
+	<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label={c.ui.menu}>
+		<div class="sheet-top">
+			<a class="home" href={lp(lang, '/')} aria-label="Maison Seul"><Wordmark /></a>
+			<button class="menu-btn shown" type="button" onclick={close}>{c.ui.close}</button>
+		</div>
+		<nav class="sheet-links" aria-label="Main">
+			{#each sheetLinks as n}
+				<a href={lp(lang, n.href)} aria-current={here(n.href)}>{n.label}</a>
+			{/each}
+		</nav>
+		<nav class="sheet-langs" aria-label={c.nav.language}>
+			{#each LANGS as l}
+				<a href={switchHref($page.url.pathname, l)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}
+					>{LANG_LABEL[l]}{#if MACHINE.includes(l)}<span aria-hidden="true">*</span>{/if}</a
+				>
+			{/each}
+		</nav>
+	</div>
+{/if}
 
 {@render children()}
 
@@ -83,14 +118,15 @@
 	<div class="brand">
 		<span class="wm"><Wordmark /></span>
 		<p>{c.foot.tagline}</p>
+		<p>{c.bar}</p>
 		<p><Cipher text={LINES.seen} /></p>
 	</div>
 	<nav aria-label="Footer" class="groups">
 		{#each footGroups as g}
 			<div class="group">
-				<p class="head mono">{g.head}</p>
+				<p class="head">{g.head}</p>
 				{#each g.links as f}
-					<a href={lp(lang, f.href)} aria-current={here(f.href)}>{f.label}</a>
+					<a href={lp(lang, f.href)}>{f.label}</a>
 				{/each}
 			</div>
 		{/each}
@@ -111,35 +147,19 @@
 		--gutter: clamp(1rem, 5vw, 5rem);
 	}
 
-	.bar {
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		align-items: center;
-		padding: 0 var(--gutter);
-		border-bottom: 1px solid var(--line);
-	}
-	.bar :global(.langs) {
-		justify-self: end;
-		grid-column: 3;
-	}
-	.bar p {
-		grid-column: 2;
-		margin: 0;
-		text-align: center;
-		font-size: 0.75rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--ink-dim);
-	}
-
 	.top {
-		display: flex;
-		flex-wrap: wrap;
+		position: sticky;
+		top: 0;
+		z-index: 30;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
 		align-items: center;
-		justify-content: space-between;
-		gap: 0 1.5rem;
-		padding: 0.5rem var(--gutter);
-		min-height: 4.5rem;
+		gap: 2rem;
+		min-height: 4.25rem;
+		padding: 0 var(--gutter);
+		background: rgba(18, 22, 25, 0.92);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 		border-bottom: 1px solid var(--line);
 	}
 	.home {
@@ -149,41 +169,127 @@
 		font-size: 1.25rem;
 		text-decoration: none;
 	}
-	.top nav {
+	.primary {
 		display: flex;
-		align-items: center;
-		gap: 0.25rem;
-		overflow-x: auto;
-		max-width: 100%;
+		justify-content: center;
+		gap: 2.25rem;
 	}
-	.top nav a {
+	.primary a,
+	.backers {
 		display: inline-flex;
 		align-items: center;
 		min-height: 44px;
-		padding: 0 0.75rem;
-		white-space: nowrap;
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font-size: 0.9375rem;
+		text-decoration: none;
+		color: var(--ink-dim);
+		transition: color 160ms ease;
+	}
+	.primary a:hover,
+	.primary a[aria-current='page'],
+	.backers:hover,
+	.backers[aria-current='page'] {
+		color: var(--ink);
+	}
+	.primary a[aria-current='page'] {
+		box-shadow: inset 0 -1px 0 var(--ink);
+	}
+	.end {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+	.backers {
+		padding: 0 1.1rem;
+		min-height: 40px;
+		border: 1px solid var(--hairline);
+		color: var(--ink);
+	}
+	.backers:hover {
+		border-color: var(--ink);
+	}
+	.menu-btn {
+		display: none;
+		min-height: 44px;
+		padding: 0 0.25rem;
+		background: none;
+		border: 0;
+		color: var(--ink);
+		font: inherit;
+		font-size: 0.9375rem;
+		cursor: pointer;
+	}
+	.menu-btn.shown {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.sheet {
+		position: fixed;
+		inset: 0;
+		z-index: 50;
+		display: flex;
+		flex-direction: column;
+		padding: 0 var(--gutter) 2rem;
+		background: var(--void);
+		overflow-y: auto;
+		animation: sheet-in 220ms ease both;
+	}
+	.sheet-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		min-height: 4.25rem;
+		border-bottom: 1px solid var(--line);
+	}
+	.sheet-links {
+		display: flex;
+		flex-direction: column;
+		padding: 1.5rem 0;
+	}
+	.sheet-links a {
+		display: flex;
+		align-items: center;
+		min-height: 3.5rem;
+		font-size: 1.75rem;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.sheet-links a[aria-current='page'] {
+		color: var(--ink-dim);
+	}
+	.sheet-langs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.25rem;
+		margin-top: auto;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--line);
+	}
+	.sheet-langs a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		font-size: 0.9375rem;
 		text-decoration: none;
 		color: var(--ink-dim);
 	}
-	.top nav a:hover,
-	.top nav a[aria-current='page'] {
+	.sheet-langs a[aria-current='true'] {
 		color: var(--ink);
 	}
-	.kanji {
-		font-family: var(--kanji);
+	@keyframes sheet-in {
+		from {
+			opacity: 0;
+		}
 	}
-	.top nav a.reserve {
-		margin-left: 0.5rem;
-		border: 1px solid var(--ink);
-		color: var(--ink);
+	@media (prefers-reduced-motion: reduce) {
+		.sheet {
+			animation: none;
+		}
 	}
 
 	footer {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr) minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr) minmax(0, 1fr);
 		gap: 2rem 3rem;
 		padding: 3rem var(--gutter);
 		border-top: 1px solid var(--line);
@@ -198,7 +304,7 @@
 	}
 	footer .groups {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1.5rem 2rem;
 	}
 	footer .group {
@@ -212,9 +318,8 @@
 	}
 	footer .head {
 		margin: 0 0 0.5rem;
-		font-size: 0.75rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font-size: 0.875rem;
+		color: var(--ink);
 	}
 	footer a {
 		display: inline-flex;
@@ -224,8 +329,7 @@
 		text-decoration: none;
 		color: var(--ink-dim);
 	}
-	footer a:hover,
-	footer a[aria-current='page'] {
+	footer a:hover {
 		color: var(--ink);
 	}
 	footer .legal {
@@ -241,9 +345,7 @@
 	}
 	:global(.doc .kicker) {
 		margin: 0 0 1rem;
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		font-size: 0.9375rem;
 		color: var(--ink-dim);
 	}
 	:global(.doc h1) {
@@ -266,8 +368,6 @@
 		margin: 0 0 0.75rem;
 		font-weight: 400;
 		font-size: 1.375rem;
-		text-transform: uppercase;
-		letter-spacing: 0.02em;
 	}
 	:global(.doc p),
 	:global(.doc li) {
@@ -303,59 +403,27 @@
 	:global(.doc th) {
 		font-weight: 400;
 		font-size: 0.8125rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
 		color: var(--ink-dim);
 	}
 	:global(.doc .table-wrap) {
 		overflow-x: auto;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: 860px) {
 		.top {
-			flex-direction: column;
-			align-items: stretch;
-			padding-bottom: 0;
+			grid-template-columns: 1fr auto;
 		}
-		.top nav {
-			flex-wrap: wrap;
-			overflow: visible;
-			max-width: none;
-			margin: 0 calc(var(--gutter) * -1);
-			padding: 0.25rem var(--gutter);
-			border-top: 1px solid var(--line);
+		.primary,
+		.backers,
+		.lang {
+			display: none;
 		}
-		.top nav a.reserve {
-			margin-left: 0;
-		}
-		.top nav a {
-			padding: 0 1.2rem 0 0;
-		}
-		.top nav a.reserve {
-			padding: 0 0.75rem;
+		.menu-btn {
+			display: inline-flex;
+			align-items: center;
 		}
 		footer {
 			grid-template-columns: 1fr;
-		}
-	}
-	@media (max-width: 600px) {
-		footer .groups {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-		footer .group:last-child {
-			grid-column: 1 / -1;
-		}
-		.bar {
-			grid-template-columns: 1fr auto;
-		}
-		.bar p {
-			grid-column: 1;
-			text-align: left;
-			font-size: 0.6875rem;
-			letter-spacing: 0.1em;
-		}
-		.bar :global(.langs) {
-			grid-column: 2;
 		}
 	}
 </style>

@@ -7,7 +7,7 @@ export const sv: Copy = {
 	taxNote: 'inkl. moms',
 	bar: 'Formgiven i Dublin. Tillverkad i Kina.',
 	photo: 'Fotografi kommer',
-	nav: { inventory: 'Sortiment', permanent: 'Permanent', house: 'Huset', care: 'Skötsel', contact: 'Kontakt', back: 'Stödjare', language: 'Språk' },
+	nav: { made: 'Var det tillverkas', inventory: 'Sortiment', permanent: 'Permanent', house: 'Huset', care: 'Skötsel', contact: 'Kontakt', back: 'Stödjare', language: 'Språk' },
 	foot: {
 		objects: 'Föremål',
 		lines: 'Linjerna',
@@ -27,8 +27,8 @@ export const sv: Copy = {
 	},
 	home: {
 		title: 'Maison Seul',
-		description: 'Maison Seul. Enstaka föremål. Formgivna i Dublin.',
-		tagline: 'Enstaka föremål.'
+		description: 'Maison Seul. Ett designhus i Dublin: ett föremål, och kläder som består.',
+		tagline: 'Färre saker. Bättre saker.'
 	},
 	case01: {
 		title: 'SKRIN / Maison Seul',
@@ -242,22 +242,24 @@ export const sv: Copy = {
 		],
 		set: 'Set'
 	},
+	made: { title: 'Var det tillverkas / Maison Seul', description: 'Fabrikerna som tillverkar för Maison Seul, var de ligger och vad var och en gör.', h1: 'Var det tillverkas.', lead: 'Allt formges i Dublin och tillverkas i Kina av etablerade tillverkare. Här är fabrikerna, var de ligger och vad var och en gör. Vi namnger varje fabrik här innan något den har gjort skickas.', factory: 'Fabrik', location: 'Plats', makes: 'Tillverkar', since: 'Tillverkar sedan', photos: 'Bilder kommer', tbc: 'Namnges före leverans', inspect: 'Vi kontrollerar varje parti innan det lämnar fabriken.' },
+	ui: { menu: 'Meny', close: 'Stäng', piece: 'Plagg', colour: 'Färg', ask: 'Fråga studion om den', notOnSale: 'Inte till salu än. Den kommer när den är klar.', editionOf: 'Upplaga om 100', sort: 'Sortera', sizes: 'Storlekar för män och kvinnor.', made: 'Formgiven i Dublin. Tillverkad i Kina, kontrollerad före leverans.', back: 'Tillbaka till sortimentet' },
 	house: {
 		title: 'Huset / Maison Seul',
-		description: 'Maison Seul är ett designhus i Dublin. Ett föremål i taget.',
+		description: 'Maison Seul är ett designhus i Dublin. Ett föremål, och kläder som består.',
 		kicker: 'Huset',
 		h1: 'Färre saker. Bättre saker.',
-		lead: 'Maison Seul är ett designhus i Dublin. Vi gör ett föremål i taget och håller vart och ett reparerbart så länge du äger det.',
+		lead: 'Maison Seul är ett designhus i Dublin. Vi gör ett föremål, i numrerade utgåvor, och en liten permanent garderob av kläder. Allt är gjort för att behållas.',
 		sections: [
 			{
-				h: 'Ett föremål i taget',
-				p: ['Inget görs för att fylla en katalog. SKRIN är det första föremålet. MA (denim), GRUND (t-shirts), QUTN (skjortor), ÖVÖL (jackor), BARAM (joggers) och SĪ (loungewear) följer, var och en namngiven på språket från den plats som format den.']
+				h: 'Ett föremål, och en garderob',
+				p: ['Inget görs för att fylla en katalog. SKRIN, kabinväskan, är det enda föremålet. Runt den finns en permanent garderob: MA (denim), GRUND (t-shirts), QUTN (skjortor), ÖVÖL (jackor), BARAM (joggers) och SĪ (loungewear), var och en namngiven på språket från den plats som format den.']
 			},
 			{
 				h: 'Utgåvor och den permanenta kollektionen',
 				p: [
-					'Vissa föremål kommer i numrerade utgåvor. Varje finish tillverkas en gång, i ett bestämt antal, och varje exemplar bär sitt nummer på insidan. Designen består; nästa utgåva kommer i en ny finish.',
-					'Andra är permanenta. De tillverkas fortlöpande, numreras aldrig och utgår aldrig, så att paret du köper nu fortfarande finns när du behöver ett till.'
+					'SKRIN kommer i numrerade utgåvor. Varje finish tillverkas en gång, i ett bestämt antal, och varje exemplar bär sitt nummer på insidan. Designen består; nästa utgåva kommer i en ny finish.',
+					'Kläderna är permanenta. De tillverkas fortlöpande, numreras aldrig och utgår aldrig, så att plagget du köper nu fortfarande finns när du behöver ett till.'
 				]
 			},
 			{
@@ -269,7 +271,7 @@ export const sv: Copy = {
 			{
 				h: 'Var det tillverkas',
 				p: [
-					'Formgiven i Dublin. Tillverkad i Kina. Just nu tillverkas allt vi gör där: SKRIN av en specialiserad aluminiumfabrik, MA och GRUND av klädtillverkare som vi väljer med samma omsorg. Vi namnger varje fabrik här innan något skickas, och vi kontrollerar varje parti innan det lämnar fabriken.', 'Vi berättar hellre var det tillverkas än låter dig gissa. Om det ändras, ändras den här sidan först.'
+					'Formgiven i Dublin. Tillverkad i Kina. Just nu tillverkas allt vi gör där: SKRIN av en specialiserad aluminiumfabrik, kläderna av klädtillverkare som valts med samma omsorg. Varje fabrik visas på sidan Var det tillverkas och namnges där innan något skickas, och vi kontrollerar varje parti innan det lämnar fabriken.', 'Vi berättar hellre var det tillverkas än låter dig gissa. Om det ändras, ändras den här sidan först.'
 				]
 			},
 			{ h: 'En del av VNTA', p: ['Maison Seul är ett hus inom VNTA.'] }
@@ -277,7 +279,7 @@ export const sv: Copy = {
 	},
 	care: {
 		title: 'Skötsel och reparation / Maison Seul',
-		description: 'Hur du sköter SKRIN, byter dess delar och får den reparerad.',
+		description: 'Hur du sköter SKRIN och kläderna, byter delar och får saker reparerade.',
 		kicker: 'Skötsel och reparation',
 		h1: 'Fyra skruvar, och delarna som hör till.',
 		lead: 'Hjulen, handtaget och spännena lossas med en skruvmejsel. Vi har delarna för varje utgåva, så att SKRIN kan hållas i bruk i stället för att ersättas.',
@@ -287,6 +289,14 @@ export const sv: Copy = {
 			'Torka av fodret med en fuktig trasa. Låt det torka öppet.',
 			'Förvara den tom, stängd och stående, skyddad från direkt sol.',
 			'Bucklor och repor hör till aluminium. De räknas inte som fel, och vi låtsas inte att de inte kommer att uppstå.'
+		],
+		clothesTitle: 'Kläderna',
+		clothes: [
+			'Varje plagg har sin skötseletikett på insidan. Följ den först.',
+			'Denim: tvätta sällan, kallt och ut och in. Häng på tork.',
+			'Bomull och fleece: tvätta i 30 °C, ut och in, med liknande färger. Torka plant eller hängande.',
+			'Dun: tvätta i 30 °C på skonsamt program och torktumla sedan på låg värme tills det är helt torrt.',
+			'Siden: handtvätta kallt eller kemtvätta. Torka plant, skyddat från sol.'
 		],
 		wheelTitle: 'Byt ett hjul',
 		wheel: [
@@ -312,10 +322,10 @@ export const sv: Copy = {
 	},
 	backers: {
 		title: 'Grundande stödjare / Maison Seul',
-		description: 'Hundra grundande stödjare per föremål. Ditt föremål när det är klart, och dina initialer i varje exemplar som någonsin tillverkas.',
+		description: 'Hundra grundande stödjare för SKRIN. Din väska när den är klar, och dina initialer i varje exemplar som någonsin tillverkas.',
 		kicker: 'Grundande stödjare',
 		h1: 'Gör det möjligt.',
-		lead: 'Maison Seul finansieras av de människor som vill att dess föremål ska finnas. Hundra grundande stödjare per föremål. I gengäld blir du en del av föremålet, för alltid.',
+		lead: 'Maison Seul finansieras av de människor som vill att det ska finnas. SKRIN, det första föremålet, har hundra grundande stödjare. I gengäld blir du en del av det, för alltid.',
 		count: '{n} av 100 stödjare',
 		noneYet: 'Inga ännu. Bli den första.',
 		items: {
@@ -343,16 +353,16 @@ export const sv: Copy = {
 		terms: [
 			'När: när det är klart. Inget datum utlovas, och vi skriver till stödjarna i varje skede.',
 			'Om det aldrig levereras får du tillbaka alla dina pengar.',
-			'Du kan begära full återbetalning när som helst innan ditt föremål skickas. Om tillverkningen har börjat kan dina initialer redan finnas i tillverkade exemplar.',
+			'Du kan begära full återbetalning när som helst innan din väska skickas. Om tillverkningen har börjat kan dina initialer redan finnas i tillverkade exemplar.',
 			'Att stödja är en förbeställning till grundarpris, inte en investering. Det ger ingen andel i företaget.',
-			'Hundra stödjare per föremål. Ett stöd per person och föremål.',
-			`Ordinarie priser när försäljningen öppnar: SKRIN ${P.sv.case01}, MA ${P.sv.ma}.`
+			'Hundra stödjare. Ett stöd per person.',
+			`Ordinarie pris när försäljningen öppnar: ${P.sv.case01}.`
 		],
 		paidNote: 'Betalningen sker på en säker kassasida.',
 		emailNote: 'Kassan öppnar snart. Till dess kan du mejla oss för att skriva upp dig. Inget debiteras.',
 		emailCta: 'Skriv upp mig',
 		emailSubject: 'Grundande stödjare',
-		emailBody: 'Jag vill bli grundande stödjare.\n\nFöremål: SKRIN / MA (stryk ett)\nInitialer (upp till 3 bokstäver):\nNamn:\n'
+		emailBody: 'Jag vill bli grundande stödjare för SKRIN.\n\nInitialer (upp till 3 bokstäver):\nNamn:\n'
 	},
 	contact: {
 		title: 'Kontakt / Maison Seul',
