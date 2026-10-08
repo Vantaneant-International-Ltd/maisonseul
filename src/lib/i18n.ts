@@ -10,19 +10,19 @@ export const SITE = 'https://maisonseul.com';
 
 // Pages that exist in every language. Anything else (shipping, register) is
 // English only and hidden until sales open.
-export const TRANSLATED = ['/', '/ki', '/permanent', '/house', '/care', '/backers', '/contact'];
+export const TRANSLATED = ['/', '/skrin', '/permanent', '/house', '/care', '/backers', '/contact'];
 
 export function langOf(param: string | undefined): Lang {
 	return param === 'de' || param === 'ja' ? param : 'en';
 }
 
-/** A path in the given language: /ki -> /de/ki */
+/** A path in the given language: /skrin -> /de/skrin */
 export function lp(lang: Lang, path: string): string {
 	if (lang === 'en') return path;
 	return path === '/' ? `/${lang}` : `/${lang}${path}`;
 }
 
-/** The language-free path of a URL: /de/ki -> /ki */
+/** The language-free path of a URL: /de/skrin -> /skrin */
 export function basePath(pathname: string): string {
 	const m = pathname.match(/^\/(de|ja)(\/.*)?$/);
 	const p = m ? (m[2] ?? '/') : pathname;
@@ -58,7 +58,7 @@ const en = {
 	nav: { house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
 		ma: 'MA, permanent denim',
-		ji: 'JI, T-shirt and longsleeve',
+		ji: 'GRUND, T-shirt and longsleeve',
 		house: 'The house',
 		care: 'Care and repair',
 		back: 'Founding backers',
@@ -73,15 +73,15 @@ const en = {
 		tagline: 'Singular objects.'
 	},
 	case01: {
-		title: 'KI / Maison Seul',
-		description: 'KI. An aluminium cabin case. Edition 001, one hundred pieces. One hundred founding backers.',
+		title: 'SKRIN / Maison Seul',
+		description: 'SKRIN. An aluminium cabin case. Edition 001, one hundred pieces. One hundred founding backers.',
 		kicker: 'Object 01 / Cabin case',
 		variant: 'Graphite / Edition 001 / 100 pieces',
 		status: 'Not on sale yet.',
-		backNote: 'One hundred founding backers make KI possible. Each receives a case, and their initials are engraved inside every KI ever made.',
+		backNote: 'One hundred founding backers make SKRIN possible. Each receives a case, and their initials are engraved inside every SKRIN ever made.',
 		cta: `Become a founding backer, ${P.en.case01Back}`,
 		backersTitle: 'Founding backers',
-		backersText: 'Their initials are engraved on a plate inside the lid of every KI ever made. Every ownership card names them and says why.',
+		backersText: 'Their initials are engraved on a plate inside the lid of every SKRIN ever made. Every ownership card names them and says why.',
 		note: 'Made once in this finish. Numbered 001 to 100 inside the lid.',
 		viewsLabel: 'Views',
 		views: ['Front', 'Three-quarter', 'Raw corner', 'Interior', 'Serial plate'],
@@ -132,7 +132,7 @@ const en = {
 			},
 			{ label: 'Finish', lines: ['Graphite, matte anodised', 'One corner in raw aluminium'] },
 			{ label: 'Materials', lines: ['Aluminium-magnesium shell and frame', 'Polyester lining, pale grey'] },
-			{ label: 'In the box', lines: ['KI', 'Dust cover', 'Ownership card with your number', 'Care and repair card'] },
+			{ label: 'In the box', lines: ['SKRIN', 'Dust cover', 'Ownership card with your number', 'Care and repair card'] },
 			{
 				label: 'Returns and warranty',
 				lines: [
@@ -149,11 +149,11 @@ const en = {
 			},
 			{
 				q: 'What happens when the hundred are gone?',
-				a: 'Graphite is not made again. KI continues in a new finish, and parts stay in stock for every edition.'
+				a: 'Graphite is not made again. SKRIN continues in a new finish, and parts stay in stock for every edition.'
 			},
 			{
 				q: 'What is a founding backer?',
-				a: `One of 100 people who fund KI before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials are engraved inside every KI ever made, and your name is on every ownership card. If it never ships, you get your money back.`
+				a: `One of 100 people who fund SKRIN before it exists. For ${P.en.case01Back} you receive a case when it is ready, your initials are engraved inside every SKRIN ever made, and your name is on every ownership card. If it never ships, you get your money back.`
 			},
 			{
 				q: 'Is Maison Seul part of Apple?',
@@ -164,8 +164,8 @@ const en = {
 		trust: ['Designed in Dublin', 'Numbered editions', 'Repairable', '14-day returns']
 	},
 	ma: {
-		title: 'MA 間 · JI 地 / Maison Seul',
-		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. JI, a T-shirt and longsleeve in three colours.',
+		title: 'MA 間 · GRUND / Maison Seul',
+		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve in three colours.',
 		kicker: 'Permanent collection',
 		lead: 'Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
 		lead2: 'Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made continuously, and always there.',
@@ -188,8 +188,8 @@ const en = {
 		backersText: 'One hundred founding backers make MA possible. Their initials are woven into a pattern we design, inside every pair of MA ever made. Each backer receives a pair, in the style and size they choose, when it is ready.'
 	},
 	ji: {
-		title: 'JI 地',
-		lead: 'A T-shirt and a longsleeve. Ji is the Japanese word for ground, and for cloth. The layer everything else stands on.',
+		title: 'GRUND',
+		lead: 'A T-shirt and a longsleeve. Grund is German for ground, and for foundation. The layer everything else stands on.',
 		lead2: 'The proportions of a nineties jeans T-shirt: boxy, a dropped shoulder, a short straight body. Cut with German restraint: exact lengths, a close neck, nothing printed on the outside.',
 		pieces: [
 			{ name: 'Tee', line: 'Short sleeve to the elbow. Hem sits at the hip.' },
@@ -215,7 +215,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. KI is the first object. MA, permanent denim, and JI, a T-shirt and longsleeve, follow.']
+				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA, permanent denim, and GRUND, a T-shirt and longsleeve, follow.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -241,10 +241,10 @@ const en = {
 	},
 	care: {
 		title: 'Care and repair / Maison Seul',
-		description: 'How to care for KI, replace its parts, and get it repaired.',
+		description: 'How to care for SKRIN, replace its parts, and get it repaired.',
 		kicker: 'Care and repair',
 		h1: 'Four screws, and the parts to go with them.',
-		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so KI can be kept going rather than replaced.',
+		lead: 'The wheels, handle and latches come off with a screwdriver. We keep the parts for every edition, so SKRIN can be kept going rather than replaced.',
 		everydayTitle: 'Everyday care',
 		everyday: [
 			'Wipe the shell with a soft damp cloth. A little mild soap if needed. Nothing abrasive.',
@@ -286,11 +286,11 @@ const en = {
 			case01: {
 				sub: 'Aluminium cabin case. Edition 001.',
 				gives: [
-					'A KI, when it is ready',
-					"Your initials, up to three letters, engraved on the backers' plate inside every KI ever made",
+					'A SKRIN, when it is ready',
+					"Your initials, up to three letters, engraved on the backers' plate inside every SKRIN ever made",
 					'Your name and the reason on every ownership card'
 				],
-				cta: `Back KI, ${P.en.case01Back}`
+				cta: `Back SKRIN, ${P.en.case01Back}`
 			},
 			ma: {
 				sub: 'Denim in three styles. Permanent.',
@@ -310,13 +310,13 @@ const en = {
 			'You can ask for a full refund at any time before your object ships. If production has started, your initials may already be in made pieces.',
 			'Backing is a pre-order at a founding price, not an investment. It gives no share in the company.',
 			'One hundred backers per object. One backing per person, per object.',
-			`Normal prices when sales open: KI ${P.en.case01}, MA ${P.en.ma}.`
+			`Normal prices when sales open: SKRIN ${P.en.case01}, MA ${P.en.ma}.`
 		],
 		paidNote: 'Payment is handled on a secure checkout page.',
 		emailNote: 'Checkout opens shortly. Until then, email us to put your name down. Nothing is charged.',
 		emailCta: 'Put my name down',
 		emailSubject: 'Founding backer',
-		emailBody: 'I would like to become a founding backer.\n\nObject: KI / MA (delete one)\nInitials (up to 3 letters):\nName:\n'
+		emailBody: 'I would like to become a founding backer.\n\nObject: SKRIN / MA (delete one)\nInitials (up to 3 letters):\nName:\n'
 	},
 	contact: {
 		title: 'Contact / Maison Seul',
@@ -342,7 +342,7 @@ const de: Copy = {
 	nav: { house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
 		ma: 'MA, ständiges Denim',
-		ji: 'JI, T-Shirt und Longsleeve',
+		ji: 'GRUND, T-Shirt und Longsleeve',
 		house: 'Das Haus',
 		care: 'Pflege und Reparatur',
 		back: 'Gründungsunterstützer',
@@ -357,15 +357,15 @@ const de: Copy = {
 		tagline: 'Einzigartige Objekte.'
 	},
 	case01: {
-		title: 'KI / Maison Seul',
-		description: 'KI. Ein Kabinenkoffer aus Aluminium. Edition 001, hundert Stück. Hundert Gründungsunterstützer.',
+		title: 'SKRIN / Maison Seul',
+		description: 'SKRIN. Ein Kabinenkoffer aus Aluminium. Edition 001, hundert Stück. Hundert Gründungsunterstützer.',
 		kicker: 'Objekt 01 / Handgepäck',
 		variant: 'Graphit / Edition 001 / 100 Stück',
 		status: 'Noch nicht im Verkauf.',
-		backNote: 'Hundert Gründungsunterstützer machen KI möglich. Jeder erhält einen Koffer, und ihre Initialen werden in jeden KI graviert, der je gefertigt wird.',
+		backNote: 'Hundert Gründungsunterstützer machen SKRIN möglich. Jeder erhält einen Koffer, und ihre Initialen werden in jeden SKRIN graviert, der je gefertigt wird.',
 		cta: `Gründungsunterstützer werden, ${P.de.case01Back}`,
 		backersTitle: 'Gründungsunterstützer',
-		backersText: 'Ihre Initialen sind auf einer Plakette im Deckel jedes je gefertigten KI graviert. Jede Eigentümerkarte nennt sie und sagt, warum.',
+		backersText: 'Ihre Initialen sind auf einer Plakette im Deckel jedes je gefertigten SKRIN graviert. Jede Eigentümerkarte nennt sie und sagt, warum.',
 		note: 'In dieser Ausführung nur einmal gefertigt. Im Deckel nummeriert, 001 bis 100.',
 		viewsLabel: 'Ansichten',
 		views: ['Vorne', 'Dreiviertel', 'Rohe Ecke', 'Innen', 'Seriennummer'],
@@ -416,7 +416,7 @@ const de: Copy = {
 			},
 			{ label: 'Oberfläche', lines: ['Graphit, matt eloxiert', 'Eine Ecke aus rohem Aluminium'] },
 			{ label: 'Material', lines: ['Schale und Rahmen aus Aluminium-Magnesium', 'Innenfutter aus Polyester, hellgrau'] },
-			{ label: 'Lieferumfang', lines: ['KI', 'Staubhülle', 'Eigentümerkarte mit Ihrer Nummer', 'Pflege- und Reparaturkarte'] },
+			{ label: 'Lieferumfang', lines: ['SKRIN', 'Staubhülle', 'Eigentümerkarte mit Ihrer Nummer', 'Pflege- und Reparaturkarte'] },
 			{
 				label: 'Rückgabe und Garantie',
 				lines: [
@@ -433,11 +433,11 @@ const de: Copy = {
 			},
 			{
 				q: 'Was passiert, wenn alle hundert vergeben sind?',
-				a: 'Graphit wird nicht wieder hergestellt. KI geht in einer neuen Ausführung weiter, und Ersatzteile bleiben für jede Edition auf Lager.'
+				a: 'Graphit wird nicht wieder hergestellt. SKRIN geht in einer neuen Ausführung weiter, und Ersatzteile bleiben für jede Edition auf Lager.'
 			},
 			{
 				q: 'Was ist ein Gründungsunterstützer?',
-				a: `Einer von 100 Menschen, die KI finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden je gefertigten KI graviert, und Ihr Name steht auf jeder Eigentümerkarte. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
+				a: `Einer von 100 Menschen, die SKRIN finanzieren, bevor es ihn gibt. Für ${P.de.case01Back} erhalten Sie einen Koffer, sobald er fertig ist, Ihre Initialen werden in jeden je gefertigten SKRIN graviert, und Ihr Name steht auf jeder Eigentümerkarte. Wird er nie ausgeliefert, erhalten Sie Ihr Geld zurück.`
 			},
 			{
 				q: 'Gehört Maison Seul zu Apple?',
@@ -448,8 +448,8 @@ const de: Copy = {
 		trust: ['Entworfen in Dublin', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
 	},
 	ma: {
-		title: 'MA 間 · JI 地 / Maison Seul',
-		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. JI, T-Shirt und Longsleeve in drei Farben.',
+		title: 'MA 間 · GRUND / Maison Seul',
+		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve in drei Farben.',
 		kicker: 'Ständige Kollektion',
 		lead: 'Denim in drei Schnitten: Loose, Baggy und Barrel. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
 		lead2: 'Proportionen aus dem Tokio der Neunziger, neu gezeichnet mit den Linien eines Gebäudes. Keine Edition. Fortlaufend gefertigt und immer erhältlich.',
@@ -472,8 +472,8 @@ const de: Copy = {
 		backersText: 'Hundert Gründungsunterstützer machen MA möglich. Ihre Initialen werden in ein Muster eingewebt, das wir gestalten, innen in jedem je gefertigten MA. Jeder erhält ein Paar, in Schnitt und Größe seiner Wahl, sobald es fertig ist.'
 	},
 	ji: {
-		title: 'JI 地',
-		lead: 'Ein T-Shirt und ein Longsleeve. Ji ist das japanische Wort für Boden und für Stoff. Die Lage, auf der alles andere steht.',
+		title: 'GRUND',
+		lead: 'Ein T-Shirt und ein Longsleeve. Grund: der Boden, auf dem alles andere steht.',
 		lead2: 'Die Proportionen eines Jeans-T-Shirts der Neunziger: kastig, tiefe Schulter, kurzer gerader Körper. Geschnitten mit deutscher Zurückhaltung: genaue Längen, enger Kragen, außen nichts gedruckt.',
 		pieces: [
 			{ name: 'Tee', line: 'Kurzer Ärmel bis zum Ellbogen. Der Saum endet an der Hüfte.' },
@@ -499,7 +499,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. KI ist das erste Objekt. MA, dauerhaftes Denim, und JI, ein T-Shirt und ein Longsleeve, folgen.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA, dauerhaftes Denim, und GRUND, ein T-Shirt und ein Longsleeve, folgen.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -525,10 +525,10 @@ const de: Copy = {
 	},
 	care: {
 		title: 'Pflege und Reparatur / Maison Seul',
-		description: 'So pflegen Sie KI, tauschen Teile aus und lassen ihn reparieren.',
+		description: 'So pflegen Sie SKRIN, tauschen Teile aus und lassen ihn reparieren.',
 		kicker: 'Pflege und Reparatur',
 		h1: 'Vier Schrauben und die passenden Teile dazu.',
-		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit KI weiterlebt, statt ersetzt zu werden.',
+		lead: 'Rollen, Griff und Verschlüsse lassen sich mit einem Schraubendreher abnehmen. Wir halten die Teile für jede Edition bereit, damit SKRIN weiterlebt, statt ersetzt zu werden.',
 		everydayTitle: 'Alltägliche Pflege',
 		everyday: [
 			'Die Schale mit einem weichen, feuchten Tuch abwischen. Bei Bedarf etwas milde Seife. Nichts Scheuerndes.',
@@ -570,11 +570,11 @@ const de: Copy = {
 			case01: {
 				sub: 'Kabinenkoffer aus Aluminium. Edition 001.',
 				gives: [
-					'Ein KI, sobald er fertig ist',
-					'Ihre Initialen, bis zu drei Buchstaben, auf der Unterstützerplakette im Deckel jedes je gefertigten KI',
+					'Ein SKRIN, sobald er fertig ist',
+					'Ihre Initialen, bis zu drei Buchstaben, auf der Unterstützerplakette im Deckel jedes je gefertigten SKRIN',
 					'Ihr Name und der Grund auf jeder Eigentümerkarte'
 				],
-				cta: `KI unterstützen, ${P.de.case01Back}`
+				cta: `SKRIN unterstützen, ${P.de.case01Back}`
 			},
 			ma: {
 				sub: 'Denim in drei Schnitten. Dauerhaft.',
@@ -594,13 +594,13 @@ const de: Copy = {
 			'Sie können jederzeit vor dem Versand Ihres Objekts die volle Erstattung verlangen. Hat die Produktion begonnen, sind Ihre Initialen womöglich schon in gefertigten Stücken.',
 			'Die Unterstützung ist eine Vorbestellung zum Gründungspreis, keine Geldanlage. Sie verschafft keinen Anteil am Unternehmen.',
 			'Hundert Unterstützer pro Objekt. Eine Unterstützung pro Person und Objekt.',
-			`Reguläre Preise zum Verkaufsstart: KI ${P.de.case01}, MA ${P.de.ma}.`
+			`Reguläre Preise zum Verkaufsstart: SKRIN ${P.de.case01}, MA ${P.de.ma}.`
 		],
 		paidNote: 'Die Zahlung erfolgt auf einer sicheren Bezahlseite.',
 		emailNote: 'Die Bezahlseite öffnet bald. Bis dahin schreiben Sie uns, um sich vormerken zu lassen. Es wird nichts berechnet.',
 		emailCta: 'Mich vormerken',
 		emailSubject: 'Gründungsunterstützer',
-		emailBody: 'Ich möchte Gründungsunterstützer werden.\n\nObjekt: KI / MA (bitte eines löschen)\nInitialen (bis zu 3 Buchstaben):\nName:\n'
+		emailBody: 'Ich möchte Gründungsunterstützer werden.\n\nObjekt: SKRIN / MA (bitte eines löschen)\nInitialen (bis zu 3 Buchstaben):\nName:\n'
 	},
 	contact: {
 		title: 'Kontakt / Maison Seul',
@@ -624,7 +624,7 @@ const ja: Copy = {
 	nav: { house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
 		ma: 'MA 常設のデニム',
-		ji: 'JI Tシャツとロングスリーブ',
+		ji: 'GRUND Tシャツとロングスリーブ',
 		house: 'メゾンについて',
 		care: 'ケアと修理',
 		back: '創設支援者',
@@ -639,15 +639,15 @@ const ja: Copy = {
 		tagline: '唯一のもの。'
 	},
 	case01: {
-		title: 'KI / Maison Seul',
-		description: 'KI。アルミニウムの機内持ち込みケース。エディション001、100点限定。創設支援者100人。',
+		title: 'SKRIN / Maison Seul',
+		description: 'SKRIN。アルミニウムの機内持ち込みケース。エディション001、100点限定。創設支援者100人。',
 		kicker: 'オブジェ 01 / 機内持ち込み',
 		variant: 'グラファイト / エディション001 / 100点限定',
 		status: 'まだ販売していません。',
-		backNote: '100人の創設支援者がKIを実現します。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのKIの内側に刻印されます。',
+		backNote: '100人の創設支援者がSKRINを実現します。支援者にはケースをお届けし、そのイニシャルはこれから作られるすべてのSKRINの内側に刻印されます。',
 		cta: `創設支援者になる ${P.ja.case01Back}`,
 		backersTitle: '創設支援者',
-		backersText: '支援者のイニシャルは、すべてのKIの蓋の内側のプレートに刻印されます。すべてのオーナーカードに、その名前と理由を記します。',
+		backersText: '支援者のイニシャルは、すべてのSKRINの蓋の内側のプレートに刻印されます。すべてのオーナーカードに、その名前と理由を記します。',
 		note: 'この仕上げは一度きりの製作。蓋の内側に001から100の番号入り。',
 		viewsLabel: '表示',
 		views: ['正面', '斜め', '無垢のコーナー', '内側', 'シリアルプレート'],
@@ -695,7 +695,7 @@ const ja: Copy = {
 			},
 			{ label: '仕上げ', lines: ['グラファイト、マットアルマイト', 'コーナーひとつは無垢のアルミニウム'] },
 			{ label: '素材', lines: ['アルミニウム・マグネシウム合金のシェルとフレーム', 'ポリエステルの内張り、ペールグレー'] },
-			{ label: '同梱物', lines: ['KI', '保存袋', '番号入りオーナーカード', 'ケア・修理カード'] },
+			{ label: '同梱物', lines: ['SKRIN', '保存袋', '番号入りオーナーカード', 'ケア・修理カード'] },
 			{
 				label: '返品と保証',
 				lines: ['未使用であれば14日以内に返品、全額返金', 'シェル、フレーム、ホイール、ハンドル、ラッチに5年保証。へこみや傷は対象外']
@@ -709,11 +709,11 @@ const ja: Copy = {
 			},
 			{
 				q: '100点が完売したら?',
-				a: 'グラファイトは再生産しません。KIは新しい仕上げで続き、交換部品はすべてのエディション分を在庫します。'
+				a: 'グラファイトは再生産しません。SKRINは新しい仕上げで続き、交換部品はすべてのエディション分を在庫します。'
 			},
 			{
 				q: '創設支援者とは?',
-				a: `KIが生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをすべてのKIの内側に刻印し、すべてのオーナーカードにお名前を記します。もし出荷に至らなければ、全額を返金します。`
+				a: `SKRINが生まれる前に資金を支える100人のひとり。${P.ja.case01Back}で、完成したケースをお届けし、あなたのイニシャルをすべてのSKRINの内側に刻印し、すべてのオーナーカードにお名前を記します。もし出荷に至らなければ、全額を返金します。`
 			},
 			{
 				q: 'Maison SeulはAppleの関連会社ですか?',
@@ -724,8 +724,8 @@ const ja: Copy = {
 		trust: ['ダブリンでデザイン', 'ナンバリング・エディション', '修理できる', '14日間返品可']
 	},
 	ma: {
-		title: 'MA 間 · JI 地 / Maison Seul',
-		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。JIは3色のTシャツとロングスリーブ。',
+		title: 'MA 間 · GRUND / Maison Seul',
+		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDは3色のTシャツとロングスリーブ。',
 		kicker: '常設コレクション',
 		lead: 'Loose、Baggy、Barrelの3型のデニム。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
 		lead2: '90年代の東京のシルエットを、建築の線で描き直しました。限定ではありません。作り続け、いつでも手に入ります。',
@@ -744,8 +744,8 @@ const ja: Copy = {
 		backersText: '100人の創設支援者がMAを実現します。支援者のイニシャルは、私たちがデザインする柄に織り込まれ、これから作られるすべてのMAの内側に入ります。支援者には、完成時に好きな型とサイズの一本をお届けします。'
 	},
 	ji: {
-		title: 'JI 地',
-		lead: 'Tシャツとロングスリーブ。地とは、地面のこと、そして生地のこと。すべての土台になる一枚です。',
+		title: 'GRUND',
+		lead: 'Tシャツとロングスリーブ。Grund（グルント）はドイツ語で「地面」「土台」のこと。すべての土台になる一枚です。',
 		lead2: '90年代のジーンズTシャツのプロポーション。ボックス型、落ちた肩、短くまっすぐな身頃。それをドイツ的な抑制で仕立てます。正確な丈、詰まった襟、表には何も入れません。',
 		pieces: [
 			{ name: 'Tee', line: '袖は肘まで。裾は腰の位置。' },
@@ -771,7 +771,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはKI。続いて、常設のデニムMAと、TシャツとロングスリーブのJI。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、常設のデニムMAと、TシャツとロングスリーブのGRUND。']
 			},
 			{
 				h: 'エディションと常設コレクション',
@@ -797,10 +797,10 @@ const ja: Copy = {
 	},
 	care: {
 		title: 'ケアと修理 / Maison Seul',
-		description: 'KIのお手入れ、部品の交換、修理について。',
+		description: 'SKRINのお手入れ、部品の交換、修理について。',
 		kicker: 'ケアと修理',
 		h1: 'ネジは4本。部品もそろっています。',
-		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、KIは買い替えずに使い続けられます。',
+		lead: 'ホイール、ハンドル、ラッチはドライバーひとつで外せます。どのエディションの部品も在庫しているので、SKRINは買い替えずに使い続けられます。',
 		everydayTitle: '日々のお手入れ',
 		everyday: [
 			'シェルはやわらかく湿らせた布で拭いてください。必要なら中性洗剤を少量。研磨剤は使わないでください。',
@@ -842,11 +842,11 @@ const ja: Copy = {
 			case01: {
 				sub: 'アルミニウムの機内持ち込みケース。エディション001。',
 				gives: [
-					'完成したKIをひとつ',
-					'イニシャル（3文字まで）を、すべてのKIの蓋の内側にある支援者プレートに刻印',
+					'完成したSKRINをひとつ',
+					'イニシャル（3文字まで）を、すべてのSKRINの蓋の内側にある支援者プレートに刻印',
 					'すべてのオーナーカードにお名前と理由を記載'
 				],
-				cta: `KIを支援する ${P.ja.case01Back}`
+				cta: `SKRINを支援する ${P.ja.case01Back}`
 			},
 			ma: {
 				sub: '3型のデニム。常設。',
@@ -866,13 +866,13 @@ const ja: Copy = {
 			'オブジェの発送前であれば、いつでも全額返金を申し出られます。製造が始まっている場合、イニシャルはすでに製品に入っていることがあります。',
 			'支援は創設価格での予約購入であり、投資ではありません。会社の持分は伴いません。',
 			'各オブジェにつき支援者は100人まで。おひとりさま、1オブジェにつき1口まで。',
-			`販売開始時の通常価格：KI ${P.ja.case01}、MA ${P.ja.ma}。`
+			`販売開始時の通常価格：SKRIN ${P.ja.case01}、MA ${P.ja.ma}。`
 		],
 		paidNote: 'お支払いは安全な決済ページで行います。',
 		emailNote: 'まもなく決済を開始します。それまではメールでお名前をお知らせください。料金はかかりません。',
 		emailCta: '名前を登録する',
 		emailSubject: '創設支援者',
-		emailBody: '創設支援者になりたいです。\n\nオブジェ：KI / MA（どちらかを削除）\nイニシャル（3文字まで）：\nお名前：\n'
+		emailBody: '創設支援者になりたいです。\n\nオブジェ：SKRIN / MA（どちらかを削除）\nイニシャル（3文字まで）：\nお名前：\n'
 	},
 	contact: {
 		title: 'お問い合わせ / Maison Seul',

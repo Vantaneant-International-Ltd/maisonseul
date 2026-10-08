@@ -31,9 +31,9 @@
 <footer>
 	<span>{c.home.tagline}</span>
 	<nav aria-label="Main">
-		<a href={lp(lang, '/ki')}><span class="kanji" lang="ja">器</span>&nbsp;KI</a>
+		<a href={lp(lang, '/skrin')}>SKRIN</a>
 		<a href={lp(lang, '/permanent')}><span class="kanji" lang="ja">間</span>&nbsp;MA</a>
-		<a href={lp(lang, '/permanent#ji')}><span class="kanji" lang="ja">地</span>&nbsp;JI</a>
+		<a href={lp(lang, '/permanent#grund')}>GRUND</a>
 		<a href={lp(lang, '/backers')}>{c.nav.back}</a>
 	</nav>
 </footer>

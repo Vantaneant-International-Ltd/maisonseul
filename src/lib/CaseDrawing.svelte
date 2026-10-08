@@ -1,7 +1,7 @@
 <script lang="ts">
-	// Front-view line drawing of KI, used until product photographs exist.
+	// Front-view line drawing of SKRIN, used until product photographs exist.
 	// One corner guard (front, top right) is raw aluminium; the rest are graphite.
-	let { label = 'Front view drawing of KI' }: { label?: string } = $props();
+	let { label = 'Front view drawing of SKRIN' }: { label?: string } = $props();
 </script>
 
 <svg role="img" aria-label={label} viewBox="0 0 400 580">

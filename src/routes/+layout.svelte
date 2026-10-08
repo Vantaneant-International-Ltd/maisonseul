@@ -32,14 +32,14 @@
 		src: url('/fonts/noto-sans-jp-200-kanji.woff2') format('woff2');
 		font-weight: 200;
 		font-display: swap;
-		unicode-range: U+9593, U+5730, U+5668;
+		unicode-range: U+9593;
 	}
 	@font-face {
 		font-family: 'Noto Sans JP MA';
 		src: url('/fonts/noto-sans-jp-300-kanji.woff2') format('woff2');
 		font-weight: 300;
 		font-display: swap;
-		unicode-range: U+9593, U+5730, U+5668;
+		unicode-range: U+9593;
 	}
 	:global(:root) {
 		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */

@@ -15,17 +15,17 @@
 	const here = (href: string) => (base === href ? 'page' : undefined);
 
 	const nav = $derived([
-		{ href: '/ki', label: 'KI', kanji: '器' },
+		{ href: '/skrin', label: 'SKRIN' },
 		{ href: '/permanent', label: 'MA', kanji: '間' },
-		{ href: '/permanent#ji', label: 'JI', kanji: '地' },
+		{ href: '/permanent#grund', label: 'GRUND' },
 		{ href: '/house', label: c.nav.house },
 		{ href: '/care', label: c.nav.care },
 		{ href: '/contact', label: c.nav.contact }
 	]);
 	const footLinks = $derived([
-		{ href: '/ki', label: 'KI' },
+		{ href: '/skrin', label: 'SKRIN' },
 		{ href: '/permanent', label: c.foot.ma },
-		{ href: '/permanent#ji', label: c.foot.ji },
+		{ href: '/permanent#grund', label: c.foot.ji },
 		{ href: '/house', label: c.foot.house },
 		{ href: '/care', label: c.foot.care },
 		{ href: '/backers', label: c.foot.back },
@@ -39,7 +39,7 @@
 </div>
 
 <header class="top">
-	<a class="home" href={lp(lang, '/ki')} aria-label="Maison Seul, KI"><Wordmark /></a>
+	<a class="home" href={lp(lang, '/skrin')} aria-label="Maison Seul, SKRIN"><Wordmark /></a>
 	<nav aria-label="Main">
 		{#each nav as n}
 			<a href={lp(lang, n.href)} aria-current={here(n.href)}
