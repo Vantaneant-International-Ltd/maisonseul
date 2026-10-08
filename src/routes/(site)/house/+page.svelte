@@ -14,8 +14,8 @@
 	<section>
 		<h2>One object at a time</h2>
 		<p>
-			Nothing is made to fill a catalogue. CASE 01 is the first object. A permanent collection
-			of denim follows.
+			Nothing is made to fill a catalogue. CASE 01 is the first object. MA, a permanent
+			collection of denim, follows.
 		</p>
 	</section>
 
