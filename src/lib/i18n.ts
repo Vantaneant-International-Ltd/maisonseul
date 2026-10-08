@@ -40,11 +40,11 @@ export function switchHref(pathname: string, target: Lang): string {
 // case01 / ma: the normal price when sales open.
 // case01Back / maBack: founding backer amount, object included.
 // ---------------------------------------------------------------------------
-type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; qutnPoplin: string; qutnCanvas: string; currency: 'eur' | 'jpy' };
+type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; qutnPoplin: string; qutnCanvas: string; si: string; currency: 'eur' | 'jpy' };
 const P: Record<Lang, Prices> = {
-	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', qutnPoplin: '€110', qutnCanvas: '€140', currency: 'eur' },
-	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', qutnPoplin: '110 €', qutnCanvas: '140 €', currency: 'eur' },
-	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', qutnPoplin: '¥20,000', qutnCanvas: '¥26,000', currency: 'jpy' }
+	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', qutnPoplin: '€110', qutnCanvas: '€140', si: '€290', currency: 'eur' },
+	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', qutnPoplin: '110 €', qutnCanvas: '140 €', si: '290 €', currency: 'eur' },
+	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', qutnPoplin: '¥20,000', qutnCanvas: '¥26,000', si: '¥52,000', currency: 'jpy' }
 };
 
 // ---------------------------------------------------------------------------
@@ -171,11 +171,15 @@ const en = {
 	},
 	ma: {
 		title: 'Permanent / Maison Seul',
-		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve. ÖVÖL, a light and a heavy jacket. QUTN, poplin and canvas shirts. BARAM, balloon joggers.',
+		description: 'The permanent collection. MA, denim in three fits: 一, 二, 三. GRUND, a T-shirt and longsleeve. ÖVÖL, a light and a heavy jacket. QUTN, poplin and canvas shirts. BARAM, balloon joggers. SĪ, a silk lounge set.',
 		kicker: 'Permanent collection',
-		lead: 'Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
+		lead: 'Denim in three fits, numbered by how much space they leave: 一, 二 and 三. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
 		lead2: 'Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made continuously, and always there.',
-		stylesLabel: 'The three styles',
+		stylesLabel: 'The three fits',
+		denim: 'Denim',
+		fitLabel: 'Fit',
+		fits: ['Straight', 'Wide', 'Barrel'],
+		fitNote: 'The number is the amount of ma: the space between the cloth and you.',
 		styles: [
 			'Straight from hip to hem, with room all the way down.',
 			'Low and wide. The hem breaks over the shoe.',
@@ -259,9 +263,9 @@ const en = {
 		description: 'Everything Maison Seul makes, in one place. One object in a numbered edition, and garments that stay.',
 		kicker: 'Inventory',
 		h1: 'Everything, in one place.',
-		lead: 'One object in a numbered edition. Garments that stay. Nothing is on sale yet.',
+		lead: 'One object in a numbered edition. Garments that stay, in sizes for men and women. Nothing is on sale yet.',
 		filterLabel: 'Show',
-		cats: { all: 'All', objects: 'Objects', tops: 'Tops', outer: 'Outerwear', bottoms: 'Bottoms' },
+		cats: { all: 'All', objects: 'Objects', tops: 'Tops', outer: 'Outerwear', bottoms: 'Bottoms', lounge: 'Loungewear' },
 		edition: 'Edition 001 / 100',
 		permanent: 'Permanent',
 		pieces: '{n} pieces',
@@ -269,6 +273,22 @@ const en = {
 		sortNo: 'By number',
 		sortLow: 'Price ↑',
 		sortHigh: 'Price ↓'
+	},
+	si: {
+		lead: 'Loungewear. Sī is Chinese for silk, written 絲. Silk was first woven in China, more than five thousand years ago.',
+		lead2: 'One set, for men and women: a shirt with an open collar and a drawstring trouser, piped at every edge. One colour, graphite, the grey-black of a room before the lights come on.',
+		pieces: [
+			{ name: 'Shirt', line: 'Open collar, one chest pocket, piped edges.' },
+			{ name: 'Trouser', line: 'Drawstring waist, straight relaxed leg.' }
+		],
+		coloursLabel: 'One colour',
+		colours: ['Graphite'],
+		details: [
+			'Sand-washed silk: soft and matte rather than shiny.',
+			'Sold as a set. Sizes for men and women.',
+			'The name is printed inside the collar.'
+		],
+		set: 'Set'
 	},
 	house: {
 		title: 'The house / Maison Seul',
@@ -279,7 +299,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (T-shirts), QUTN (shirts), ÖVÖL (jackets) and BARAM (joggers) follow, each named in the language of the place that shaped it.']
+				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (T-shirts), QUTN (shirts), ÖVÖL (jackets), BARAM (joggers) and SĪ (loungewear) follow, each named in the language of the place that shaped it.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -519,11 +539,15 @@ const de: Copy = {
 	},
 	ma: {
 		title: 'Ständige Kollektion / Maison Seul',
-		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve. ÖVÖL, eine leichte und eine schwere Jacke. QUTN, Hemden aus Popeline und Canvas. BARAM, Ballon-Jogger.',
+		description: 'Die ständige Kollektion. MA, Denim in drei Passformen: 一, 二, 三. GRUND, T-Shirt und Longsleeve. ÖVÖL, eine leichte und eine schwere Jacke. QUTN, Hemden aus Popeline und Canvas. BARAM, Ballon-Jogger. SĪ, ein Lounge-Set aus Seide.',
 		kicker: 'Ständige Kollektion',
-		lead: 'Denim in drei Schnitten: Loose, Baggy und Barrel. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
+		lead: 'Denim in drei Passformen, nummeriert nach dem Raum, den sie lassen: 一, 二 und 三. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
 		lead2: 'Proportionen aus dem Tokio der Neunziger, neu gezeichnet mit den Linien eines Gebäudes. Keine Edition. Fortlaufend gefertigt und immer erhältlich.',
-		stylesLabel: 'Die drei Schnitte',
+		stylesLabel: 'Die drei Passformen',
+		denim: 'Denim',
+		fitLabel: 'Passform',
+		fits: ['Gerade', 'Weit', 'Barrel'],
+		fitNote: 'Die Zahl ist die Menge an Ma: der Raum zwischen Stoff und Ihnen.',
 		styles: [
 			'Gerade von der Hüfte bis zum Saum, mit Raum bis ganz nach unten.',
 			'Tief und weit. Der Saum fällt über den Schuh.',
@@ -607,9 +631,9 @@ const de: Copy = {
 		description: 'Alles, was Maison Seul macht, an einem Ort. Ein Objekt in nummerierter Edition und Kleidung, die bleibt.',
 		kicker: 'Inventar',
 		h1: 'Alles, an einem Ort.',
-		lead: 'Ein Objekt in nummerierter Edition. Kleidung, die bleibt. Noch ist nichts im Verkauf.',
+		lead: 'Ein Objekt in nummerierter Edition. Kleidung, die bleibt, in Größen für Herren und Damen. Noch ist nichts im Verkauf.',
 		filterLabel: 'Zeigen',
-		cats: { all: 'Alle', objects: 'Objekte', tops: 'Oberteile', outer: 'Jacken', bottoms: 'Hosen' },
+		cats: { all: 'Alle', objects: 'Objekte', tops: 'Oberteile', outer: 'Jacken', bottoms: 'Hosen', lounge: 'Loungewear' },
 		edition: 'Edition 001 / 100',
 		permanent: 'Dauerhaft',
 		pieces: '{n} Stücke',
@@ -617,6 +641,22 @@ const de: Copy = {
 		sortNo: 'Nach Nummer',
 		sortLow: 'Preis ↑',
 		sortHigh: 'Preis ↓'
+	},
+	si: {
+		lead: 'Loungewear. Sī ist Chinesisch für Seide, geschrieben 絲. Seide wurde zuerst in China gewebt, vor mehr als fünftausend Jahren.',
+		lead2: 'Ein Set, für Herren und Damen: ein Hemd mit offenem Kragen und eine Hose mit Kordelzug, an jeder Kante paspeliert. Eine Farbe, Graphit, das Grauschwarz eines Raums, bevor das Licht angeht.',
+		pieces: [
+			{ name: 'Shirt', line: 'Offener Kragen, eine Brusttasche, paspelierte Kanten.' },
+			{ name: 'Trouser', line: 'Kordelzug, gerades, lockeres Bein.' }
+		],
+		coloursLabel: 'Eine Farbe',
+		colours: ['Graphite'],
+		details: [
+			'Sandgewaschene Seide: weich und matt statt glänzend.',
+			'Als Set verkauft. Größen für Herren und Damen.',
+			'Der Name steht innen am Kragen.'
+		],
+		set: 'Set'
 	},
 	house: {
 		title: 'Das Haus / Maison Seul',
@@ -627,7 +667,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (T-Shirts), QUTN (Hemden), ÖVÖL (Jacken) und BARAM (Jogger) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (T-Shirts), QUTN (Hemden), ÖVÖL (Jacken), BARAM (Jogger) und SĪ (Loungewear) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -859,11 +899,15 @@ const ja: Copy = {
 	},
 	ma: {
 		title: '常設コレクション / Maison Seul',
-		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDはTシャツとロングスリーブ。ÖVÖLは軽量と厚手のジャケット。QUTNはポプリンとキャンバスのシャツ。BARAMはバルーンジョガー。',
+		description: '常設コレクション。MAは一・二・三の3つのシルエットのデニム。GRUNDはTシャツとロングスリーブ。ÖVÖLは軽量と厚手のジャケット。QUTNはポプリンとキャンバスのシャツ。BARAMはバルーンジョガー。SĪはシルクのラウンジセット。',
 		kicker: '常設コレクション',
-		lead: 'Loose、Baggy、Barrelの3型のデニム。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
+		lead: '残す空間の量で番号をつけた、3つのシルエットのデニム。一、二、三。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
 		lead2: '90年代の東京のシルエットを、建築の線で描き直しました。限定ではありません。作り続け、いつでも手に入ります。',
-		stylesLabel: '3つの型',
+		stylesLabel: '3つのシルエット',
+		denim: 'デニム',
+		fitLabel: 'シルエット',
+		fits: ['ストレート', 'ワイド', 'バレル'],
+		fitNote: '数字は「間」の量。布と身体のあいだの空間です。',
 		styles: ['腰から裾までまっすぐ、全体にゆとり。', '股上は低く、太く。裾は靴の上でたまる。', '膝で外にカーブし、裾に向かって絞る。'],
 		outline: '線画',
 		price: '価格',
@@ -943,9 +987,9 @@ const ja: Copy = {
 		description: 'Maison Seulがつくるもの、すべてをひとつの場所に。ナンバリングされたオブジェと、なくならない服。',
 		kicker: '一覧',
 		h1: 'すべてを、ひとつの場所に。',
-		lead: 'ナンバリング・エディションのオブジェがひとつ。そして、なくならない服。まだ販売はしていません。',
+		lead: 'ナンバリング・エディションのオブジェがひとつ。そして、なくならない服。メンズとウィメンズのサイズで。まだ販売はしていません。',
 		filterLabel: '表示',
-		cats: { all: 'すべて', objects: 'オブジェ', tops: 'トップス', outer: 'アウター', bottoms: 'ボトムス' },
+		cats: { all: 'すべて', objects: 'オブジェ', tops: 'トップス', outer: 'アウター', bottoms: 'ボトムス', lounge: 'ラウンジウェア' },
 		edition: 'エディション 001 / 100',
 		permanent: '常設',
 		pieces: '{n}点',
@@ -953,6 +997,22 @@ const ja: Copy = {
 		sortNo: '番号順',
 		sortLow: '価格 ↑',
 		sortHigh: '価格 ↓'
+	},
+	si: {
+		lead: 'ラウンジウェア。Sī（絲）は中国語で「絹」。絹は五千年以上前、中国で初めて織られました。',
+		lead2: 'メンズとウィメンズ、ひと揃いのセット。開襟シャツとドローストリングのパンツ、すべての縁にパイピング。色はひとつ、グラファイト。明かりをつける前の部屋の、灰がかった黒。',
+		pieces: [
+			{ name: 'Shirt', line: '開襟、胸ポケットひとつ、縁にパイピング。' },
+			{ name: 'Trouser', line: 'ドローストリングのウエスト、ゆったりしたストレート。' }
+		],
+		coloursLabel: '1色',
+		colours: ['Graphite'],
+		details: [
+			'サンドウォッシュのシルク。光沢を抑えた、やわらかな手ざわり。',
+			'セット販売。メンズとウィメンズのサイズ。',
+			'名前は襟の内側に。'
+		],
+		set: 'セット'
 	},
 	house: {
 		title: 'メゾンについて / Maison Seul',
@@ -963,7 +1023,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（Tシャツ）、QUTN（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（Tシャツ）、QUTN（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）、SĪ（ラウンジウェア）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
 			},
 			{
 				h: 'エディションと常設コレクション',

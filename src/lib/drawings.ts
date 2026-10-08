@@ -1,7 +1,7 @@
 // Outline drawings for every piece, used until photographs exist.
 // `dim` lines are seams and details, drawn thinner and greyer.
 export type Drawing = { box: string; paths: { d: string; dim?: boolean }[] };
-export const SWATCH: Record<string, string> = { Unlit: '#121619', Concrete: '#4a4f53', 'Blinding White': '#f2f3f1' };
+export const SWATCH: Record<string, string> = { Unlit: '#121619', Concrete: '#4a4f53', 'Blinding White': '#f2f3f1', Graphite: '#2c3236' };
 export const NECK = { d: 'M104 46 C110 58 130 58 136 46', dim: true };
 export const TEE: Drawing = {
 	box: '0 0 240 240',
@@ -77,5 +77,23 @@ export const CASE: Drawing = {
 		{ d: 'M98 40 V28 H142 V40' },
 		{ d: 'M56 56 H184 V260 H56 Z M64 276 V288 M80 276 V288 M160 276 V288 M176 276 V288', dim: true },
 		{ d: 'M172 40 H180 A20 20 0 0 1 200 60 V68' }
+	]
+};
+
+// SĪ (絲): pyjama shirt with an open collar and piping, and a drawstring trouser.
+export const PJ_SHIRT: Drawing = {
+	box: '0 0 240 240',
+	paths: [
+		{ d: 'M100 38 L58 48 L32 114 L20 214 L40 216 L52 134 L60 110 L60 214 L180 214 L180 110 L188 134 L200 216 L220 214 L208 114 L182 48 L140 38 Z' },
+		{ d: 'M100 38 L110 52 L104 60 L120 96 L136 60 L130 52 L140 38' },
+		{ d: 'M120 96 L120 214 M140 78 L162 78 L162 100 L140 100 Z M22 200 L42 202 M198 202 L218 200 M60 206 L180 206', dim: true }
+	]
+};
+export const PJ_TROUSER: Drawing = {
+	box: '0 0 200 400',
+	paths: [
+		{ d: 'M50 18 L150 18 L150 34 L50 34 Z' },
+		{ d: 'M50 34 L42 380 L94 380 L100 130 L106 380 L158 380 L150 34 Z' },
+		{ d: 'M96 34 L92 56 M104 34 L108 56 M49 44 L43 372 M151 44 L157 372', dim: true }
 	]
 };
