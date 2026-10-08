@@ -101,7 +101,7 @@
 			a: 'Designed in Dublin. Made in [city], China, by one specialist aluminium factory. Every batch is inspected before it ships.'
 		},
 		{
-			q: 'What happens when the fifty are gone?',
+			q: 'What happens when the hundred are gone?',
 			a: 'Graphite is not made again. CASE 01 continues in a new finish, and parts stay in stock for every edition.'
 		},
 		{ q: 'Can I cancel a reservation?', a: 'Yes, at any time before dispatch, for a full refund.' },
@@ -111,7 +111,7 @@
 
 <svelte:head>
 	<title>CASE 01 / Maison Seul</title>
-	<meta name="description" content="CASE 01. An aluminium cabin case. Edition 001, fifty pieces." />
+	<meta name="description" content="CASE 01. An aluminium cabin case. Edition 001, one hundred pieces." />
 </svelte:head>
 
 <main>
@@ -135,7 +135,7 @@
 		<div class="panel">
 			<p class="kicker">Case 01 / Cabin</p>
 			<h1 id="case-h">CASE 01</h1>
-			<p class="variant">Graphite / Edition 001 / 50 pieces</p>
+			<p class="variant">Graphite / Edition 001 / 100 pieces</p>
 			<p class="price">€525 <span>VAT included</span></p>
 
 			<div class="plans" role="group" aria-label="How to pay">
@@ -155,12 +155,12 @@
 			<a class="cta" href={reserveHref}>Reserve by email</a>
 
 			<ul class="micro">
-				<li>[50] of 50 remain</li>
+				<li>[100] of 100 remain</li>
 				<li>Dispatch from Dublin: [date]</li>
 				<li>14-day returns</li>
 				<li>5-year warranty, parts in stock</li>
 			</ul>
-			<p class="note">Made once in this finish. Numbered 001 to 050 inside the lid.</p>
+			<p class="note">Made once in this finish. Numbered 001 to 100 inside the lid.</p>
 		</div>
 	</section>
 
