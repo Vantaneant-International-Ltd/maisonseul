@@ -1,3 +1,7 @@
+<script lang="ts">
+	import Defaced from '$lib/Defaced.svelte';
+</script>
+
 <svelte:head>
 	<!-- Not live until sales open: unlinked and not indexed. -->
 	<meta name="robots" content="noindex, nofollow" />
@@ -7,7 +11,7 @@
 
 <main class="doc">
 	<p class="kicker">Shipping, returns and warranty</p>
-	<h1>The terms, plainly.</h1>
+	<Defaced text="The terms, plainly." />
 	<p class="lead">
 		Everything here is on top of your rights under EU consumer law, which nothing on this page
 		takes away.

@@ -4,6 +4,8 @@
 	import LangSwitch from '$lib/LangSwitch.svelte';
 	import { basePath, copy, langOf, lp } from '$lib/i18n';
 	import { STUDIO_EMAIL } from '$lib/config';
+	import Cipher from '$lib/Cipher.svelte';
+	import { LINES } from '$lib/cipher';
 
 	// Everything past the home page, in English, German or Japanese. Public, in
 	// teaser mode: nothing is on sale, and the one action is founding backing.
@@ -44,7 +46,7 @@
 </script>
 
 <div class="bar">
-	<p>{c.bar}</p>
+	<p class="mono">{c.bar}</p>
 	<LangSwitch />
 </div>
 
@@ -66,11 +68,12 @@
 	<div class="brand">
 		<span class="wm"><Wordmark /></span>
 		<p>{c.foot.tagline}</p>
+		<p><Cipher text={LINES.seen} /></p>
 	</div>
 	<nav aria-label="Footer" class="groups">
 		{#each footGroups as g}
 			<div class="group">
-				<p class="head">{g.head}</p>
+				<p class="head mono">{g.head}</p>
 				{#each g.links as f}
 					<a href={lp(lang, f.href)} aria-current={here(f.href)}>{f.label}</a>
 				{/each}
@@ -230,7 +233,7 @@
 	}
 	:global(.doc h1) {
 		margin: 0;
-		font-weight: 200;
+		font-weight: 400;
 		font-size: clamp(2.25rem, 5vw, 3.75rem);
 		line-height: 1.05;
 	}
@@ -246,7 +249,7 @@
 	}
 	:global(.doc h2) {
 		margin: 0 0 0.75rem;
-		font-weight: 300;
+		font-weight: 400;
 		font-size: 1.375rem;
 		text-transform: uppercase;
 		letter-spacing: 0.02em;

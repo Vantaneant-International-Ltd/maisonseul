@@ -1,9 +1,10 @@
 <script lang="ts">
 	// One typeface. Outfit stands in for Cygre, the brand-book face, until the
 	// licensed Cygre files are added; swap the imports and `--sans` when they are.
-	import '@fontsource/outfit/latin-300.css';
 	import '@fontsource/outfit/latin-400.css';
 	import '@fontsource/outfit/latin-700.css';
+	// The brand book's label face: a plain mono for kickers, labels and numbers.
+	import '@fontsource/ibm-plex-mono/latin-400.css';
 
 	let { children } = $props();
 </script>
@@ -48,6 +49,26 @@
 		font-display: swap;
 		unicode-range: U+16B1, U+16B4, U+16BF, U+16C1, U+16CC;
 	}
+	/* The brand book's own alphabet (page ???). One letter per symbol, drawn
+	   from three Noto fonts so every letter exists on every device. */
+	@font-face {
+		font-family: 'MS Cipher';
+		src: url('/fonts/cipher-a.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+23C3, U+23DA, U+260A, U+2385, U+238E, U+260C, U+260D, U+2330, U+2307, U+23C1, U+238D, U+2390;
+	}
+	@font-face {
+		font-family: 'MS Cipher';
+		src: url('/fonts/cipher-b.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+27D2, U+2291, U+27DF, U+27CA, U+22D4, U+22CF, U+235C, U+233F, U+2340, U+2359, U+22AC, U+22C9;
+	}
+	@font-face {
+		font-family: 'MS Cipher';
+		src: url('/fonts/cipher-c.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+237E, U+2316;
+	}
 	:global(:root) {
 		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */
 		--void: #121619;
@@ -56,6 +77,8 @@
 		--hairline: rgba(242, 243, 241, 0.3);
 
 		--sans: 'Outfit', system-ui, -apple-system, sans-serif;
+		--mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+		--cipher: 'MS Cipher', var(--sans);
 		--kanji: 'Noto Sans JP MA', 'Noto Sans Runic SKRIN', var(--sans);
 	}
 
@@ -95,9 +118,15 @@
 
 	:global(body) {
 		font-family: var(--sans);
-		font-weight: 300;
+		font-weight: 400;
 	}
 
+	/* Labels in the brand book are set in mono */
+	:global(.kicker),
+	:global(dt),
+	:global(.mono) {
+		font-family: var(--mono);
+	}
 	:global(::selection) {
 		background: var(--ink);
 		color: var(--void);

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Defaced from '$lib/Defaced.svelte';
 	import { copy, langOf } from '$lib/i18n';
 	import { STUDIO_EMAIL } from '$lib/config';
 
@@ -15,7 +16,7 @@
 
 <main class="doc">
 	<p class="kicker">{t.kicker}</p>
-	<h1>{t.h1}</h1>
+	<Defaced text={t.h1} />
 	<p class="lead">{t.lead}</p>
 
 	<section>

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Cipher from '$lib/Cipher.svelte';
+	import { LINES } from '$lib/cipher';
 	import CaseDrawing from '$lib/CaseDrawing.svelte';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import { BACKERS } from '$lib/config';
@@ -50,6 +52,7 @@
 			<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
 
 			<p class="note">{t.note}</p>
+			<p class="sign"><Cipher text={LINES.noRepeats} /></p>
 		</div>
 	</section>
 
@@ -100,7 +103,7 @@
 		{:else}
 			<p class="none">{c.backers.noneYet}</p>
 		{/if}
-		<p class="count">{count}</p>
+		<p class="count mono">{count}</p>
 		<a class="ghost" href={lp(lang, '/backers')}>{t.cta}</a>
 	</section>
 
@@ -144,7 +147,7 @@
 	}
 	h2 {
 		margin: 0;
-		font-weight: 300;
+		font-weight: 400;
 		font-size: clamp(1.75rem, 3.4vw, 2.75rem);
 		line-height: 1.1;
 		text-transform: uppercase;
@@ -224,7 +227,7 @@
 	}
 	h1 {
 		margin: 0;
-		font-weight: 200;
+		font-weight: 400;
 		font-size: clamp(2.75rem, 6vw, 5rem);
 		line-height: 1;
 	}
@@ -236,10 +239,13 @@
 		letter-spacing: 0.3em;
 		color: var(--ink-dim);
 	}
+	.sign {
+		margin: 1.25rem 0 0;
+	}
 	.price {
 		margin: 0.5rem 0 0;
 		font-size: 1.75rem;
-		font-weight: 300;
+		font-weight: 400;
 	}
 	.price span {
 		font-size: 0.875rem;
