@@ -11,7 +11,6 @@
 	const lang = $derived(langOf($page.params.lang));
 	const c = $derived(copy[lang]);
 	const t = $derived(c.ma);
-	const j = $derived(c.ji);
 	const count = $derived(c.backers.count.replace('{n}', String(BACKERS.ma.length)));
 
 	const shapes = [
@@ -23,17 +22,67 @@
 		}
 	];
 
-	// GRUND, the T-shirt and longsleeve. Same boxy body, two sleeve lengths.
-	const NECK = 'M96 40 C104 54 136 54 144 40';
-	const garments = [
+	// The rest of the permanent collection. Each line is named in the language
+	// of the place that shaped it, and drawn as outlines until samples exist.
+	type Drawing = { box: string; paths: { d: string; dim?: boolean }[] };
+	const SWATCH: Record<string, string> = { Unlit: '#121619', Concrete: '#4a4f53', 'Blinding White': '#f2f3f1' };
+	const NECK = { d: 'M104 46 C110 58 130 58 136 46', dim: true };
+	const TEE: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M96 40 L56 48 L22 94 L44 106 L58 88 L58 204 L182 204 L182 88 L196 106 L218 94 L184 48 L144 40 C136 54 104 54 96 40 Z' },
+			NECK
+		]
+	};
+	const LONG: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M96 40 L56 48 L30 112 L18 212 L38 214 L50 130 L58 106 L58 204 L182 204 L182 106 L190 130 L202 214 L222 212 L210 112 L184 48 L144 40 C136 54 104 54 96 40 Z' },
+			NECK
+		]
+	};
+	const SHELL: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M98 44 L58 52 L32 116 L20 216 L40 218 L52 136 L60 112 L60 216 L180 216 L180 112 L188 136 L200 218 L220 216 L208 116 L182 52 L142 44 C152 12 88 12 98 44 Z' },
+			{ d: 'M104 44 C106 28 134 28 136 44', dim: true },
+			{ d: 'M120 34 L120 216', dim: true }
+		]
+	};
+	const PUFFER: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M94 40 L48 50 L22 112 L12 198 L38 202 L48 134 L54 114 L54 198 L186 198 L186 114 L192 134 L202 202 L228 198 L218 112 L192 50 L146 40 L146 24 L94 24 Z' },
+			{ d: 'M60 78 L180 78 M56 108 L184 108 M54 138 L186 138 M54 168 L186 168 M34 100 L50 104 M206 100 L190 104 M24 150 L46 152 M216 150 L194 152', dim: true },
+			{ d: 'M120 24 L120 198', dim: true }
+		]
+	};
+	const JOGGER: Drawing = {
+		box: '0 0 200 400',
+		paths: [
+			{ d: 'M50 32 C26 140 24 270 58 356 L58 380 L94 380 L94 356 C98 270 100 190 100 128 C100 190 102 270 106 356 L106 380 L142 380 L142 356 C176 270 174 140 150 32 Z' },
+			{ d: 'M48 18 L152 18 L152 32 L48 32 Z' },
+			{ d: 'M58 356 L94 356 M106 356 L142 356 M100 32 L100 52', dim: true }
+		]
+	};
+
+	const lines = $derived([
 		{
-			path: 'M96 40 L56 48 L22 94 L44 106 L58 88 L58 204 L182 204 L182 88 L196 106 L218 94 L184 48 L144 40 C136 54 104 54 96 40 Z'
+			id: 'grund', word: 'GRUND', mark: '', script: '', d: c.ji,
+			drawings: [TEE, LONG],
+			prices: [[c.ji.pieces[0].name, c.prices.jiTee], [c.ji.pieces[1].name, c.prices.jiLong]]
 		},
 		{
-			path: 'M96 40 L56 48 L30 112 L18 212 L38 214 L50 130 L58 106 L58 204 L182 204 L182 106 L190 130 L202 214 L222 212 L210 112 L184 48 L144 40 C136 54 104 54 96 40 Z'
+			id: 'ovol', word: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', d: c.ovol,
+			drawings: [SHELL, PUFFER],
+			prices: [[c.ovol.pieces[0].name, c.prices.ovolLight], [c.ovol.pieces[1].name, c.prices.ovolHeavy]]
+		},
+		{
+			id: 'baram', word: 'BARAM', mark: '바람', script: 'ko', d: c.baram,
+			drawings: [JOGGER],
+			prices: [[c.baram.pieces[0].name, c.prices.baram]]
 		}
-	];
-	const swatches = ['#121619', '#4a4f53', '#f2f3f1'];
+	]);
 </script>
 
 <svelte:head>
@@ -82,54 +131,64 @@
 		</dl>
 		<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
 	</section>
-	<section class="grund" id="grund">
-		<h2 class="big"><span class="word">GRUND</span></h2>
-		<p class="lead">{j.lead}</p>
-		<p class="lead second">{j.lead2}</p>
+	{#each lines as L}
+		<section class="line-block" id={L.id}>
+			<h2 class="big">
+				{#if L.mark}<span class="mark" lang={L.script}>{L.mark}</span>{/if}<span class="word">{L.word}</span>
+			</h2>
+			<p class="lead">{L.d.lead}</p>
+			<p class="lead second">{L.d.lead2}</p>
 
-		<ul class="cuts two">
-			{#each garments as g, i}
-				<li>
-					<div class="draw wide">
-						<svg viewBox="0 0 240 240" role="img" aria-label="GRUND {j.pieces[i].name}, {t.outline}">
-							<path d={g.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
-							<path d={NECK} fill="none" stroke="#a9aeb1" stroke-width="1" transform="translate(0 6)" />
-						</svg>
-					</div>
-					<p class="no mono">GRUND</p>
-					<h3>{j.pieces[i].name}</h3>
-					<p class="line">{j.pieces[i].line}</p>
-				</li>
-			{/each}
-		</ul>
+			<ul class="cuts two">
+				{#each L.drawings as g, i}
+					<li>
+						<div class="draw wide">
+							<svg viewBox={g.box} role="img" aria-label="{L.word} {L.d.pieces[i].name}, {t.outline}">
+								{#each g.paths as pth}
+									<path
+										d={pth.d}
+										fill="none"
+										stroke={pth.dim ? '#a9aeb1' : '#f2f3f1'}
+										stroke-width={pth.dim ? 1 : 1.5}
+										stroke-linejoin="round"
+									/>
+								{/each}
+							</svg>
+						</div>
+						<p class="no mono">{L.word}</p>
+						<h3>{L.d.pieces[i].name}</h3>
+						<p class="line">{L.d.pieces[i].line}</p>
+					</li>
+				{/each}
+			</ul>
 
-		<div class="spec">
-			<div>
-				<h3 class="sh mono">{j.coloursLabel}</h3>
-				<ul class="swatches">
-					{#each j.colours as name, i}
-						<li><span class="chip" style="background:{swatches[i]}"></span>{name}</li>
-					{/each}
-				</ul>
+			<div class="spec">
+				<div>
+					<h3 class="sh mono">{L.d.coloursLabel}</h3>
+					<ul class="swatches">
+						{#each L.d.colours as name}
+							<li><span class="chip" style="background:{SWATCH[name]}"></span>{name}</li>
+						{/each}
+					</ul>
+				</div>
+				<div>
+					<h3 class="sh mono">{c.ji.detailsLabel}</h3>
+					<ul class="details">
+						{#each L.d.details as dd}<li>{dd}</li>{/each}
+					</ul>
+				</div>
 			</div>
-			<div>
-				<h3 class="sh mono">{j.detailsLabel}</h3>
-				<ul class="details">
-					{#each j.details as d}<li>{d}</li>{/each}
-				</ul>
-			</div>
-		</div>
 
-		<section class="foot">
-			<dl>
-				<div><dt>{j.priceTee}</dt><dd>{c.prices.jiTee}</dd></div>
-				<div><dt>{j.priceLong}</dt><dd>{c.prices.jiLong}</dd></div>
-				<div><dt>{t.status}</dt><dd>{t.statusValue}</dd></div>
-				<div><dt>{t.arrives}</dt><dd>{t.arrivesValue}</dd></div>
-				<div><dt>{t.edition}</dt><dd>{t.editionValue}</dd></div>
-			</dl>
+			<section class="foot">
+				<dl>
+					{#each L.prices as pr}<div><dt>{pr[0]}</dt><dd>{pr[1]}</dd></div>{/each}
+					<div><dt>{t.status}</dt><dd>{t.statusValue}</dd></div>
+					<div><dt>{t.arrives}</dt><dd>{t.arrivesValue}</dd></div>
+					<div><dt>{t.edition}</dt><dd>{t.editionValue}</dd></div>
+				</dl>
+			</section>
 		</section>
-	</section>
+	{/each}
 </main>
 
 <style>
@@ -274,13 +333,13 @@
 		background: #ffffff;
 	}
 
-	.grund {
+	.line-block {
 		scroll-margin-top: 2rem;
 		margin-top: clamp(5rem, 12vw, 9rem);
 		padding-top: clamp(3rem, 7vw, 5rem);
 		border-top: 1px solid var(--line);
 	}
-	.grund > .lead {
+	.line-block > .lead {
 		max-width: 44rem;
 	}
 	.big {
@@ -292,6 +351,12 @@
 		font-size: clamp(4rem, 12vw, 9rem);
 		line-height: 1;
 		text-transform: none;
+	}
+	.big .mark {
+		font-family: var(--kanji);
+		color: var(--ink-dim);
+		font-size: 0.62em;
+		margin-right: 0.3em;
 	}
 	.big .word {
 		font-size: 0.62em;

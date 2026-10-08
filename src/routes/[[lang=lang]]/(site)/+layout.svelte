@@ -30,7 +30,9 @@
 			head: c.foot.permanent,
 			links: [
 				{ href: '/permanent', label: c.foot.ma },
-				{ href: '/permanent#grund', label: c.foot.ji }
+				{ href: '/permanent#grund', label: c.foot.ji },
+				{ href: '/permanent#ovol', label: c.foot.ovol },
+				{ href: '/permanent#baram', label: c.foot.baram }
 			]
 		},
 		{
