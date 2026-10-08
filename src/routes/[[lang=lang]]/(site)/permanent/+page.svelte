@@ -1,73 +1,70 @@
 <script lang="ts">
-	import { PLACE_FEE } from '$lib/config';
+	import { page } from '$app/stores';
+	import { copy, langOf, lp } from '$lib/i18n';
+	import { BACKERS } from '$lib/config';
 
-	// Teaser for MA (間), the permanent denim collection. Three styles, drawn as
-	// outlines until samples exist. Not an edition: no numbers, no end date.
-	// The kanji uses Noto Sans JP (SIL Open Font License, static/fonts). Only the
-	// small slice of the font that holds 間 is shipped, limited to that character.
+	// MA (間), the permanent denim collection. Three styles, drawn as outlines
+	// until samples exist. Not an edition: no numbers, no end date. Style names
+	// stay the same in every language.
+	const lang = $derived(langOf($page.params.lang));
+	const c = $derived(copy[lang]);
+	const t = $derived(c.ma);
+	const count = $derived(c.backers.count.replace('{n}', String(BACKERS.ma.length)));
 
-	const cuts = [
-		{
-			name: 'Loose',
-			line: 'Straight from hip to hem, with room all the way down.',
-			path: 'M50 32 L46 380 L96 380 L100 122 L104 380 L154 380 L150 32 Z'
-		},
-		{
-			name: 'Baggy',
-			line: 'Low and wide. The hem breaks over the shoe.',
-			path: 'M48 32 L28 380 L96 380 L100 128 L104 380 L172 380 L152 32 Z'
-		},
+	const shapes = [
+		{ name: 'Loose', path: 'M50 32 L46 380 L96 380 L100 122 L104 380 L154 380 L150 32 Z' },
+		{ name: 'Baggy', path: 'M48 32 L28 380 L96 380 L100 128 L104 380 L172 380 L152 32 Z' },
 		{
 			name: 'Barrel',
-			line: 'Curved out through the knee, drawn back in at the hem.',
 			path: 'M50 32 C24 150 24 270 54 380 L94 380 C98 300 100 210 100 126 C100 210 102 300 106 380 L146 380 C176 270 176 150 150 32 Z'
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>MA 間 / Maison Seul</title>
-	<meta name="description" content="MA. Denim in three styles: Loose, Baggy, Barrel. Permanent, not limited. Coming from Maison Seul." />
+	<title>{t.title}</title>
+	<meta name="description" content={t.description} />
 </svelte:head>
 
 <main class="perm">
 	<section class="head">
-		<p class="kicker">Permanent collection</p>
+		<p class="kicker">{t.kicker}</p>
 		<h1><span class="kanji" lang="ja">間</span><span class="latin">MA</span></h1>
-		<p class="lead">
-			Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space
-			between things. Here it is the space between the cloth and you.
-		</p>
-		<p class="lead second">
-			Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made
-			continuously, and always there.
-		</p>
+		<p class="lead">{t.lead}</p>
+		<p class="lead second">{t.lead2}</p>
 	</section>
 
-	<ul class="cuts" aria-label="The three styles">
-		{#each cuts as c}
+	<ul class="cuts" aria-label={t.stylesLabel}>
+		{#each shapes as sh, i}
 			<li>
 				<div class="draw">
-					<svg viewBox="0 0 200 400" role="img" aria-label="MA {c.name}, outline">
+					<svg viewBox="0 0 200 400" role="img" aria-label="MA {sh.name}, {t.outline}">
 						<rect x="48" y="18" width="104" height="14" fill="none" stroke="#f2f3f1" stroke-width="1.5" />
-						<path d={c.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
+						<path d={sh.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
 						<line x1="100" y1="32" x2="100" y2="92" stroke="#a9aeb1" stroke-width="1" />
 					</svg>
 				</div>
 				<p class="no"><span class="kanji" lang="ja">間</span> MA</p>
-				<h2>{c.name}</h2>
-				<p class="line">{c.line}</p>
+				<h2>{sh.name}</h2>
+				<p class="line">{t.styles[i]}</p>
 			</li>
 		{/each}
 	</ul>
 
+	<section class="backing">
+		<h2 class="bh">{t.backersTitle}</h2>
+		<p>{t.backersText}</p>
+		<p class="count">{BACKERS.ma.length ? BACKERS.ma.join(' ') : c.backers.noneYet} / {count}</p>
+	</section>
+
 	<section class="foot">
 		<dl>
-			<div><dt>Status</dt><dd>In development</dd></div>
-			<div><dt>Arrives</dt><dd>When it is ready.</dd></div>
-			<div><dt>Edition</dt><dd>None. Permanent.</dd></div>
+			<div><dt>{t.price}</dt><dd>{c.prices.ma}</dd></div>
+			<div><dt>{t.status}</dt><dd>{t.statusValue}</dd></div>
+			<div><dt>{t.arrives}</dt><dd>{t.arrivesValue}</dd></div>
+			<div><dt>{t.edition}</dt><dd>{t.editionValue}</dd></div>
 		</dl>
-		<a class="cta" href="/reserve">Reserve a place, {PLACE_FEE}</a>
+		<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
 	</section>
 </main>
 
@@ -152,6 +149,21 @@
 		color: var(--ink-dim);
 	}
 
+	.backing {
+		max-width: 44rem;
+		margin-top: clamp(3rem, 7vw, 5rem);
+	}
+	.backing .bh {
+		font-size: 1.375rem;
+	}
+	.backing p {
+		margin: 0.75rem 0 0;
+		color: #d5d8d9;
+	}
+	.backing .count {
+		color: var(--ink-dim);
+		font-size: 0.9375rem;
+	}
 	.foot {
 		margin-top: clamp(3rem, 7vw, 5rem);
 		padding-top: 2rem;

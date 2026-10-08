@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url><loc>https://maisonseul.com/</loc></url>
+	<url><loc>https://maisonseul.com/de</loc></url>
+	<url><loc>https://maisonseul.com/ja</loc></url>
 	<url><loc>https://maisonseul.com/case-01</loc></url>
+	<url><loc>https://maisonseul.com/de/case-01</loc></url>
+	<url><loc>https://maisonseul.com/ja/case-01</loc></url>
 	<url><loc>https://maisonseul.com/permanent</loc></url>
+	<url><loc>https://maisonseul.com/de/permanent</loc></url>
+	<url><loc>https://maisonseul.com/ja/permanent</loc></url>
 	<url><loc>https://maisonseul.com/house</loc></url>
+	<url><loc>https://maisonseul.com/de/house</loc></url>
+	<url><loc>https://maisonseul.com/ja/house</loc></url>
 	<url><loc>https://maisonseul.com/care</loc></url>
-	<url><loc>https://maisonseul.com/reserve</loc></url>
+	<url><loc>https://maisonseul.com/de/care</loc></url>
+	<url><loc>https://maisonseul.com/ja/care</loc></url>
+	<url><loc>https://maisonseul.com/backers</loc></url>
+	<url><loc>https://maisonseul.com/de/backers</loc></url>
+	<url><loc>https://maisonseul.com/ja/backers</loc></url>
 	<url><loc>https://maisonseul.com/contact</loc></url>
+	<url><loc>https://maisonseul.com/de/contact</loc></url>
+	<url><loc>https://maisonseul.com/ja/contact</loc></url>
 </urlset>

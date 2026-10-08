@@ -1,40 +1,50 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Wordmark from '$lib/Wordmark.svelte';
+	import LangSwitch from '$lib/LangSwitch.svelte';
+	import { basePath, copy, langOf, lp } from '$lib/i18n';
+	import { STUDIO_EMAIL } from '$lib/config';
 
-	// Everything past the holding page. Public, in teaser mode: nothing is on
-	// sale, and the one action is a €1 place in line (/reserve).
+	// Everything past the home page, in English, German or Japanese. Public, in
+	// teaser mode: nothing is on sale, and the one action is founding backing.
 	let { children } = $props();
 
-	const nav = [
+	const lang = $derived(langOf($page.params.lang));
+	const c = $derived(copy[lang]);
+	const base = $derived(basePath($page.url.pathname));
+	const here = (href: string) => (base === href ? 'page' : undefined);
+
+	const nav = $derived([
 		{ href: '/case-01', label: 'CASE 01' },
 		{ href: '/permanent', label: 'MA', kanji: '間' },
-		{ href: '/house', label: 'The house' },
-		{ href: '/care', label: 'Care' },
-		{ href: '/contact', label: 'Contact' }
-	];
-	const footLinks = [
+		{ href: '/house', label: c.nav.house },
+		{ href: '/care', label: c.nav.care },
+		{ href: '/contact', label: c.nav.contact }
+	]);
+	const footLinks = $derived([
 		{ href: '/case-01', label: 'CASE 01' },
-		{ href: '/permanent', label: 'MA, permanent collection' },
-		{ href: '/house', label: 'The house' },
-		{ href: '/care', label: 'Care and repair' },
-		{ href: '/reserve', label: 'Reserve a place' },
-		{ href: '/contact', label: 'Contact' }
-	];
-	const here = (href: string) => ($page.url.pathname.replace(/\/$/, '') === href ? 'page' : undefined);
+		{ href: '/permanent', label: c.foot.ma },
+		{ href: '/house', label: c.foot.house },
+		{ href: '/care', label: c.foot.care },
+		{ href: '/backers', label: c.foot.back },
+		{ href: '/contact', label: c.foot.contact }
+	]);
 </script>
 
-<p class="bar">Designed in Dublin.</p>
+<div class="bar">
+	<p>{c.bar}</p>
+	<LangSwitch />
+</div>
 
 <header class="top">
-	<a class="home" href="/case-01" aria-label="Maison Seul, CASE 01"><Wordmark /></a>
+	<a class="home" href={lp(lang, '/case-01')} aria-label="Maison Seul, CASE 01"><Wordmark /></a>
 	<nav aria-label="Main">
 		{#each nav as n}
-			<a href={n.href} aria-current={here(n.href)}
+			<a href={lp(lang, n.href)} aria-current={here(n.href)}
 				>{#if n.kanji}<span class="kanji" lang="ja">{n.kanji}</span>&nbsp;{/if}{n.label}</a
 			>
 		{/each}
-		<a class="reserve" href="/reserve" aria-current={here('/reserve')}>Reserve</a>
+		<a class="reserve" href={lp(lang, '/backers')} aria-current={here('/backers')}>{c.nav.back}</a>
 	</nav>
 </header>
 
@@ -43,20 +53,17 @@
 <footer>
 	<div class="brand">
 		<span class="wm"><Wordmark /></span>
-		<p>A VNTA house. Dublin.</p>
+		<p>{c.foot.tagline}</p>
 	</div>
 	<nav aria-label="Footer">
 		{#each footLinks as f}
-			<a href={f.href} aria-current={here(f.href)}>{f.label}</a>
+			<a href={lp(lang, f.href)} aria-current={here(f.href)}>{f.label}</a>
 		{/each}
 	</nav>
 	<div class="contact">
-		<a href="mailto:studio@maisonseul.com">studio@maisonseul.com</a>
+		<a href="mailto:{STUDIO_EMAIL}">{STUDIO_EMAIL}</a>
 	</div>
-	<p class="legal">
-		Apple, MacBook, MacBook Air, MacBook Pro, AirPods and AirTag are trademarks of Apple Inc.
-		Maison Seul is not affiliated with or endorsed by Apple.
-	</p>
+	<p class="legal">{c.foot.legal}</p>
 </footer>
 
 <style>
@@ -70,9 +77,19 @@
 	}
 
 	.bar {
-		margin: 0;
-		padding: 0.6rem var(--gutter);
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		padding: 0 var(--gutter);
 		border-bottom: 1px solid var(--line);
+	}
+	.bar :global(.langs) {
+		justify-self: end;
+		grid-column: 3;
+	}
+	.bar p {
+		grid-column: 2;
+		margin: 0;
 		text-align: center;
 		font-size: 0.75rem;
 		letter-spacing: 0.14em;
@@ -272,8 +289,16 @@
 	}
 	@media (max-width: 600px) {
 		.bar {
+			grid-template-columns: 1fr auto;
+		}
+		.bar p {
+			grid-column: 1;
+			text-align: left;
 			font-size: 0.6875rem;
 			letter-spacing: 0.1em;
+		}
+		.bar :global(.langs) {
+			grid-column: 2;
 		}
 	}
 </style>
