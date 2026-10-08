@@ -13,14 +13,22 @@
 
 	<section>
 		<h2>One object at a time</h2>
-		<p>Nothing is made to fill a catalogue. CASE 01 is the first object, and for now the only one.</p>
+		<p>
+			Nothing is made to fill a catalogue. CASE 01 is the first object. A permanent collection
+			of denim follows.
+		</p>
 	</section>
 
 	<section>
-		<h2>Numbered editions</h2>
+		<h2>Editions and the permanent collection</h2>
 		<p>
-			Each finish is made once, in a set number, and every piece carries its number inside. The
-			design stays. When an edition is gone, the next one comes in a new finish.
+			Some objects come in numbered editions. Each finish is made once, in a set number, and
+			every piece carries its number inside. The design stays; the next edition comes in a new
+			finish.
+		</p>
+		<p>
+			Others are permanent. They are made continuously, never numbered and never discontinued, so
+			the pair you buy now is still there when you need another.
 		</p>
 	</section>
 
