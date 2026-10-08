@@ -4,6 +4,7 @@
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import { BACKERS } from '$lib/config';
+	import { SWATCH, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER } from '$lib/drawings';
 
 	// MA (間), the permanent denim collection. Three styles, drawn as outlines
 	// until samples exist. Not an edition: no numbers, no end date. Style names
@@ -24,64 +25,6 @@
 
 	// The rest of the permanent collection. Each line is named in the language
 	// of the place that shaped it, and drawn as outlines until samples exist.
-	type Drawing = { box: string; paths: { d: string; dim?: boolean }[] };
-	const SWATCH: Record<string, string> = { Unlit: '#121619', Concrete: '#4a4f53', 'Blinding White': '#f2f3f1' };
-	const NECK = { d: 'M104 46 C110 58 130 58 136 46', dim: true };
-	const TEE: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M96 40 L56 48 L22 94 L44 106 L58 88 L58 204 L182 204 L182 88 L196 106 L218 94 L184 48 L144 40 C136 54 104 54 96 40 Z' },
-			NECK
-		]
-	};
-	const LONG: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M96 40 L56 48 L30 112 L18 212 L38 214 L50 130 L58 106 L58 204 L182 204 L182 106 L190 130 L202 214 L222 212 L210 112 L184 48 L144 40 C136 54 104 54 96 40 Z' },
-			NECK
-		]
-	};
-	const SHELL: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M98 44 L58 52 L32 116 L20 216 L40 218 L52 136 L60 112 L60 216 L180 216 L180 112 L188 136 L200 218 L220 216 L208 116 L182 52 L142 44 C152 12 88 12 98 44 Z' },
-			{ d: 'M104 44 C106 28 134 28 136 44', dim: true },
-			{ d: 'M120 34 L120 216', dim: true }
-		]
-	};
-	const PUFFER: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M94 40 L48 50 L22 112 L12 198 L38 202 L48 134 L54 114 L54 198 L186 198 L186 114 L192 134 L202 202 L228 198 L218 112 L192 50 L146 40 L146 24 L94 24 Z' },
-			{ d: 'M60 78 L180 78 M56 108 L184 108 M54 138 L186 138 M54 168 L186 168 M34 100 L50 104 M206 100 L190 104 M24 150 L46 152 M216 150 L194 152', dim: true },
-			{ d: 'M120 24 L120 198', dim: true }
-		]
-	};
-	const SHIRT: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M100 38 L58 48 L32 114 L20 214 L40 216 L52 134 L60 110 L60 220 L180 220 L180 110 L188 134 L200 216 L220 214 L208 114 L182 48 L140 38 Z' },
-			{ d: 'M100 38 L113 60 L120 50 L127 60 L140 38' },
-			{ d: 'M100 38 L104 29 L136 29 L140 38 M120 50 L120 220 M20 204 L40 206 M200 206 L220 204', dim: true }
-		]
-	};
-	const OVERSHIRT: Drawing = {
-		box: '0 0 240 240',
-		paths: [
-			{ d: 'M98 38 L52 48 L26 116 L14 214 L36 216 L48 136 L56 112 L56 214 L184 214 L184 112 L192 136 L204 216 L226 214 L214 116 L188 48 L142 38 Z' },
-			{ d: 'M98 38 L112 62 L120 52 L128 62 L142 38' },
-			{ d: 'M98 38 L103 28 L137 28 L142 38 M120 52 L120 214 M14 202 L36 204 M204 204 L226 202', dim: true }
-		]
-	};
-	const JOGGER: Drawing = {
-		box: '0 0 200 400',
-		paths: [
-			{ d: 'M50 32 C26 140 24 270 58 356 L58 380 L94 380 L94 356 C98 270 100 190 100 128 C100 190 102 270 106 356 L106 380 L142 380 L142 356 C176 270 174 140 150 32 Z' },
-			{ d: 'M48 18 L152 18 L152 32 L48 32 Z' },
-			{ d: 'M58 356 L94 356 M106 356 L142 356 M100 32 L100 52', dim: true }
-		]
-	};
-
 	const lines = $derived([
 		{
 			id: 'grund', word: 'GRUND', mark: '', script: '', d: c.ji,
