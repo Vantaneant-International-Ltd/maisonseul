@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Defaced from '$lib/Defaced.svelte';
 	// No backend: the form builds an email to the studio.
 	let serial = $state('');
 	let name = $state('');
@@ -20,7 +21,7 @@
 
 <main class="doc">
 	<p class="kicker">Register a serial</p>
-	<h1>Your number, in the register.</h1>
+	<Defaced text="Your number, in the register." />
 	<p class="lead">
 		Your serial is on the plate inside the lid. Registering it starts your 5-year warranty and
 		puts your name against that number in the house register.

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Cipher from '$lib/Cipher.svelte';
+	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import { BACKERS } from '$lib/config';
 
@@ -45,6 +47,7 @@
 		<h1><span class="kanji" lang="ja">間</span><span class="latin">MA</span></h1>
 		<p class="lead">{t.lead}</p>
 		<p class="lead second">{t.lead2}</p>
+		<p class="sign"><Cipher text={LINES.slowerHands} /></p>
 	</section>
 
 	<ul class="cuts" aria-label={t.stylesLabel}>
@@ -57,7 +60,7 @@
 						<line x1="100" y1="32" x2="100" y2="92" stroke="#a9aeb1" stroke-width="1" />
 					</svg>
 				</div>
-				<p class="no"><span class="kanji" lang="ja">間</span> MA</p>
+				<p class="no mono"><span class="kanji" lang="ja">間</span> MA</p>
 				<h2>{sh.name}</h2>
 				<p class="line">{t.styles[i]}</p>
 			</li>
@@ -67,7 +70,7 @@
 	<section class="backing">
 		<h2 class="bh">{t.backersTitle}</h2>
 		<p>{t.backersText}</p>
-		<p class="count">{BACKERS.ma.length ? BACKERS.ma.join(' ') : c.backers.noneYet} / {count}</p>
+		<p class="count mono">{BACKERS.ma.length ? BACKERS.ma.join(' ') : c.backers.noneYet} / {count}</p>
 	</section>
 
 	<section class="foot">
@@ -93,7 +96,7 @@
 							<path d={NECK} fill="none" stroke="#a9aeb1" stroke-width="1" transform="translate(0 6)" />
 						</svg>
 					</div>
-					<p class="no">GRUND</p>
+					<p class="no mono">GRUND</p>
 					<h3>{j.pieces[i].name}</h3>
 					<p class="line">{j.pieces[i].line}</p>
 				</li>
@@ -102,7 +105,7 @@
 
 		<div class="spec">
 			<div>
-				<h3 class="sh">{j.coloursLabel}</h3>
+				<h3 class="sh mono">{j.coloursLabel}</h3>
 				<ul class="swatches">
 					{#each j.colours as name, i}
 						<li><span class="chip" style="background:{swatches[i]}"></span>{name}</li>
@@ -110,7 +113,7 @@
 				</ul>
 			</div>
 			<div>
-				<h3 class="sh">{j.detailsLabel}</h3>
+				<h3 class="sh mono">{j.detailsLabel}</h3>
 				<ul class="details">
 					{#each j.details as d}<li>{d}</li>{/each}
 				</ul>
@@ -150,17 +153,20 @@
 		display: flex;
 		align-items: baseline;
 		gap: 0.3em;
-		font-weight: 200;
+		font-weight: 400;
 		font-size: clamp(4rem, 12vw, 9rem);
 		line-height: 1;
 	}
 	.kanji {
 		font-family: var(--kanji);
-		font-weight: 200;
+		font-weight: 400;
 	}
 	h1 .latin {
 		font-size: 0.42em;
 		letter-spacing: 0.08em;
+	}
+	.sign {
+		margin: 1.5rem 0 0;
 	}
 	.lead.second {
 		margin-top: 0.75rem;
@@ -201,7 +207,7 @@
 	}
 	h2 {
 		margin: 0;
-		font-weight: 300;
+		font-weight: 400;
 		font-size: 1.5rem;
 		text-transform: uppercase;
 	}
@@ -282,7 +288,7 @@
 		display: flex;
 		align-items: baseline;
 		gap: 0.3em;
-		font-weight: 200;
+		font-weight: 400;
 		font-size: clamp(4rem, 12vw, 9rem);
 		line-height: 1;
 		text-transform: none;
@@ -299,7 +305,7 @@
 	}
 	h3 {
 		margin: 0;
-		font-weight: 300;
+		font-weight: 400;
 		font-size: 1.5rem;
 		text-transform: uppercase;
 	}

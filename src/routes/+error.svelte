@@ -31,7 +31,7 @@
 	a {
 		margin: 0;
 		font-size: 0.75rem;
-		font-weight: 300;
+		font-weight: 400;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: var(--ink-dim);

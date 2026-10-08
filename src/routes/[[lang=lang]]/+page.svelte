@@ -3,6 +3,8 @@
 	import Wordmark from '$lib/Wordmark.svelte';
 	import LangSwitch from '$lib/LangSwitch.svelte';
 	import { copy, langOf, lp } from '$lib/i18n';
+	import Cipher from '$lib/Cipher.svelte';
+	import { LINES } from '$lib/cipher';
 
 	const lang = $derived(langOf($page.params.lang));
 	const c = $derived(copy[lang]);
@@ -18,6 +20,14 @@
 	<meta name="description" content={c.home.description} />
 </svelte:head>
 
+<!-- Brand-book cover: creased surface, a single print under the name. The
+     print is sharp on this side of the line and dissolves past it. -->
+<div class="tex" aria-hidden="true"></div>
+<div class="print" aria-hidden="true">
+	<div class="half near"><img src="/fingerprint.svg" alt="" /></div>
+	<div class="half far"><img src="/fingerprint.svg" alt="" /></div>
+</div>
+
 <svg class="cut" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
 	<line x1="57" y1="0" x2="43" y2="100" vector-effect="non-scaling-stroke" />
 </svg>
@@ -27,6 +37,8 @@
 <main>
 	<h1><Wordmark split live /></h1>
 </main>
+
+<p class="sign"><Cipher text={LINES.oneAtATime} /></p>
 
 <footer>
 	<span>{c.home.tagline}</span>
@@ -38,6 +50,53 @@
 </footer>
 
 <style>
+	.tex {
+		position: fixed;
+		inset: 0;
+		background: url('/texture.svg') center / cover;
+		opacity: 0.06;
+		pointer-events: none;
+	}
+	.print {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+	}
+	/* The halves follow the hairline: 57% across at the top, 43% at the bottom. */
+	.half {
+		position: absolute;
+		inset: 0;
+	}
+	.near {
+		clip-path: polygon(0 0, 57% 0, 43% 100%, 0 100%);
+	}
+	.far {
+		clip-path: polygon(57% 0, 100% 0, 100% 100%, 43% 100%);
+		filter: blur(7px);
+	}
+	.half img {
+		position: absolute;
+		left: 50%;
+		top: 52%;
+		height: min(64vh, 125vw);
+		width: auto;
+		transform: translate(-58%, -12%) rotate(-8deg);
+		opacity: 0.09;
+	}
+	.far img {
+		opacity: 0.06;
+		transform: translate(-56%, -13%) rotate(-8deg);
+	}
+	.sign {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: clamp(3.5rem, 9vh, 5rem);
+		margin: 0;
+		text-align: center;
+		pointer-events: none;
+		animation: arrive 1600ms ease 900ms both;
+	}
 	.cut {
 		position: fixed;
 		inset: 0;
@@ -83,7 +142,7 @@
 		gap: 0 1.5rem;
 		padding: 0 clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.25rem);
 		font-size: 0.75rem;
-		font-weight: 300;
+		font-weight: 400;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: var(--ink-dim);

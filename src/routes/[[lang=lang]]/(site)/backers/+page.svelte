@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Defaced from '$lib/Defaced.svelte';
+	import Cipher from '$lib/Cipher.svelte';
+	import { LINES } from '$lib/cipher';
 	import { copy, langOf } from '$lib/i18n';
 	import { BACKERS, PAYMENT_LINKS, STUDIO_EMAIL } from '$lib/config';
 
@@ -46,8 +49,9 @@
 
 <main class="doc wide">
 	<p class="kicker">{t.kicker}</p>
-	<h1>{t.h1}</h1>
+	<Defaced text={t.h1} />
 	<p class="lead">{t.lead}</p>
+	<p class="sign"><Cipher text={LINES.weWereHere} /></p>
 
 	<div class="objects">
 		{#each objects as o}
@@ -60,7 +64,7 @@
 				<ul>
 					{#each o.item.gives as g}<li>{g}</li>{/each}
 				</ul>
-				<p class="count">{countFor(o.key)}</p>
+				<p class="count mono">{countFor(o.key)}</p>
 				{#if link(o.key)}
 					<a class="cta" href={link(o.key)} rel="noopener">{o.item.cta}</a>
 				{:else}
@@ -80,6 +84,9 @@
 </main>
 
 <style>
+	.sign {
+		margin-top: 1.25rem;
+	}
 	.wide {
 		max-width: 64rem;
 	}
@@ -100,7 +107,7 @@
 	.name {
 		margin: 0;
 		font-size: 1.75rem;
-		font-weight: 200;
+		font-weight: 400;
 		letter-spacing: 0.04em;
 	}
 	.kanji {
@@ -115,7 +122,7 @@
 		padding-top: 1rem;
 		border-top: 1px solid var(--line);
 		font-size: 1.75rem;
-		font-weight: 300;
+		font-weight: 400;
 	}
 	.amount span {
 		font-size: 0.8125rem;
