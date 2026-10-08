@@ -40,11 +40,11 @@ export function switchHref(pathname: string, target: Lang): string {
 // case01 / ma: the normal price when sales open.
 // case01Back / maBack: founding backer amount, object included.
 // ---------------------------------------------------------------------------
-type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; currency: 'eur' | 'jpy' };
+type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; ovolLight: string; ovolHeavy: string; baram: string; currency: 'eur' | 'jpy' };
 const P: Record<Lang, Prices> = {
-	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', currency: 'eur' },
-	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', currency: 'eur' },
-	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', currency: 'jpy' }
+	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', ovolLight: '€165', ovolHeavy: '€320', baram: '€95', currency: 'eur' },
+	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', ovolLight: '165 €', ovolHeavy: '320 €', baram: '95 €', currency: 'eur' },
+	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', ovolLight: '¥30,000', ovolHeavy: '¥58,000', baram: '¥17,500', currency: 'jpy' }
 };
 
 // ---------------------------------------------------------------------------
@@ -61,6 +61,8 @@ const en = {
 		permanent: 'Permanent',
 		ma: 'MA, denim',
 		ji: 'GRUND, shirts',
+		ovol: 'ÖVÖL, jackets',
+		baram: 'BARAM, joggers',
 		house: 'The house',
 		care: 'Care and repair',
 		back: 'Founding backers',
@@ -166,8 +168,8 @@ const en = {
 		trust: ['Designed in Dublin, made in China', 'Numbered editions', 'Repairable', '14-day returns']
 	},
 	ma: {
-		title: 'MA 間 · GRUND / Maison Seul',
-		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve in three colours.',
+		title: 'Permanent / Maison Seul',
+		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. GRUND, a T-shirt and longsleeve. ÖVÖL, a light and a heavy jacket. BARAM, balloon joggers.',
 		kicker: 'Permanent collection',
 		lead: 'Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
 		lead2: 'Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made continuously, and always there.',
@@ -208,6 +210,33 @@ const en = {
 		priceTee: 'Tee',
 		priceLong: 'Longsleeve'
 	},
+	ovol: {
+		lead: 'Two jackets. Övöl is Mongolian for winter, written ӨВӨЛ. Ulaanbaatar is the coldest capital on earth; these are cut for days like its days.',
+		lead2: 'Light keeps out wind and rain and packs into its own pocket. Heavy is filled with down, for real cold. Same boxy shoulders, same long back, nothing printed on the outside.',
+		pieces: [
+			{ name: 'Light', line: 'A hooded shell. Taped seams, two-way zip.' },
+			{ name: 'Heavy', line: 'Down-filled, with a high collar and wide baffles.' }
+		],
+		coloursLabel: 'Two colours',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'Light: a waterproof, breathable three-layer shell.',
+			'Heavy: down fill under a water-repellent face.',
+			'Pockets sized for a phone and gloves. The name is printed inside.'
+		]
+	},
+	baram: {
+		lead: 'Joggers. Baram is Korean for wind, written 바람. The leg fills with air like a sail.',
+		lead2: 'Wide through the thigh and knee, gathered at a ribbed cuff, so the leg balloons over the shoe. A drawcord waist that sits low.',
+		pieces: [{ name: 'Jogger', line: 'One cut. Balloon leg, ribbed cuff.' }],
+		coloursLabel: 'Two colours',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'400 g cotton fleece, brushed inside.',
+			'Deep side pockets and one back pocket.',
+			'No logo outside. The name is printed inside the waistband.'
+		]
+	},
 	house: {
 		title: 'The house / Maison Seul',
 		description: 'Maison Seul is a design house in Dublin. One object at a time.',
@@ -217,7 +246,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA, permanent denim, and GRUND, a T-shirt and longsleeve, follow.']
+				p: ['Nothing is made to fill a catalogue. SKRIN is the first object. MA (denim), GRUND (shirts), ÖVÖL (jackets) and BARAM (joggers) follow, each named in the language of the place that shaped it.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -347,6 +376,8 @@ const de: Copy = {
 		permanent: 'Ständige Kollektion',
 		ma: 'MA, Denim',
 		ji: 'GRUND, Shirts',
+		ovol: 'ÖVÖL, Jacken',
+		baram: 'BARAM, Jogger',
 		house: 'Das Haus',
 		care: 'Pflege und Reparatur',
 		back: 'Gründungsunterstützer',
@@ -452,8 +483,8 @@ const de: Copy = {
 		trust: ['Entworfen in Dublin, gefertigt in China', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
 	},
 	ma: {
-		title: 'MA 間 · GRUND / Maison Seul',
-		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve in drei Farben.',
+		title: 'Ständige Kollektion / Maison Seul',
+		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. GRUND, T-Shirt und Longsleeve. ÖVÖL, eine leichte und eine schwere Jacke. BARAM, Ballon-Jogger.',
 		kicker: 'Ständige Kollektion',
 		lead: 'Denim in drei Schnitten: Loose, Baggy und Barrel. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
 		lead2: 'Proportionen aus dem Tokio der Neunziger, neu gezeichnet mit den Linien eines Gebäudes. Keine Edition. Fortlaufend gefertigt und immer erhältlich.',
@@ -494,6 +525,33 @@ const de: Copy = {
 		priceTee: 'Tee',
 		priceLong: 'Longsleeve'
 	},
+	ovol: {
+		lead: 'Zwei Jacken. Övöl ist Mongolisch für Winter, geschrieben ӨВӨЛ. Ulaanbaatar ist die kälteste Hauptstadt der Welt; diese Jacken sind für Tage wie dort geschnitten.',
+		lead2: 'Light hält Wind und Regen ab und lässt sich in die eigene Tasche packen. Heavy ist mit Daunen gefüllt, für echte Kälte. Dieselben kastigen Schultern, derselbe lange Rücken, außen nichts gedruckt.',
+		pieces: [
+			{ name: 'Light', line: 'Eine Shell mit Kapuze. Getapte Nähte, Zwei-Wege-Reißverschluss.' },
+			{ name: 'Heavy', line: 'Mit Daunen gefüllt, hoher Kragen, breite Kammern.' }
+		],
+		coloursLabel: 'Zwei Farben',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'Light: eine wasserdichte, atmungsaktive Dreilagen-Shell.',
+			'Heavy: Daunenfüllung unter wasserabweisendem Obermaterial.',
+			'Taschen für Telefon und Handschuhe. Der Name steht innen.'
+		]
+	},
+	baram: {
+		lead: 'Jogger. Baram ist Koreanisch für Wind, geschrieben 바람. Das Bein füllt sich mit Luft wie ein Segel.',
+		lead2: 'Weit an Oberschenkel und Knie, am Rippbündchen gerafft, sodass das Bein über dem Schuh bauscht. Ein tief sitzender Bund mit Kordel.',
+		pieces: [{ name: 'Jogger', line: 'Eine Form. Ballonbein, Rippbündchen.' }],
+		coloursLabel: 'Zwei Farben',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'400 g Baumwollfleece, innen angeraut.',
+			'Tiefe Seitentaschen und eine Gesäßtasche.',
+			'Kein Logo außen. Der Name steht innen im Bund.'
+		]
+	},
 	house: {
 		title: 'Das Haus / Maison Seul',
 		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt nach dem anderen.',
@@ -503,7 +561,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA, dauerhaftes Denim, und GRUND, ein T-Shirt und ein Longsleeve, folgen.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. SKRIN ist das erste Objekt. MA (Denim), GRUND (Shirts), ÖVÖL (Jacken) und BARAM (Jogger) folgen, jedes benannt in der Sprache des Ortes, der es geprägt hat.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -631,6 +689,8 @@ const ja: Copy = {
 		permanent: '常設コレクション',
 		ma: 'MA デニム',
 		ji: 'GRUND シャツ',
+		ovol: 'ÖVÖL ジャケット',
+		baram: 'BARAM ジョガー',
 		house: 'メゾンについて',
 		care: 'ケアと修理',
 		back: '創設支援者',
@@ -730,8 +790,8 @@ const ja: Copy = {
 		trust: ['ダブリンでデザイン、中国で製造', 'ナンバリング・エディション', '修理できる', '14日間返品可']
 	},
 	ma: {
-		title: 'MA 間 · GRUND / Maison Seul',
-		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDは3色のTシャツとロングスリーブ。',
+		title: '常設コレクション / Maison Seul',
+		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。GRUNDはTシャツとロングスリーブ。ÖVÖLは軽量と厚手のジャケット。BARAMはバルーンジョガー。',
 		kicker: '常設コレクション',
 		lead: 'Loose、Baggy、Barrelの3型のデニム。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
 		lead2: '90年代の東京のシルエットを、建築の線で描き直しました。限定ではありません。作り続け、いつでも手に入ります。',
@@ -768,6 +828,33 @@ const ja: Copy = {
 		priceTee: 'Tee',
 		priceLong: 'Longsleeve'
 	},
+	ovol: {
+		lead: '2着のジャケット。Övöl（ӨВӨЛ）はモンゴル語で「冬」。ウランバートルは世界でいちばん寒い首都。その日々のために仕立てました。',
+		lead2: 'Lightは風と雨を防ぎ、自身のポケットに収納できます。Heavyはダウン入りで、本当の寒さに。同じボックス型の肩、長めの後ろ丈、表には何も入れません。',
+		pieces: [
+			{ name: 'Light', line: 'フード付きシェル。シームテープ、ダブルジップ。' },
+			{ name: 'Heavy', line: 'ダウン入り。高い襟と幅広のキルト。' }
+		],
+		coloursLabel: '2色',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'Light：防水透湿の3層シェル。',
+			'Heavy：撥水加工の表地にダウンを封入。',
+			'スマートフォンと手袋が入るポケット。名前は内側に。'
+		]
+	},
+	baram: {
+		lead: 'ジョガーパンツ。Baram（바람）は韓国語で「風」。脚が帆のように空気をはらみます。',
+		lead2: '太ももと膝はゆったり、リブの裾で絞り、靴の上でふくらむバルーンシルエット。ドローコードのウエストは低めに。',
+		pieces: [{ name: 'Jogger', line: 'ひとつの型。バルーンレッグ、リブ裾。' }],
+		coloursLabel: '2色',
+		colours: ['Unlit', 'Concrete'],
+		details: [
+			'400gのコットンフリース、裏起毛。',
+			'深いサイドポケットとバックポケットひとつ。',
+			'表にロゴなし。名前はウエストの内側に。'
+		]
+	},
 	house: {
 		title: 'メゾンについて / Maison Seul',
 		description: 'Maison Seulはダブリンのデザインハウス。ひとつずつ作ります。',
@@ -777,7 +864,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、常設のデニムMAと、TシャツとロングスリーブのGRUND。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはSKRIN。続いて、MA（デニム）、GRUND（シャツ）、ÖVÖL（ジャケット）、BARAM（ジョガー）。それぞれ、かたちを生んだ土地の言葉で名づけています。']
 			},
 			{
 				h: 'エディションと常設コレクション',

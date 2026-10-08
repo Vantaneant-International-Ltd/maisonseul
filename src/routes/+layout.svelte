@@ -69,6 +69,25 @@
 		font-display: swap;
 		unicode-range: U+237E, U+2316;
 	}
+	/* ÖVÖL is written ӨВӨЛ (Mongolian Cyrillic); BARAM is written 바람 (Korean). */
+	@font-face {
+		font-family: 'MS Script';
+		src: url('/fonts/montserrat-ovol-a.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+0412, U+041B;
+	}
+	@font-face {
+		font-family: 'MS Script';
+		src: url('/fonts/montserrat-ovol-b.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+04E8;
+	}
+	@font-face {
+		font-family: 'MS Script';
+		src: url('/fonts/noto-sans-kr-baram.woff2') format('woff2');
+		font-display: swap;
+		unicode-range: U+BC14, U+B78C;
+	}
 	:global(:root) {
 		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */
 		--void: #121619;
@@ -79,7 +98,7 @@
 		--sans: 'Outfit', system-ui, -apple-system, sans-serif;
 		--mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 		--cipher: 'MS Cipher', var(--sans);
-		--kanji: 'Noto Sans JP MA', 'Noto Sans Runic SKRIN', var(--sans);
+		--kanji: 'Noto Sans JP MA', 'Noto Sans Runic SKRIN', 'MS Script', var(--sans);
 	}
 
 	:global(*) {
