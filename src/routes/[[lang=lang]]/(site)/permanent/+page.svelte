@@ -57,6 +57,22 @@
 			{ d: 'M120 24 L120 198', dim: true }
 		]
 	};
+	const SHIRT: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M100 38 L58 48 L32 114 L20 214 L40 216 L52 134 L60 110 L60 220 L180 220 L180 110 L188 134 L200 216 L220 214 L208 114 L182 48 L140 38 Z' },
+			{ d: 'M100 38 L113 60 L120 50 L127 60 L140 38' },
+			{ d: 'M100 38 L104 29 L136 29 L140 38 M120 50 L120 220 M20 204 L40 206 M200 206 L220 204', dim: true }
+		]
+	};
+	const OVERSHIRT: Drawing = {
+		box: '0 0 240 240',
+		paths: [
+			{ d: 'M98 38 L52 48 L26 116 L14 214 L36 216 L48 136 L56 112 L56 214 L184 214 L184 112 L192 136 L204 216 L226 214 L214 116 L188 48 L142 38 Z' },
+			{ d: 'M98 38 L112 62 L120 52 L128 62 L142 38' },
+			{ d: 'M98 38 L103 28 L137 28 L142 38 M120 52 L120 214 M14 202 L36 204 M204 204 L226 202', dim: true }
+		]
+	};
 	const JOGGER: Drawing = {
 		box: '0 0 200 400',
 		paths: [
@@ -71,6 +87,11 @@
 			id: 'grund', word: 'GRUND', mark: '', script: '', d: c.ji,
 			drawings: [TEE, LONG],
 			prices: [[c.ji.pieces[0].name, c.prices.jiTee], [c.ji.pieces[1].name, c.prices.jiLong]]
+		},
+		{
+			id: 'qutn', word: 'QUTN', mark: 'قطن', script: 'ar', d: c.qutn,
+			drawings: [SHIRT, OVERSHIRT],
+			prices: [[c.qutn.pieces[0].name, c.prices.qutnPoplin], [c.qutn.pieces[1].name, c.prices.qutnCanvas]]
 		},
 		{
 			id: 'ovol', word: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', d: c.ovol,
