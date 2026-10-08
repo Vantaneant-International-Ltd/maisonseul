@@ -32,8 +32,7 @@
 	<span>{c.home.tagline}</span>
 	<nav aria-label="Main">
 		<a href={lp(lang, '/skrin')}><span class="kanji" lang="non-Runr">ᛌᚴᚱᛁᚿ</span>&nbsp;SKRIN</a>
-		<a href={lp(lang, '/permanent')}><span class="kanji" lang="ja">間</span>&nbsp;MA</a>
-		<a href={lp(lang, '/permanent#grund')}>GRUND</a>
+		<a href={lp(lang, '/permanent')}>{c.nav.permanent}</a>
 		<a href={lp(lang, '/backers')}>{c.nav.back}</a>
 	</nav>
 </footer>

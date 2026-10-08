@@ -16,20 +16,30 @@
 
 	const nav = $derived([
 		{ href: '/skrin', label: 'SKRIN', kanji: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr' },
-		{ href: '/permanent', label: 'MA', kanji: '間' },
-		{ href: '/permanent#grund', label: 'GRUND' },
+		{ href: '/permanent', label: c.nav.permanent },
 		{ href: '/house', label: c.nav.house },
 		{ href: '/care', label: c.nav.care },
 		{ href: '/contact', label: c.nav.contact }
 	]);
-	const footLinks = $derived([
-		{ href: '/skrin', label: 'SKRIN' },
-		{ href: '/permanent', label: c.foot.ma },
-		{ href: '/permanent#grund', label: c.foot.ji },
-		{ href: '/house', label: c.foot.house },
-		{ href: '/care', label: c.foot.care },
-		{ href: '/backers', label: c.foot.back },
-		{ href: '/contact', label: c.foot.contact }
+	// Footer in three groups so the list stays short as objects are added.
+	const footGroups = $derived([
+		{ head: c.foot.objects, links: [{ href: '/skrin', label: 'SKRIN' }] },
+		{
+			head: c.foot.permanent,
+			links: [
+				{ href: '/permanent', label: c.foot.ma },
+				{ href: '/permanent#grund', label: c.foot.ji }
+			]
+		},
+		{
+			head: 'Maison Seul',
+			links: [
+				{ href: '/house', label: c.foot.house },
+				{ href: '/care', label: c.foot.care },
+				{ href: '/backers', label: c.foot.back },
+				{ href: '/contact', label: c.foot.contact }
+			]
+		}
 	]);
 </script>
 
@@ -57,9 +67,14 @@
 		<span class="wm"><Wordmark /></span>
 		<p>{c.foot.tagline}</p>
 	</div>
-	<nav aria-label="Footer">
-		{#each footLinks as f}
-			<a href={lp(lang, f.href)} aria-current={here(f.href)}>{f.label}</a>
+	<nav aria-label="Footer" class="groups">
+		{#each footGroups as g}
+			<div class="group">
+				<p class="head">{g.head}</p>
+				{#each g.links as f}
+					<a href={lp(lang, f.href)} aria-current={here(f.href)}>{f.label}</a>
+				{/each}
+			</div>
 		{/each}
 	</nav>
 	<div class="contact">
@@ -150,7 +165,7 @@
 
 	footer {
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr) minmax(0, 1fr);
 		gap: 2rem 3rem;
 		padding: 3rem var(--gutter);
 		border-top: 1px solid var(--line);
@@ -163,9 +178,25 @@
 		font-size: 0.875rem;
 		color: var(--ink-dim);
 	}
-	footer nav {
+	footer .groups {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem 2rem;
+	}
+	footer .group {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
+	}
+	footer .group a {
+		hyphens: auto;
+		overflow-wrap: anywhere;
+	}
+	footer .head {
+		margin: 0 0 0.5rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
 	}
 	footer a {
 		display: inline-flex;
@@ -290,6 +321,12 @@
 		}
 	}
 	@media (max-width: 600px) {
+		footer .groups {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		footer .group:last-child {
+			grid-column: 1 / -1;
+		}
 		.bar {
 			grid-template-columns: 1fr auto;
 		}
