@@ -17,6 +17,7 @@
 	const nav = $derived([
 		{ href: '/case-01', label: 'CASE 01' },
 		{ href: '/permanent', label: 'MA', kanji: '間' },
+		{ href: '/permanent#ji', label: 'JI', kanji: '地' },
 		{ href: '/house', label: c.nav.house },
 		{ href: '/care', label: c.nav.care },
 		{ href: '/contact', label: c.nav.contact }
@@ -24,6 +25,7 @@
 	const footLinks = $derived([
 		{ href: '/case-01', label: 'CASE 01' },
 		{ href: '/permanent', label: c.foot.ma },
+		{ href: '/permanent#ji', label: c.foot.ji },
 		{ href: '/house', label: c.foot.house },
 		{ href: '/care', label: c.foot.care },
 		{ href: '/backers', label: c.foot.back },

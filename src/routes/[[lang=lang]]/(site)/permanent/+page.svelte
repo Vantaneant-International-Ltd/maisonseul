@@ -9,6 +9,7 @@
 	const lang = $derived(langOf($page.params.lang));
 	const c = $derived(copy[lang]);
 	const t = $derived(c.ma);
+	const j = $derived(c.ji);
 	const count = $derived(c.backers.count.replace('{n}', String(BACKERS.ma.length)));
 
 	const shapes = [
@@ -19,6 +20,18 @@
 			path: 'M50 32 C24 150 24 270 54 380 L94 380 C98 300 100 210 100 126 C100 210 102 300 106 380 L146 380 C176 270 176 150 150 32 Z'
 		}
 	];
+
+	// JI (地), the T-shirt and longsleeve. Same boxy body, two sleeve lengths.
+	const NECK = 'M96 40 C104 54 136 54 144 40';
+	const garments = [
+		{
+			path: 'M96 40 L56 48 L22 94 L44 106 L58 88 L58 204 L182 204 L182 88 L196 106 L218 94 L184 48 L144 40 C136 54 104 54 96 40 Z'
+		},
+		{
+			path: 'M96 40 L56 48 L30 112 L18 212 L38 214 L50 130 L58 106 L58 204 L182 204 L182 106 L190 130 L202 214 L222 212 L210 112 L184 48 L144 40 C136 54 104 54 96 40 Z'
+		}
+	];
+	const swatches = ['#121619', '#4a4f53', '#f2f3f1'];
 </script>
 
 <svelte:head>
@@ -65,6 +78,54 @@
 			<div><dt>{t.edition}</dt><dd>{t.editionValue}</dd></div>
 		</dl>
 		<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
+	</section>
+	<section class="ji" id="ji">
+		<h2 class="big"><span class="kanji" lang="ja">地</span><span class="latin">JI</span></h2>
+		<p class="lead">{j.lead}</p>
+		<p class="lead second">{j.lead2}</p>
+
+		<ul class="cuts two">
+			{#each garments as g, i}
+				<li>
+					<div class="draw wide">
+						<svg viewBox="0 0 240 240" role="img" aria-label="JI {j.pieces[i].name}, {t.outline}">
+							<path d={g.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
+							<path d={NECK} fill="none" stroke="#a9aeb1" stroke-width="1" transform="translate(0 6)" />
+						</svg>
+					</div>
+					<p class="no"><span class="kanji" lang="ja">地</span> JI</p>
+					<h3>{j.pieces[i].name}</h3>
+					<p class="line">{j.pieces[i].line}</p>
+				</li>
+			{/each}
+		</ul>
+
+		<div class="spec">
+			<div>
+				<h3 class="sh">{j.coloursLabel}</h3>
+				<ul class="swatches">
+					{#each j.colours as name, i}
+						<li><span class="chip" style="background:{swatches[i]}"></span>{name}</li>
+					{/each}
+				</ul>
+			</div>
+			<div>
+				<h3 class="sh">{j.detailsLabel}</h3>
+				<ul class="details">
+					{#each j.details as d}<li>{d}</li>{/each}
+				</ul>
+			</div>
+		</div>
+
+		<section class="foot">
+			<dl>
+				<div><dt>{j.priceTee}</dt><dd>{c.prices.jiTee}</dd></div>
+				<div><dt>{j.priceLong}</dt><dd>{c.prices.jiLong}</dd></div>
+				<div><dt>{t.status}</dt><dd>{t.statusValue}</dd></div>
+				<div><dt>{t.arrives}</dt><dd>{t.arrivesValue}</dd></div>
+				<div><dt>{t.edition}</dt><dd>{t.editionValue}</dd></div>
+			</dl>
+		</section>
 	</section>
 </main>
 
@@ -207,8 +268,88 @@
 		background: #ffffff;
 	}
 
+	.ji {
+		scroll-margin-top: 2rem;
+		margin-top: clamp(5rem, 12vw, 9rem);
+		padding-top: clamp(3rem, 7vw, 5rem);
+		border-top: 1px solid var(--line);
+	}
+	.ji > .lead {
+		max-width: 44rem;
+	}
+	.big {
+		margin: 0;
+		display: flex;
+		align-items: baseline;
+		gap: 0.3em;
+		font-weight: 200;
+		font-size: clamp(4rem, 12vw, 9rem);
+		line-height: 1;
+		text-transform: none;
+	}
+	.big .latin {
+		font-size: 0.42em;
+		letter-spacing: 0.08em;
+	}
+	.cuts.two {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.draw.wide {
+		aspect-ratio: 5 / 4;
+	}
+	h3 {
+		margin: 0;
+		font-weight: 300;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+	}
+	.spec {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2rem;
+		margin-top: clamp(3rem, 7vw, 4rem);
+	}
+	.sh {
+		font-size: 0.8125rem;
+		letter-spacing: 0.12em;
+		color: var(--ink-dim);
+	}
+	.swatches,
+	.details {
+		list-style: none;
+		margin: 1rem 0 0;
+		padding: 0;
+		display: grid;
+		gap: 0.75rem;
+		color: #d5d8d9;
+	}
+	.swatches li {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+	}
+	.chip {
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 1px solid var(--hairline);
+	}
+	.details li {
+		padding-left: 1.1rem;
+		position: relative;
+	}
+	.details li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.7em;
+		width: 0.5rem;
+		border-top: 1px solid var(--ink-dim);
+	}
+
 	@media (max-width: 760px) {
-		.cuts {
+		.cuts,
+		.cuts.two,
+		.spec {
 			grid-template-columns: 1fr;
 		}
 		.cta {

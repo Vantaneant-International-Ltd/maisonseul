@@ -40,11 +40,11 @@ export function switchHref(pathname: string, target: Lang): string {
 // case01 / ma: the normal price when sales open.
 // case01Back / maBack: founding backer amount, object included.
 // ---------------------------------------------------------------------------
-type Prices = { case01: string; case01Back: string; ma: string; maBack: string; currency: 'eur' | 'jpy' };
+type Prices = { case01: string; case01Back: string; ma: string; maBack: string; jiTee: string; jiLong: string; currency: 'eur' | 'jpy' };
 const P: Record<Lang, Prices> = {
-	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', currency: 'eur' },
-	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', currency: 'eur' },
-	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', currency: 'jpy' }
+	en: { case01: '€525', case01Back: '€1,000', ma: '€125', maBack: '€250', jiTee: '€65', jiLong: '€85', currency: 'eur' },
+	de: { case01: '525 €', case01Back: '1.000 €', ma: '125 €', maBack: '250 €', jiTee: '65 €', jiLong: '85 €', currency: 'eur' },
+	ja: { case01: '¥95,000', case01Back: '¥180,000', ma: '¥22,000', maBack: '¥45,000', jiTee: '¥12,000', jiLong: '¥15,500', currency: 'jpy' }
 };
 
 // ---------------------------------------------------------------------------
@@ -57,7 +57,8 @@ const en = {
 	photo: 'Photograph to follow',
 	nav: { house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
-		ma: 'MA, permanent collection',
+		ma: 'MA, permanent denim',
+		ji: 'JI, T-shirt and longsleeve',
 		house: 'The house',
 		care: 'Care and repair',
 		back: 'Founding backers',
@@ -163,8 +164,8 @@ const en = {
 		trust: ['Designed in Dublin', 'Numbered editions', 'Repairable', '14-day returns']
 	},
 	ma: {
-		title: 'MA 間 / Maison Seul',
-		description: 'MA. Denim in three styles: Loose, Baggy, Barrel. Permanent, not limited. €125. One hundred founding backers.',
+		title: 'MA 間 · JI 地 / Maison Seul',
+		description: 'The permanent collection. MA, denim in three styles: Loose, Baggy, Barrel. JI, a T-shirt and longsleeve in three colours.',
 		kicker: 'Permanent collection',
 		lead: 'Denim in three styles: Loose, Baggy and Barrel. Ma is the Japanese word for the space between things. Here it is the space between the cloth and you.',
 		lead2: 'Nineties Tokyo proportions, redrawn with the lines of a building. Not an edition. Made continuously, and always there.',
@@ -186,6 +187,25 @@ const en = {
 		backersTitle: 'Founding backers',
 		backersText: 'One hundred founding backers make MA possible. Their initials are woven into a pattern we design, inside every pair of MA ever made. Each backer receives a pair, in the style and size they choose, when it is ready.'
 	},
+	ji: {
+		title: 'JI 地',
+		lead: 'A T-shirt and a longsleeve. Ji is the Japanese word for ground, and for cloth. The layer everything else stands on.',
+		lead2: 'The proportions of a nineties jeans T-shirt: boxy, a dropped shoulder, a short straight body. Cut with German restraint: exact lengths, a close neck, nothing printed on the outside.',
+		pieces: [
+			{ name: 'Tee', line: 'Short sleeve to the elbow. Hem sits at the hip.' },
+			{ name: 'Longsleeve', line: 'Long cuff that stacks at the wrist. Same body.' }
+		],
+		coloursLabel: 'Three colours',
+		colours: ['Unlit', 'Concrete', 'Blinding White'],
+		detailsLabel: 'Made like this',
+		details: [
+			'240 g heavy cotton jersey, knitted as a tube: no side seams.',
+			'Narrow ribbed neck that keeps its shape.',
+			'No logo outside. The name is printed inside, at the neck.'
+		],
+		priceTee: 'Tee',
+		priceLong: 'Longsleeve'
+	},
 	house: {
 		title: 'The house / Maison Seul',
 		description: 'Maison Seul is a design house in Dublin. One object at a time.',
@@ -195,7 +215,7 @@ const en = {
 		sections: [
 			{
 				h: 'One object at a time',
-				p: ['Nothing is made to fill a catalogue. CASE 01 is the first object. MA, a permanent collection of denim, follows.']
+				p: ['Nothing is made to fill a catalogue. CASE 01 is the first object. MA, permanent denim, and JI, a T-shirt and longsleeve, follow.']
 			},
 			{
 				h: 'Editions and the permanent collection',
@@ -321,7 +341,8 @@ const de: Copy = {
 	photo: 'Foto folgt',
 	nav: { house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
-		ma: 'MA, ständige Kollektion',
+		ma: 'MA, ständiges Denim',
+		ji: 'JI, T-Shirt und Longsleeve',
 		house: 'Das Haus',
 		care: 'Pflege und Reparatur',
 		back: 'Gründungsunterstützer',
@@ -427,8 +448,8 @@ const de: Copy = {
 		trust: ['Entworfen in Dublin', 'Nummerierte Editionen', 'Reparierbar', '14 Tage Rückgabe']
 	},
 	ma: {
-		title: 'MA 間 / Maison Seul',
-		description: 'MA. Denim in drei Schnitten: Loose, Baggy, Barrel. Dauerhaft, nicht limitiert. 125 €. Hundert Gründungsunterstützer.',
+		title: 'MA 間 · JI 地 / Maison Seul',
+		description: 'Die ständige Kollektion. MA, Denim in drei Schnitten: Loose, Baggy, Barrel. JI, T-Shirt und Longsleeve in drei Farben.',
 		kicker: 'Ständige Kollektion',
 		lead: 'Denim in drei Schnitten: Loose, Baggy und Barrel. Ma ist das japanische Wort für den Raum zwischen den Dingen. Hier ist es der Raum zwischen dem Stoff und Ihnen.',
 		lead2: 'Proportionen aus dem Tokio der Neunziger, neu gezeichnet mit den Linien eines Gebäudes. Keine Edition. Fortlaufend gefertigt und immer erhältlich.',
@@ -450,6 +471,25 @@ const de: Copy = {
 		backersTitle: 'Gründungsunterstützer',
 		backersText: 'Hundert Gründungsunterstützer machen MA möglich. Ihre Initialen werden in ein Muster eingewebt, das wir gestalten, innen in jedem je gefertigten MA. Jeder erhält ein Paar, in Schnitt und Größe seiner Wahl, sobald es fertig ist.'
 	},
+	ji: {
+		title: 'JI 地',
+		lead: 'Ein T-Shirt und ein Longsleeve. Ji ist das japanische Wort für Boden und für Stoff. Die Lage, auf der alles andere steht.',
+		lead2: 'Die Proportionen eines Jeans-T-Shirts der Neunziger: kastig, tiefe Schulter, kurzer gerader Körper. Geschnitten mit deutscher Zurückhaltung: genaue Längen, enger Kragen, außen nichts gedruckt.',
+		pieces: [
+			{ name: 'Tee', line: 'Kurzer Ärmel bis zum Ellbogen. Der Saum endet an der Hüfte.' },
+			{ name: 'Longsleeve', line: 'Langes Bündchen, das sich am Handgelenk staut. Gleicher Körper.' }
+		],
+		coloursLabel: 'Drei Farben',
+		colours: ['Unlit', 'Concrete', 'Blinding White'],
+		detailsLabel: 'So gemacht',
+		details: [
+			'240 g schwerer Baumwolljersey, als Schlauch gestrickt: keine Seitennähte.',
+			'Schmaler Rippkragen, der seine Form hält.',
+			'Kein Logo außen. Der Name steht innen, am Nacken.'
+		],
+		priceTee: 'Tee',
+		priceLong: 'Longsleeve'
+	},
 	house: {
 		title: 'Das Haus / Maison Seul',
 		description: 'Maison Seul ist ein Designhaus in Dublin. Ein Objekt nach dem anderen.',
@@ -459,7 +499,7 @@ const de: Copy = {
 		sections: [
 			{
 				h: 'Ein Objekt nach dem anderen',
-				p: ['Nichts wird gemacht, um einen Katalog zu füllen. CASE 01 ist das erste Objekt. MA, eine ständige Kollektion aus Denim, folgt.']
+				p: ['Nichts wird gemacht, um einen Katalog zu füllen. CASE 01 ist das erste Objekt. MA, dauerhaftes Denim, und JI, ein T-Shirt und ein Longsleeve, folgen.']
 			},
 			{
 				h: 'Editionen und die ständige Kollektion',
@@ -583,7 +623,8 @@ const ja: Copy = {
 	photo: '写真は後日掲載',
 	nav: { house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
-		ma: 'MA 常設コレクション',
+		ma: 'MA 常設のデニム',
+		ji: 'JI Tシャツとロングスリーブ',
 		house: 'メゾンについて',
 		care: 'ケアと修理',
 		back: '創設支援者',
@@ -683,8 +724,8 @@ const ja: Copy = {
 		trust: ['ダブリンでデザイン', 'ナンバリング・エディション', '修理できる', '14日間返品可']
 	},
 	ma: {
-		title: 'MA 間 / Maison Seul',
-		description: 'MA。Loose、Baggy、Barrelの3型のデニム。限定ではなく常設。¥22,000。創設支援者100人。',
+		title: 'MA 間 · JI 地 / Maison Seul',
+		description: '常設コレクション。MAはLoose、Baggy、Barrelの3型のデニム。JIは3色のTシャツとロングスリーブ。',
 		kicker: '常設コレクション',
 		lead: 'Loose、Baggy、Barrelの3型のデニム。「間（ま）」とは、ものとものとのあいだの空間。ここでは、布と身体のあいだの空間です。',
 		lead2: '90年代の東京のシルエットを、建築の線で描き直しました。限定ではありません。作り続け、いつでも手に入ります。',
@@ -702,6 +743,25 @@ const ja: Copy = {
 		backersTitle: '創設支援者',
 		backersText: '100人の創設支援者がMAを実現します。支援者のイニシャルは、私たちがデザインする柄に織り込まれ、これから作られるすべてのMAの内側に入ります。支援者には、完成時に好きな型とサイズの一本をお届けします。'
 	},
+	ji: {
+		title: 'JI 地',
+		lead: 'Tシャツとロングスリーブ。地とは、地面のこと、そして生地のこと。すべての土台になる一枚です。',
+		lead2: '90年代のジーンズTシャツのプロポーション。ボックス型、落ちた肩、短くまっすぐな身頃。それをドイツ的な抑制で仕立てます。正確な丈、詰まった襟、表には何も入れません。',
+		pieces: [
+			{ name: 'Tee', line: '袖は肘まで。裾は腰の位置。' },
+			{ name: 'Longsleeve', line: '長めの袖口が手首でたまる。身頃は同じ。' }
+		],
+		coloursLabel: '3色',
+		colours: ['Unlit', 'Concrete', 'Blinding White'],
+		detailsLabel: 'つくり',
+		details: [
+			'240gの厚手コットン天竺を筒状に編み、脇の縫い目なし。',
+			'形が崩れにくい細めのリブ襟。',
+			'表にロゴなし。名前は内側の首元にプリント。'
+		],
+		priceTee: 'Tee',
+		priceLong: 'Longsleeve'
+	},
 	house: {
 		title: 'メゾンについて / Maison Seul',
 		description: 'Maison Seulはダブリンのデザインハウス。ひとつずつ作ります。',
@@ -711,7 +771,7 @@ const ja: Copy = {
 		sections: [
 			{
 				h: 'ひとつずつ',
-				p: ['カタログを埋めるために作るものはありません。最初のオブジェはCASE 01。続いて、デニムの常設コレクションMA。']
+				p: ['カタログを埋めるために作るものはありません。最初のオブジェはCASE 01。続いて、常設のデニムMAと、TシャツとロングスリーブのJI。']
 			},
 			{
 				h: 'エディションと常設コレクション',
