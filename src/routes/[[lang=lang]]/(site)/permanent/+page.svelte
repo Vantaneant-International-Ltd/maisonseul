@@ -21,7 +21,7 @@
 		}
 	];
 
-	// JI (地), the T-shirt and longsleeve. Same boxy body, two sleeve lengths.
+	// GRUND, the T-shirt and longsleeve. Same boxy body, two sleeve lengths.
 	const NECK = 'M96 40 C104 54 136 54 144 40';
 	const garments = [
 		{
@@ -79,8 +79,8 @@
 		</dl>
 		<a class="cta" href={lp(lang, '/backers')}>{t.cta}</a>
 	</section>
-	<section class="ji" id="ji">
-		<h2 class="big"><span class="kanji" lang="ja">地</span><span class="latin">JI</span></h2>
+	<section class="grund" id="grund">
+		<h2 class="big"><span class="word">GRUND</span></h2>
 		<p class="lead">{j.lead}</p>
 		<p class="lead second">{j.lead2}</p>
 
@@ -88,12 +88,12 @@
 			{#each garments as g, i}
 				<li>
 					<div class="draw wide">
-						<svg viewBox="0 0 240 240" role="img" aria-label="JI {j.pieces[i].name}, {t.outline}">
+						<svg viewBox="0 0 240 240" role="img" aria-label="GRUND {j.pieces[i].name}, {t.outline}">
 							<path d={g.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
 							<path d={NECK} fill="none" stroke="#a9aeb1" stroke-width="1" transform="translate(0 6)" />
 						</svg>
 					</div>
-					<p class="no"><span class="kanji" lang="ja">地</span> JI</p>
+					<p class="no">GRUND</p>
 					<h3>{j.pieces[i].name}</h3>
 					<p class="line">{j.pieces[i].line}</p>
 				</li>
@@ -268,13 +268,13 @@
 		background: #ffffff;
 	}
 
-	.ji {
+	.grund {
 		scroll-margin-top: 2rem;
 		margin-top: clamp(5rem, 12vw, 9rem);
 		padding-top: clamp(3rem, 7vw, 5rem);
 		border-top: 1px solid var(--line);
 	}
-	.ji > .lead {
+	.grund > .lead {
 		max-width: 44rem;
 	}
 	.big {
@@ -287,9 +287,9 @@
 		line-height: 1;
 		text-transform: none;
 	}
-	.big .latin {
-		font-size: 0.42em;
-		letter-spacing: 0.08em;
+	.big .word {
+		font-size: 0.62em;
+		letter-spacing: 0.06em;
 	}
 	.cuts.two {
 		grid-template-columns: repeat(2, minmax(0, 1fr));

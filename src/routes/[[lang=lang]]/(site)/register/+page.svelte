@@ -5,7 +5,7 @@
 
 	const href = $derived(
 		'mailto:studio@maisonseul.com?subject=' +
-			encodeURIComponent(`CASE 01 / Register ${serial || '[serial]'}`) +
+			encodeURIComponent(`SKRIN / Register ${serial || '[serial]'}`) +
 			'&body=' +
 			encodeURIComponent(`Serial: ${serial}\nName: ${name}\n`)
 	);
@@ -15,7 +15,7 @@
 	<!-- Not live until sales open: unlinked and not indexed. -->
 	<meta name="robots" content="noindex, nofollow" />
 	<title>Register a serial / Maison Seul</title>
-	<meta name="description" content="Register your CASE 01 serial number to start its warranty." />
+	<meta name="description" content="Register your SKRIN serial number to start its warranty." />
 </svelte:head>
 
 <main class="doc">

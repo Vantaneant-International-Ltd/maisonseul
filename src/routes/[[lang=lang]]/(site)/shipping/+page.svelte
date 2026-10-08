@@ -2,7 +2,7 @@
 	<!-- Not live until sales open: unlinked and not indexed. -->
 	<meta name="robots" content="noindex, nofollow" />
 	<title>Shipping, returns and warranty / Maison Seul</title>
-	<meta name="description" content="Delivery, returns, reservations and the 5-year warranty for CASE 01." />
+	<meta name="description" content="Delivery, returns, reservations and the 5-year warranty for SKRIN." />
 </svelte:head>
 
 <main class="doc">
@@ -26,7 +26,7 @@
 	<section>
 		<h2>Founding backers</h2>
 		<ul>
-			<li>Founding backers pay €1,000 (CASE 01) or €250 (MA), object included.</li>
+			<li>Founding backers pay €1,000 (SKRIN) or €250 (MA), object included.</li>
 			<li>Backing is refundable at any time before the object ships, and in full if it never ships.</li>
 		</ul>
 	</section>

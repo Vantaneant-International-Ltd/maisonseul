@@ -40,7 +40,7 @@
 
 		<div class="panel">
 			<p class="kicker">{t.kicker}</p>
-			<h1 id="case-h">CASE 01</h1>
+			<h1 id="case-h">SKRIN</h1>
 			<p class="variant">{t.variant}</p>
 			<p class="price">{c.prices.case01} <span>{c.taxNote}</span></p>
 
@@ -89,7 +89,7 @@
 		</div>
 	</section>
 
-	<!-- Founding backers: their initials go inside every CASE 01 -->
+	<!-- Founding backers: their initials go inside every SKRIN -->
 	<section class="backers" aria-labelledby="backers-h">
 		<h2 id="backers-h">{t.backersTitle}</h2>
 		<p>{t.backersText}</p>
