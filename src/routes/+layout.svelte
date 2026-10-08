@@ -2,6 +2,7 @@
 	// One typeface. Outfit stands in for Cygre, the brand-book face, until the
 	// licensed Cygre files are added; swap the imports and `--sans` when they are.
 	import '@fontsource/outfit/latin-400.css';
+	import '@fontsource/outfit/latin-ext-400.css';
 	import '@fontsource/outfit/latin-700.css';
 	// The brand book's label face: a plain mono for kickers, labels and numbers.
 	import '@fontsource/ibm-plex-mono/latin-400.css';
@@ -33,14 +34,14 @@
 		src: url('/fonts/noto-sans-jp-200-kanji.woff2') format('woff2');
 		font-weight: 200;
 		font-display: swap;
-		unicode-range: U+9593;
+		unicode-range: U+9593, U+4E00, U+4E8C, U+4E09, U+7D72;
 	}
 	@font-face {
 		font-family: 'Noto Sans JP MA';
 		src: url('/fonts/noto-sans-jp-300-kanji.woff2') format('woff2');
 		font-weight: 300;
 		font-display: swap;
-		unicode-range: U+9593;
+		unicode-range: U+9593, U+4E00, U+4E8C, U+4E09, U+7D72;
 	}
 	@font-face {
 		font-family: 'Noto Sans Runic SKRIN';

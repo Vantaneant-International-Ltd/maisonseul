@@ -32,7 +32,8 @@
 				{ href: '/inventory?c=objects', label: c.inventory.cats.objects },
 				{ href: '/inventory?c=tops', label: c.inventory.cats.tops },
 				{ href: '/inventory?c=outer', label: c.inventory.cats.outer },
-				{ href: '/inventory?c=bottoms', label: c.inventory.cats.bottoms }
+				{ href: '/inventory?c=bottoms', label: c.inventory.cats.bottoms },
+				{ href: '/inventory?c=lounge', label: c.inventory.cats.lounge }
 			]
 		},
 		{
@@ -43,7 +44,8 @@
 				{ href: '/permanent#grund', label: 'GRUND' },
 				{ href: '/permanent#qutn', label: 'QUTN' },
 				{ href: '/permanent#ovol', label: 'ÖVÖL' },
-				{ href: '/permanent#baram', label: 'BARAM' }
+				{ href: '/permanent#baram', label: 'BARAM' },
+				{ href: '/permanent#si', label: 'SĪ' }
 			]
 		},
 		{

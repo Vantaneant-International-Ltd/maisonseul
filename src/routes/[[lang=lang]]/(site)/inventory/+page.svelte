@@ -6,7 +6,7 @@
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import {
-		SWATCH, CASE, MA_LOOSE, MA_BAGGY, MA_BARREL, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER,
+		SWATCH, CASE, MA_BAGGY, PJ_SHIRT, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER,
 		type Drawing
 	} from '$lib/drawings';
 
@@ -16,28 +16,28 @@
 	const c = $derived(copy[lang]);
 	const t = $derived(c.inventory);
 
-	type Cat = 'objects' | 'tops' | 'outer' | 'bottoms';
+	type Cat = 'objects' | 'tops' | 'outer' | 'bottoms' | 'lounge';
 	type Item = {
 		line: string; mark?: string; script?: string; name: string;
 		cat: Cat; price: string; permanent: boolean; href: string; drawing: Drawing;
 		colours?: string[];
+		fits?: string[];
 	};
 
 	const items = $derived<Item[]>([
 		{ line: 'SKRIN', mark: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr', name: 'Graphite', cat: 'objects', price: c.prices.case01, permanent: false, href: '/skrin', drawing: CASE, colours: ['Graphite'] },
-		{ line: 'MA', mark: '間', script: 'ja', name: 'Loose', cat: 'bottoms', price: c.prices.ma, permanent: true, href: '/permanent', drawing: MA_LOOSE },
-		{ line: 'MA', mark: '間', script: 'ja', name: 'Baggy', cat: 'bottoms', price: c.prices.ma, permanent: true, href: '/permanent', drawing: MA_BAGGY },
-		{ line: 'MA', mark: '間', script: 'ja', name: 'Barrel', cat: 'bottoms', price: c.prices.ma, permanent: true, href: '/permanent', drawing: MA_BARREL },
+		{ line: 'MA', mark: '間', script: 'ja', name: c.ma.denim, cat: 'bottoms', price: c.prices.ma, permanent: true, href: '/permanent', drawing: MA_BAGGY, fits: ['一', '二', '三'] },
 		{ line: 'GRUND', name: c.ji.pieces[0].name, cat: 'tops', price: c.prices.jiTee, permanent: true, href: '/permanent#grund', drawing: TEE, colours: c.ji.colours },
 		{ line: 'GRUND', name: c.ji.pieces[1].name, cat: 'tops', price: c.prices.jiLong, permanent: true, href: '/permanent#grund', drawing: LONG, colours: c.ji.colours },
 		{ line: 'QUTN', mark: 'قطن', script: 'ar', name: c.qutn.pieces[0].name, cat: 'tops', price: c.prices.qutnPoplin, permanent: true, href: '/permanent#qutn', drawing: SHIRT, colours: c.qutn.colours },
 		{ line: 'QUTN', mark: 'قطن', script: 'ar', name: c.qutn.pieces[1].name, cat: 'tops', price: c.prices.qutnCanvas, permanent: true, href: '/permanent#qutn', drawing: OVERSHIRT, colours: c.qutn.colours },
 		{ line: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', name: c.ovol.pieces[0].name, cat: 'outer', price: c.prices.ovolLight, permanent: true, href: '/permanent#ovol', drawing: SHELL, colours: c.ovol.colours },
 		{ line: 'ÖVÖL', mark: 'ӨВӨЛ', script: 'mn', name: c.ovol.pieces[1].name, cat: 'outer', price: c.prices.ovolHeavy, permanent: true, href: '/permanent#ovol', drawing: PUFFER, colours: c.ovol.colours },
-		{ line: 'BARAM', mark: '바람', script: 'ko', name: c.baram.pieces[0].name, cat: 'bottoms', price: c.prices.baram, permanent: true, href: '/permanent#baram', drawing: JOGGER, colours: c.baram.colours }
+		{ line: 'BARAM', mark: '바람', script: 'ko', name: c.baram.pieces[0].name, cat: 'bottoms', price: c.prices.baram, permanent: true, href: '/permanent#baram', drawing: JOGGER, colours: c.baram.colours },
+		{ line: 'SĪ', mark: '絲', script: 'zh-Hant', name: c.si.set, cat: 'lounge', price: c.prices.si, permanent: true, href: '/permanent#si', drawing: PJ_SHIRT, colours: c.si.colours }
 	]);
 
-	const CATS: ('all' | Cat)[] = ['all', 'objects', 'tops', 'outer', 'bottoms'];
+	const CATS: ('all' | Cat)[] = ['all', 'objects', 'tops', 'outer', 'bottoms', 'lounge'];
 	let current = $state<'all' | Cat>('all');
 	type Sort = 'no' | 'low' | 'high';
 	let sort = $state<Sort>('no');
@@ -113,6 +113,9 @@
 						{#if it.mark}<span class="mark" lang={it.script}>{it.mark}</span>{/if}{it.line}
 					</p>
 					<p class="name">{it.name}</p>
+					{#if it.fits}
+						<p class="fitmarks kanji" lang="ja" aria-label={c.ma.fits.join(', ')}>{it.fits.join('  ')}</p>
+					{/if}
 					{#if it.colours}
 						<p class="dots" aria-label={it.colours.join(', ')}>
 							{#each it.colours as col}<span title={col} style="background:{SWATCH[col] ?? '#2a3035'}"></span>{/each}
@@ -219,6 +222,13 @@
 	.sort button[aria-pressed='true'],
 	.sort button:hover {
 		color: var(--ink);
+	}
+	.fitmarks {
+		margin: 0.45rem 0 0;
+		font-family: var(--kanji);
+		font-size: 0.875rem;
+		letter-spacing: 0.2em;
+		color: var(--ink-dim);
 	}
 	.dots {
 		display: flex;

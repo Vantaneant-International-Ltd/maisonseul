@@ -4,7 +4,7 @@
 	import { LINES } from '$lib/cipher';
 	import { copy, langOf, lp } from '$lib/i18n';
 	import { BACKERS } from '$lib/config';
-	import { SWATCH, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER } from '$lib/drawings';
+	import { MA_LOOSE, MA_BAGGY, MA_BARREL, PJ_SHIRT, PJ_TROUSER, SWATCH, TEE, LONG, SHIRT, OVERSHIRT, SHELL, PUFFER, JOGGER } from '$lib/drawings';
 
 	// MA (間), the permanent denim collection. Three styles, drawn as outlines
 	// until samples exist. Not an edition: no numbers, no end date. Style names
@@ -14,14 +14,10 @@
 	const t = $derived(c.ma);
 	const count = $derived(c.backers.count.replace('{n}', String(BACKERS.ma.length)));
 
-	const shapes = [
-		{ name: 'Loose', path: 'M50 32 L46 380 L96 380 L100 122 L104 380 L154 380 L150 32 Z' },
-		{ name: 'Baggy', path: 'M48 32 L28 380 L96 380 L100 128 L104 380 L172 380 L152 32 Z' },
-		{
-			name: 'Barrel',
-			path: 'M50 32 C24 150 24 270 54 380 L94 380 C98 300 100 210 100 126 C100 210 102 300 106 380 L146 380 C176 270 176 150 150 32 Z'
-		}
-	];
+	// The three fits, numbered by how much space they leave.
+	const FITS = [MA_LOOSE, MA_BAGGY, MA_BARREL];
+	const NUM = ['一', '二', '三'];
+	let fit = $state(1);
 
 	// The rest of the permanent collection. Each line is named in the language
 	// of the place that shaped it, and drawn as outlines until samples exist.
@@ -45,6 +41,11 @@
 			id: 'baram', word: 'BARAM', mark: '바람', script: 'ko', d: c.baram,
 			drawings: [JOGGER],
 			prices: [[c.baram.pieces[0].name, c.prices.baram]]
+		},
+		{
+			id: 'si', word: 'SĪ', mark: '絲', script: 'zh-Hant', d: c.si,
+			drawings: [PJ_SHIRT, PJ_TROUSER],
+			prices: [[c.si.set, c.prices.si]]
 		}
 	]);
 </script>
@@ -63,22 +64,33 @@
 		<p class="sign"><Cipher text={LINES.slowerHands} /></p>
 	</section>
 
-	<ul class="cuts" aria-label={t.stylesLabel}>
-		{#each shapes as sh, i}
-			<li>
-				<div class="draw">
-					<svg viewBox="0 0 200 400" role="img" aria-label="MA {sh.name}, {t.outline}">
-						<rect x="48" y="18" width="104" height="14" fill="none" stroke="#f2f3f1" stroke-width="1.5" />
-						<path d={sh.path} fill="none" stroke="#f2f3f1" stroke-width="1.5" stroke-linejoin="round" />
-						<line x1="100" y1="32" x2="100" y2="92" stroke="#a9aeb1" stroke-width="1" />
-					</svg>
-				</div>
-				<p class="no mono"><span class="kanji" lang="ja">間</span> MA</p>
-				<h2>{sh.name}</h2>
-				<p class="line">{t.styles[i]}</p>
-			</li>
-		{/each}
-	</ul>
+	<div class="listing">
+		<div class="draw big">
+			<span class="num kanji" lang="ja" aria-hidden="true">{NUM[fit]}</span>
+			<svg viewBox={FITS[fit].box} role="img" aria-label="MA {NUM[fit]} {t.fits[fit]}, {t.outline}">
+				{#each FITS[fit].paths as pth}
+					<path d={pth.d} fill="none" stroke={pth.dim ? '#a9aeb1' : '#f2f3f1'} stroke-width={pth.dim ? 1 : 1.5} stroke-linejoin="round" />
+				{/each}
+			</svg>
+		</div>
+		<div class="pick">
+			<p class="sh mono">{t.fitLabel}</p>
+			<div class="fits" role="radiogroup" aria-label={t.fitLabel}>
+				{#each FITS as f, i}
+					<button type="button" role="radio" aria-checked={fit === i} onclick={() => (fit = i)}>
+						<svg viewBox={f.box} aria-hidden="true">
+							{#each f.paths as pth}<path d={pth.d} fill="none" stroke="currentColor" stroke-width={pth.dim ? 2 : 4} />{/each}
+						</svg>
+						<span class="fn"><span class="kanji" lang="ja">{NUM[i]}</span> {t.fits[i]}</span>
+					</button>
+				{/each}
+			</div>
+			<h2 class="fitname">MA <span class="kanji" lang="ja">{NUM[fit]}</span></h2>
+			<p class="line">{t.styles[fit]}</p>
+			<p class="note">{t.fitNote}</p>
+			<p class="price">{c.prices.ma} <span class="mono">{c.taxNote}</span></p>
+		</div>
+	</div>
 
 	<section class="backing">
 		<h2 class="bh">{t.backersTitle}</h2>
@@ -239,6 +251,96 @@
 		color: var(--ink-dim);
 	}
 
+	.listing {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+		gap: clamp(1.5rem, 4vw, 3.5rem);
+		margin-top: clamp(3rem, 7vw, 5rem);
+		align-items: start;
+	}
+	.draw.big {
+		position: relative;
+		aspect-ratio: 4 / 5;
+	}
+	.draw.big svg {
+		display: block;
+		margin: 0 auto;
+		height: 88%;
+		width: auto;
+	}
+	.pick .sh {
+		margin: 0;
+		font-size: 0.8125rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-dim);
+	}
+	.num {
+		position: absolute;
+		top: 1rem;
+		left: 1.1rem;
+		font-size: 2rem;
+		color: var(--ink-dim);
+	}
+	.fits {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.6rem;
+		margin-top: 0.75rem;
+	}
+	.fits button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.9rem 0.5rem 0.75rem;
+		background: none;
+		border: 1px solid var(--line);
+		color: var(--ink-dim);
+		font: inherit;
+		cursor: pointer;
+	}
+	.fits button svg {
+		height: 4.5rem;
+		width: auto;
+	}
+	.fits button:hover,
+	.fits button[aria-checked='true'] {
+		color: var(--ink);
+		border-color: var(--ink);
+	}
+	.fn {
+		font-size: 0.875rem;
+	}
+	.fitname {
+		margin: 2rem 0 0;
+		font-size: 2.25rem;
+	}
+	.pick .line {
+		margin-top: 0.5rem;
+		font-size: 1.0625rem;
+		color: #d5d8d9;
+	}
+	.note {
+		margin: 1rem 0 0;
+		color: var(--ink-dim);
+	}
+	.pick .price {
+		margin: 1.5rem 0 0;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--line);
+		font-size: 1.5rem;
+	}
+	.pick .price span {
+		font-size: 0.75rem;
+		letter-spacing: 0.1em;
+		color: var(--ink-dim);
+	}
+	@media (max-width: 760px) {
+		.listing {
+			grid-template-columns: 1fr;
+		}
+	}
 	.backing {
 		max-width: 44rem;
 		margin-top: clamp(3rem, 7vw, 5rem);
