@@ -1,10 +1,8 @@
 <script lang="ts">
-	import Wordmark from '$lib/Wordmark.svelte';
 	import CaseDrawing from '$lib/CaseDrawing.svelte';
 
-	// Unlisted product page. Not linked from the holding page, not in the
-	// sitemap, and marked noindex. Anyone with the address can still open it.
-	// Square brackets mark facts that wait for the approved sample or a date.
+	// Product page. The shared (site) layout supplies the header, footer and
+	// noindex. Square brackets mark facts that wait for the approved sample or a date.
 
 	type Plan = 'deposit' | 'full';
 	let plan: Plan = $state('deposit');
@@ -113,19 +111,8 @@
 
 <svelte:head>
 	<title>CASE 01 / Maison Seul</title>
-	<meta name="robots" content="noindex, nofollow" />
 	<meta name="description" content="CASE 01. An aluminium cabin case. Edition 001, fifty pieces." />
 </svelte:head>
-
-<p class="bar">Designed in Dublin. Made in numbered editions.</p>
-
-<header class="top">
-	<a class="home" href="/" aria-label="Maison Seul, home"><Wordmark /></a>
-	<nav aria-label="Page">
-		<a href="#details">Details</a>
-		<a href="#reserve">Reserve</a>
-	</nav>
-</header>
 
 <main>
 	<!-- Buy box: the object first, as on an Apple-first product page -->
@@ -253,77 +240,7 @@
 	</ul>
 </main>
 
-<footer>
-	<div>
-		<Wordmark />
-		<p>A VNTA house. Dublin.</p>
-		<p>[Company name, registered address, VAT number]</p>
-	</div>
-	<div>
-		<a href="mailto:studio@maisonseul.com">studio@maisonseul.com</a>
-	</div>
-	<p class="legal">
-		Apple, MacBook, MacBook Air, MacBook Pro, AirPods and AirTag are trademarks of Apple Inc.
-		Maison Seul is not affiliated with or endorsed by Apple.
-	</p>
-</footer>
-
 <style>
-	:global(:root) {
-		--raised: #1a1f23;
-		--line: #2e3438;
-		--paper: #f4f4f2;
-		--paper-ink: #121619;
-		--paper-dim: #4a4f53;
-		--gutter: clamp(1rem, 5vw, 5rem);
-	}
-
-	/* ---------- bar and header ---------- */
-	.bar {
-		margin: 0;
-		padding: 0.6rem var(--gutter);
-		border-bottom: 1px solid var(--line);
-		text-align: center;
-		font-size: 0.75rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--ink-dim);
-	}
-	.top {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		padding: 0 var(--gutter);
-		min-height: 4.5rem;
-		border-bottom: 1px solid var(--line);
-	}
-	.home {
-		display: inline-flex;
-		align-items: center;
-		min-height: 44px;
-		font-size: 1.25rem;
-		text-decoration: none;
-	}
-	.top nav {
-		display: flex;
-		gap: 0.25rem;
-	}
-	.top nav a {
-		display: inline-flex;
-		align-items: center;
-		min-height: 44px;
-		padding: 0 0.75rem;
-		font-size: 0.8125rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		text-decoration: none;
-		color: var(--ink-dim);
-	}
-	.top nav a:hover {
-		color: var(--ink);
-	}
-
 	main > section {
 		padding: clamp(3rem, 8vw, 7rem) var(--gutter);
 	}
@@ -633,33 +550,6 @@
 		border-left: 1px solid var(--line);
 	}
 
-	/* ---------- footer ---------- */
-	footer {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 1.5rem 3rem;
-		padding: 3rem var(--gutter);
-		border-top: 1px solid var(--line);
-		font-size: 1.25rem;
-	}
-	footer p {
-		margin: 0.5rem 0 0;
-		font-size: 0.875rem;
-		color: var(--ink-dim);
-	}
-	footer a {
-		display: inline-flex;
-		align-items: center;
-		min-height: 44px;
-		font-size: 0.9375rem;
-		text-decoration: none;
-	}
-	footer .legal {
-		flex-basis: 100%;
-		font-size: 0.75rem;
-	}
-
 	/* ---------- narrow screens ---------- */
 	@media (max-width: 900px) {
 		.buy {
@@ -687,10 +577,6 @@
 	@media (max-width: 600px) {
 		.row {
 			grid-template-columns: 1fr;
-		}
-		.bar {
-			font-size: 0.6875rem;
-			letter-spacing: 0.1em;
 		}
 		.trust li {
 			padding: 1.25rem 0.5rem;
