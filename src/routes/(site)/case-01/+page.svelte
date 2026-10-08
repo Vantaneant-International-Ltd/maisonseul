@@ -1,11 +1,10 @@
 <script lang="ts">
 	import CaseDrawing from '$lib/CaseDrawing.svelte';
 
-	// Product page. The shared (site) layout supplies the header, footer and
-	// noindex. Square brackets mark facts that wait for the approved sample or a date.
+	import { PLACE_FEE } from '$lib/config';
 
-	type Plan = 'deposit' | 'full';
-	let plan: Plan = $state('deposit');
+	// Product page, teaser mode: nothing is on sale yet. The one action on the
+	// site is a €1 place in line (see /reserve). Photographs follow the sample.
 
 	// Gallery. Until photographs exist, each frame names the shot that fills it
 	// (numbers match the site image prompts).
@@ -17,15 +16,6 @@
 		{ shot: 'Shot 7', name: 'Serial plate' }
 	];
 	let view = $state(0);
-
-	const reserveHref = $derived(
-		'mailto:studio@maisonseul.com?subject=' +
-			encodeURIComponent(
-				plan === 'deposit'
-					? 'CASE 01 / Reserve with a €100 deposit'
-					: 'CASE 01 / Reserve and pay in full'
-			)
-	);
 
 	const carry = [
 		{
@@ -66,8 +56,7 @@
 			label: 'Size and weight',
 			lines: [
 				'55 × 40 × 20 cm (21.7 × 15.7 × 7.9 in), wheels and handles included',
-				'[4.3] kg ([9.5] lb) empty',
-				'[31] litres'
+				'Weight and capacity confirmed with the first sample'
 			]
 		},
 		{
@@ -88,7 +77,6 @@
 		{
 			label: 'Shipping, returns and warranty',
 			lines: [
-				'Delivery in Ireland and the EU: [price]',
 				'14 days to return it unused, for a full refund',
 				'5 years on shell, frame, wheels, handle and latches. Dents and scratches are not covered'
 			]
@@ -98,13 +86,16 @@
 	const faq = [
 		{
 			q: 'Where is it made?',
-			a: 'Designed in Dublin. Made in [city], China, by one specialist aluminium factory. Every batch is inspected before it ships.'
+			a: 'Designed in Dublin. Made by one specialist aluminium factory, which we will name here before anything ships. Every batch is inspected before it leaves.'
 		},
 		{
 			q: 'What happens when the hundred are gone?',
 			a: 'Graphite is not made again. CASE 01 continues in a new finish, and parts stay in stock for every edition.'
 		},
-		{ q: 'Can I cancel a reservation?', a: 'Yes, at any time before dispatch, for a full refund.' },
+		{
+			q: 'What does the €1 do?',
+			a: 'It holds a numbered place in line. When CASE 01 opens, places are offered in order. It counts towards the price and is refundable until you use it.'
+		},
 		{ q: 'Is Maison Seul part of Apple?', a: 'No. We design around Apple devices because most of our owners carry them.' }
 	];
 </script>
@@ -122,7 +113,7 @@
 				{#if view === 0}
 					<div class="drawing"><CaseDrawing /></div>
 				{:else}
-					<p class="ph">[{views[view].shot}] {views[view].name}</p>
+					<p class="ph">{views[view].name}. Photograph to follow.</p>
 				{/if}
 			</div>
 			<div class="thumbs" role="group" aria-label="Views">
@@ -138,28 +129,14 @@
 			<p class="variant">Graphite / Edition 001 / 100 pieces</p>
 			<p class="price">€525 <span>VAT included</span></p>
 
-			<div class="plans" role="group" aria-label="How to pay">
-				<button type="button" aria-pressed={plan === 'deposit'} onclick={() => (plan = 'deposit')}>
-					<strong>Deposit</strong><span>€100 today</span>
-				</button>
-				<button type="button" aria-pressed={plan === 'full'} onclick={() => (plan = 'full')}>
-					<strong>Pay in full</strong><span>€525 today</span>
-				</button>
-			</div>
+			<p class="status">Not on sale yet.</p>
 			<p class="plan-note">
-				{plan === 'deposit'
-					? 'Refundable at any time before dispatch. The remaining €425 is due when your case is ready.'
-					: 'Refundable at any time before dispatch.'}
+				{PLACE_FEE} holds a numbered place in line. It counts towards the price and is refundable
+				until you use it.
 			</p>
 
-			<a class="cta" href={reserveHref}>Reserve by email</a>
+			<a class="cta" href="/reserve">Reserve a place, {PLACE_FEE}</a>
 
-			<ul class="micro">
-				<li>[100] of 100 remain</li>
-				<li>Dispatch from Dublin: [date]</li>
-				<li>14-day returns</li>
-				<li>5-year warranty, parts in stock</li>
-			</ul>
 			<p class="note">Made once in this finish. Numbered 001 to 100 inside the lid.</p>
 		</div>
 	</section>
@@ -182,7 +159,7 @@
 		<div class="cards three">
 			{#each carry as c}
 				<article>
-					<div class="img"><p class="ph">[Photo] {c.shot}</p></div>
+					<div class="img"><p class="ph">Photograph to follow</p></div>
 					<h3>{c.title}</h3>
 					<p>{c.text}</p>
 				</article>
@@ -195,7 +172,7 @@
 		<div class="cards four">
 			{#each reasons as r}
 				<article>
-					<div class="img"><p class="ph">[{r.shot}]</p></div>
+					<div class="img"><p class="ph">Photograph to follow</p></div>
 					<h3>{r.title}</h3>
 					<p>{r.text}</p>
 				</article>
@@ -339,39 +316,11 @@
 		font-size: 0.875rem;
 		color: var(--ink-dim);
 	}
-	.plans {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.5rem;
-	}
-	.plans button {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 0.15rem;
-		min-height: 4rem;
-		padding: 0.75rem 1rem;
-		border: 1px solid var(--line);
-		background: transparent;
-		color: var(--ink);
-		font: inherit;
-		text-align: left;
-		cursor: pointer;
-	}
-	.plans strong {
-		font-weight: 400;
-	}
-	.plans span {
-		font-size: 0.875rem;
-		color: var(--ink-dim);
-	}
-	.plans button[aria-pressed='true'] {
-		border-color: var(--ink);
-		background: var(--ink);
-		color: var(--void);
-	}
-	.plans button[aria-pressed='true'] span {
-		color: var(--void);
+	.status {
+		margin: 0.5rem 0 0;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
+		font-size: 1.0625rem;
 	}
 	.plan-note {
 		font-size: 0.9375rem;
@@ -390,17 +339,6 @@
 	}
 	.cta:hover {
 		background: #ffffff;
-	}
-	.micro {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		border-top: 1px solid var(--line);
-	}
-	.micro li {
-		padding: 0.7rem 0;
-		border-bottom: 1px solid var(--line);
-		font-size: 0.9375rem;
 	}
 	.note {
 		font-size: 0.875rem;

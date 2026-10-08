@@ -43,9 +43,9 @@
 	<section>
 		<h2>Where it is made</h2>
 		<p>
-			Designed in Dublin. Made in [city], China, by one specialist aluminium factory. We inspect
-			every batch before it ships. We would rather tell you where it is made than leave you to
-			guess.
+			Designed in Dublin. Made by one specialist aluminium factory, which we will name here
+			before anything ships. We inspect every batch before it leaves. We would rather tell you
+			where it is made than leave you to guess.
 		</p>
 	</section>
 

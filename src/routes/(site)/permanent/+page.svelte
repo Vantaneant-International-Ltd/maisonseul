@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PLACE_FEE } from '$lib/config';
+
 	// Teaser for MA (間), the permanent denim collection. Three styles, drawn as
 	// outlines until samples exist. Not an edition: no numbers, no end date.
 	// The kanji uses Noto Sans JP (SIL Open Font License, static/fonts). Only the
@@ -21,8 +23,6 @@
 			path: 'M50 32 C24 150 24 270 54 380 L94 380 C98 300 100 210 100 126 C100 210 102 300 106 380 L146 380 C176 270 176 150 150 32 Z'
 		}
 	];
-	const notify =
-		'mailto:studio@maisonseul.com?subject=' + encodeURIComponent('MA / Tell me first');
 </script>
 
 <svelte:head>
@@ -64,28 +64,14 @@
 	<section class="foot">
 		<dl>
 			<div><dt>Status</dt><dd>In development</dd></div>
-			<div><dt>Arrives</dt><dd>[Season] 2027</dd></div>
+			<div><dt>Arrives</dt><dd>When it is ready.</dd></div>
 			<div><dt>Edition</dt><dd>None. Permanent.</dd></div>
 		</dl>
-		<a class="cta" href={notify}>Tell me first</a>
+		<a class="cta" href="/reserve">Reserve a place, {PLACE_FEE}</a>
 	</section>
 </main>
 
 <style>
-	@font-face {
-		font-family: 'Noto Sans JP MA';
-		src: url('/fonts/noto-sans-jp-200-ma.woff2') format('woff2');
-		font-weight: 200;
-		font-display: swap;
-		unicode-range: U+9593;
-	}
-	@font-face {
-		font-family: 'Noto Sans JP MA';
-		src: url('/fonts/noto-sans-jp-300-ma.woff2') format('woff2');
-		font-weight: 300;
-		font-display: swap;
-		unicode-range: U+9593;
-	}
 	.perm {
 		max-width: 80rem;
 		margin: 0 auto;
@@ -111,7 +97,7 @@
 		line-height: 1;
 	}
 	.kanji {
-		font-family: 'Noto Sans JP MA', var(--sans);
+		font-family: var(--kanji);
 		font-weight: 200;
 	}
 	h1 .latin {

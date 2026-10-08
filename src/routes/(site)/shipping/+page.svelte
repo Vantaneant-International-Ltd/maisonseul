@@ -1,4 +1,6 @@
 <svelte:head>
+	<!-- Not live until sales open: unlinked and not indexed. -->
+	<meta name="robots" content="noindex, nofollow" />
 	<title>Shipping, returns and warranty / Maison Seul</title>
 	<meta name="description" content="Delivery, returns, reservations and the 5-year warranty for CASE 01." />
 </svelte:head>
@@ -24,9 +26,8 @@
 	<section>
 		<h2>Reservations</h2>
 		<ul>
-			<li>Reserve with a €100 deposit, or pay €525 in full.</li>
-			<li>Your deposit is refundable at any time before dispatch.</li>
-			<li>The remaining €425 is due when your case is ready to ship.</li>
+			<li>€1 holds a numbered place in line. Places are offered in order when sales open.</li>
+			<li>The €1 counts towards the price, and is refundable at any time until you use it.</li>
 		</ul>
 	</section>
 

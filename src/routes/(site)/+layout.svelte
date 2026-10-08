@@ -2,32 +2,27 @@
 	import { page } from '$app/stores';
 	import Wordmark from '$lib/Wordmark.svelte';
 
-	// Everything past the lock. Unlisted: noindex, not in the sitemap, not
-	// linked from the holding page. Anyone with an address can still open it.
+	// Everything past the holding page. Public, in teaser mode: nothing is on
+	// sale, and the one action is a €1 place in line (/reserve).
 	let { children } = $props();
 
 	const nav = [
 		{ href: '/case-01', label: 'CASE 01' },
-		{ href: '/permanent', label: 'Permanent' },
+		{ href: '/permanent', label: 'MA', kanji: '間' },
 		{ href: '/house', label: 'The house' },
 		{ href: '/care', label: 'Care' },
 		{ href: '/contact', label: 'Contact' }
 	];
 	const footLinks = [
 		{ href: '/case-01', label: 'CASE 01' },
-		{ href: '/permanent', label: 'Permanent collection' },
+		{ href: '/permanent', label: 'MA, permanent collection' },
 		{ href: '/house', label: 'The house' },
 		{ href: '/care', label: 'Care and repair' },
-		{ href: '/shipping', label: 'Shipping, returns and warranty' },
-		{ href: '/register', label: 'Register a serial' },
+		{ href: '/reserve', label: 'Reserve a place' },
 		{ href: '/contact', label: 'Contact' }
 	];
 	const here = (href: string) => ($page.url.pathname.replace(/\/$/, '') === href ? 'page' : undefined);
 </script>
-
-<svelte:head>
-	<meta name="robots" content="noindex, nofollow" />
-</svelte:head>
 
 <p class="bar">Designed in Dublin.</p>
 
@@ -35,9 +30,11 @@
 	<a class="home" href="/case-01" aria-label="Maison Seul, CASE 01"><Wordmark /></a>
 	<nav aria-label="Main">
 		{#each nav as n}
-			<a href={n.href} aria-current={here(n.href)}>{n.label}</a>
+			<a href={n.href} aria-current={here(n.href)}
+				>{#if n.kanji}<span class="kanji" lang="ja">{n.kanji}</span>&nbsp;{/if}{n.label}</a
+			>
 		{/each}
-		<a class="reserve" href="/case-01#reserve">Reserve</a>
+		<a class="reserve" href="/reserve" aria-current={here('/reserve')}>Reserve</a>
 	</nav>
 </header>
 
@@ -47,7 +44,6 @@
 	<div class="brand">
 		<span class="wm"><Wordmark /></span>
 		<p>A VNTA house. Dublin.</p>
-		<p>[Company name, registered address, VAT number]</p>
 	</div>
 	<nav aria-label="Footer">
 		{#each footLinks as f}
@@ -123,6 +119,9 @@
 	.top nav a:hover,
 	.top nav a[aria-current='page'] {
 		color: var(--ink);
+	}
+	.kanji {
+		font-family: var(--kanji);
 	}
 	.top nav a.reserve {
 		margin-left: 0.5rem;
