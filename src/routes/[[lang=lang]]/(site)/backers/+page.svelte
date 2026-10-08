@@ -15,6 +15,8 @@
 		{
 			key: 'case01' as const,
 			name: 'SKRIN',
+				kanji: 'ᛌᚴᚱᛁᚿ',
+				script: 'non-Runr',
 			amount: c.prices.case01Back,
 			item: t.items.case01
 		},
@@ -51,7 +53,7 @@
 		{#each objects as o}
 			<article>
 				<p class="name">
-					{#if o.kanji}<span class="kanji" lang="ja">{o.kanji}</span>&nbsp;{/if}{o.name}
+					{#if o.kanji}<span class="kanji" lang={o.script ?? 'ja'}>{o.kanji}</span>&nbsp;{/if}{o.name}
 				</p>
 				<p class="sub">{o.item.sub}</p>
 				<p class="amount">{o.amount} <span>{t.amountLabel}</span></p>

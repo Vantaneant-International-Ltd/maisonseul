@@ -41,6 +41,13 @@
 		font-display: swap;
 		unicode-range: U+9593;
 	}
+	@font-face {
+		font-family: 'Noto Sans Runic SKRIN';
+		src: url('/fonts/noto-sans-runic-skrin.woff2') format('woff2');
+		font-weight: 100 900;
+		font-display: swap;
+		unicode-range: U+16B1, U+16B4, U+16BF, U+16C1, U+16CC;
+	}
 	:global(:root) {
 		/* The brand book's two colours: Unlit and Blinding White, plus one grey. */
 		--void: #121619;
@@ -49,7 +56,7 @@
 		--hairline: rgba(242, 243, 241, 0.3);
 
 		--sans: 'Outfit', system-ui, -apple-system, sans-serif;
-		--kanji: 'Noto Sans JP MA', var(--sans);
+		--kanji: 'Noto Sans JP MA', 'Noto Sans Runic SKRIN', var(--sans);
 	}
 
 	:global(*) {
