@@ -10,7 +10,7 @@ export const SITE = 'https://maisonseul.com';
 
 // Pages that exist in every language. Anything else (shipping, register) is
 // English only and hidden until sales open.
-export const TRANSLATED = ['/', '/skrin', '/permanent', '/house', '/care', '/backers', '/contact'];
+export const TRANSLATED = ['/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact'];
 
 export function langOf(param: string | undefined): Lang {
 	return param === 'de' || param === 'ja' ? param : 'en';
@@ -55,9 +55,10 @@ const en = {
 	taxNote: 'VAT included',
 	bar: 'Designed in Dublin. Made in China.',
 	photo: 'Photograph to follow',
-	nav: { permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
+	nav: { inventory: 'Inventory', permanent: 'Permanent', house: 'The house', care: 'Care', contact: 'Contact', back: 'Backers', language: 'Language' },
 	foot: {
 		objects: 'Objects',
+		lines: 'The lines',
 		permanent: 'Permanent',
 		ma: 'MA, denim',
 		ji: 'GRUND, T-shirts',
@@ -228,8 +229,8 @@ const en = {
 	},
 	baram: {
 		lead: 'Joggers. Baram is Korean for wind, written 바람. The leg fills with air like a sail.',
-		lead2: 'Wide through the thigh and knee, gathered at a ribbed cuff, so the leg balloons over the shoe. A drawcord waist that sits low.',
-		pieces: [{ name: 'Jogger', line: 'One cut. Balloon leg, ribbed cuff.' }],
+		lead2: 'Wide through the thigh and knee, then narrowing to an open hem, so the leg balloons and falls over the shoe. No cuff. A drawcord waist that sits low.',
+		pieces: [{ name: 'Jogger', line: 'One cut. Balloon leg, open hem.' }],
 		coloursLabel: 'Two colours',
 		colours: ['Unlit', 'Concrete'],
 		details: [
@@ -252,6 +253,22 @@ const en = {
 			'Canvas: a dense cotton canvas that softens with wear.',
 			'Concealed placket. The name is printed inside the yoke.'
 		]
+	},
+	inventory: {
+		title: 'Inventory / Maison Seul',
+		description: 'Everything Maison Seul makes, in one place. One object in a numbered edition, and garments that stay.',
+		kicker: 'Inventory',
+		h1: 'Everything, in one place.',
+		lead: 'One object in a numbered edition. Garments that stay. Nothing is on sale yet.',
+		filterLabel: 'Show',
+		cats: { all: 'All', objects: 'Objects', tops: 'Tops', outer: 'Outerwear', bottoms: 'Bottoms' },
+		edition: 'Edition 001 / 100',
+		permanent: 'Permanent',
+		pieces: '{n} pieces',
+		sortLabel: 'Order',
+		sortNo: 'By number',
+		sortLow: 'Price ↑',
+		sortHigh: 'Price ↓'
 	},
 	house: {
 		title: 'The house / Maison Seul',
@@ -386,9 +403,10 @@ const de: Copy = {
 	taxNote: 'inkl. MwSt.',
 	bar: 'Entworfen in Dublin. Gefertigt in China.',
 	photo: 'Foto folgt',
-	nav: { permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
+	nav: { inventory: 'Inventar', permanent: 'Permanent', house: 'Das Haus', care: 'Pflege', contact: 'Kontakt', back: 'Unterstützer', language: 'Sprache' },
 	foot: {
 		objects: 'Objekte',
+		lines: 'Die Linien',
 		permanent: 'Ständige Kollektion',
 		ma: 'MA, Denim',
 		ji: 'GRUND, T-Shirts',
@@ -559,8 +577,8 @@ const de: Copy = {
 	},
 	baram: {
 		lead: 'Jogger. Baram ist Koreanisch für Wind, geschrieben 바람. Das Bein füllt sich mit Luft wie ein Segel.',
-		lead2: 'Weit an Oberschenkel und Knie, am Rippbündchen gerafft, sodass das Bein über dem Schuh bauscht. Ein tief sitzender Bund mit Kordel.',
-		pieces: [{ name: 'Jogger', line: 'Eine Form. Ballonbein, Rippbündchen.' }],
+		lead2: 'Weit an Oberschenkel und Knie, dann schmaler zu einem offenen Saum, sodass das Bein bauscht und über den Schuh fällt. Kein Bündchen. Ein tief sitzender Bund mit Kordel.',
+		pieces: [{ name: 'Jogger', line: 'Eine Form. Ballonbein, offener Saum.' }],
 		coloursLabel: 'Zwei Farben',
 		colours: ['Unlit', 'Concrete'],
 		details: [
@@ -583,6 +601,22 @@ const de: Copy = {
 			'Canvas: ein dichter Baumwoll-Canvas, der mit dem Tragen weicher wird.',
 			'Verdeckte Knopfleiste. Der Name steht innen an der Passe.'
 		]
+	},
+	inventory: {
+		title: 'Inventar / Maison Seul',
+		description: 'Alles, was Maison Seul macht, an einem Ort. Ein Objekt in nummerierter Edition und Kleidung, die bleibt.',
+		kicker: 'Inventar',
+		h1: 'Alles, an einem Ort.',
+		lead: 'Ein Objekt in nummerierter Edition. Kleidung, die bleibt. Noch ist nichts im Verkauf.',
+		filterLabel: 'Zeigen',
+		cats: { all: 'Alle', objects: 'Objekte', tops: 'Oberteile', outer: 'Jacken', bottoms: 'Hosen' },
+		edition: 'Edition 001 / 100',
+		permanent: 'Dauerhaft',
+		pieces: '{n} Stücke',
+		sortLabel: 'Reihenfolge',
+		sortNo: 'Nach Nummer',
+		sortLow: 'Preis ↑',
+		sortHigh: 'Preis ↓'
 	},
 	house: {
 		title: 'Das Haus / Maison Seul',
@@ -715,9 +749,10 @@ const ja: Copy = {
 	taxNote: '関税・輸入消費税は含まれません',
 	bar: 'ダブリンでデザイン。中国で製造。',
 	photo: '写真は後日掲載',
-	nav: { permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
+	nav: { inventory: '一覧', permanent: '常設', house: 'メゾン', care: 'ケア', contact: 'お問い合わせ', back: '支援', language: '言語' },
 	foot: {
 		objects: 'オブジェ',
+		lines: 'ライン',
 		permanent: '常設コレクション',
 		ma: 'MA デニム',
 		ji: 'GRUND Tシャツ',
@@ -878,8 +913,8 @@ const ja: Copy = {
 	},
 	baram: {
 		lead: 'ジョガーパンツ。Baram（바람）は韓国語で「風」。脚が帆のように空気をはらみます。',
-		lead2: '太ももと膝はゆったり、リブの裾で絞り、靴の上でふくらむバルーンシルエット。ドローコードのウエストは低めに。',
-		pieces: [{ name: 'Jogger', line: 'ひとつの型。バルーンレッグ、リブ裾。' }],
+		lead2: '太ももと膝はゆったり、裾に向かって細くなり、リブなしのオープンヘムで靴の上に落ちるバルーンシルエット。ドローコードのウエストは低めに。',
+		pieces: [{ name: 'Jogger', line: 'ひとつの型。バルーンレッグ、オープンヘム。' }],
 		coloursLabel: '2色',
 		colours: ['Unlit', 'Concrete'],
 		details: [
@@ -902,6 +937,22 @@ const ja: Copy = {
 			'Canvas：着るほどに柔らかくなる高密度コットンキャンバス。',
 			'比翼仕立て。名前はヨークの内側に。'
 		]
+	},
+	inventory: {
+		title: '一覧 / Maison Seul',
+		description: 'Maison Seulがつくるもの、すべてをひとつの場所に。ナンバリングされたオブジェと、なくならない服。',
+		kicker: '一覧',
+		h1: 'すべてを、ひとつの場所に。',
+		lead: 'ナンバリング・エディションのオブジェがひとつ。そして、なくならない服。まだ販売はしていません。',
+		filterLabel: '表示',
+		cats: { all: 'すべて', objects: 'オブジェ', tops: 'トップス', outer: 'アウター', bottoms: 'ボトムス' },
+		edition: 'エディション 001 / 100',
+		permanent: '常設',
+		pieces: '{n}点',
+		sortLabel: '並び順',
+		sortNo: '番号順',
+		sortLow: '価格 ↑',
+		sortHigh: '価格 ↓'
 	},
 	house: {
 		title: 'メゾンについて / Maison Seul',

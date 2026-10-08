@@ -14,7 +14,7 @@ const config = {
 		},
 		prerender: {
 			// Every page in English, German and Japanese, plus the hidden English-only pages.
-			entries: ['/case-01', '/de/case-01', '/ja/case-01', '/', '/skrin', '/permanent', '/house', '/care', '/backers', '/contact', '/de', '/de/skrin', '/de/permanent', '/de/house', '/de/care', '/de/backers', '/de/contact', '/ja', '/ja/skrin', '/ja/permanent', '/ja/house', '/ja/care', '/ja/backers', '/ja/contact', '/shipping', '/register']
+			entries: ['/case-01', '/de/case-01', '/ja/case-01', '/', '/skrin', '/inventory', '/permanent', '/house', '/care', '/backers', '/contact', '/de', '/de/skrin', '/de/inventory', '/de/permanent', '/de/house', '/de/care', '/de/backers', '/de/contact', '/ja', '/ja/skrin', '/ja/inventory', '/ja/permanent', '/ja/house', '/ja/care', '/ja/backers', '/ja/contact', '/shipping', '/register']
 		}
 	}
 };

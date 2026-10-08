@@ -18,22 +18,32 @@
 
 	const nav = $derived([
 		{ href: '/skrin', label: 'SKRIN', kanji: 'ᛌᚴᚱᛁᚿ', script: 'non-Runr' },
-		{ href: '/permanent', label: c.nav.permanent },
+		{ href: '/inventory', label: c.nav.inventory },
 		{ href: '/house', label: c.nav.house },
 		{ href: '/care', label: c.nav.care },
 		{ href: '/contact', label: c.nav.contact }
 	]);
 	// Footer in three groups so the list stays short as objects are added.
 	const footGroups = $derived([
-		{ head: c.foot.objects, links: [{ href: '/skrin', label: 'SKRIN' }] },
 		{
-			head: c.foot.permanent,
+			head: c.nav.inventory,
 			links: [
-				{ href: '/permanent', label: c.foot.ma },
-				{ href: '/permanent#grund', label: c.foot.ji },
-				{ href: '/permanent#qutn', label: c.foot.qutn },
-				{ href: '/permanent#ovol', label: c.foot.ovol },
-				{ href: '/permanent#baram', label: c.foot.baram }
+				{ href: '/inventory', label: c.inventory.cats.all },
+				{ href: '/inventory?c=objects', label: c.inventory.cats.objects },
+				{ href: '/inventory?c=tops', label: c.inventory.cats.tops },
+				{ href: '/inventory?c=outer', label: c.inventory.cats.outer },
+				{ href: '/inventory?c=bottoms', label: c.inventory.cats.bottoms }
+			]
+		},
+		{
+			head: c.foot.lines,
+			links: [
+				{ href: '/skrin', label: 'SKRIN' },
+				{ href: '/permanent', label: 'MA' },
+				{ href: '/permanent#grund', label: 'GRUND' },
+				{ href: '/permanent#qutn', label: 'QUTN' },
+				{ href: '/permanent#ovol', label: 'ÖVÖL' },
+				{ href: '/permanent#baram', label: 'BARAM' }
 			]
 		},
 		{
