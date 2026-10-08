@@ -1,13 +1,12 @@
 <script lang="ts">
 	// A heading cut by the house line, as in the brand book: what is left of the
 	// line stays sharp, what is past it dissolves and splits like light through
-	// glass. The clean text is read once; the dissolved copy is decoration.
+	// glass. The clean text is the only text; the dissolved copy is drawn by CSS.
 	let { text, id }: { text: string; id?: string } = $props();
 </script>
 
-<h1 class="defaced" {id}>
+<h1 class="defaced" {id} data-text={text}>
 	<span class="clean">{text}</span>
-	<span class="melt" aria-hidden="true">{text}</span>
 	<svg class="line" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
 		<line class="l-wide" x1="78" y1="-20" x2="64" y2="120" vector-effect="non-scaling-stroke" />
 		<line class="l-narrow" x1="62" y1="-20" x2="46" y2="120" vector-effect="non-scaling-stroke" />
@@ -25,10 +24,11 @@
 		display: block;
 		clip-path: polygon(-5% -20%, 76% -20%, 66% 120%, -5% 120%);
 	}
-	.melt {
+	.defaced::after {
 		clip-path: polygon(76% -20%, 120% -20%, 120% 120%, 66% 120%);
 	}
-	.melt {
+	.defaced::after {
+		content: attr(data-text);
 		position: absolute;
 		inset: 0;
 		display: block;
@@ -58,7 +58,7 @@
 		.clean {
 			clip-path: polygon(-5% -20%, 59% -20%, 48% 120%, -5% 120%);
 		}
-		.melt {
+		.defaced::after {
 			clip-path: polygon(59% -20%, 120% -20%, 120% 120%, 48% 120%);
 		}
 		.l-wide {
@@ -73,7 +73,7 @@
 		stroke-width: 1;
 	}
 	@media (prefers-reduced-motion: no-preference) {
-		.melt {
+		.defaced::after {
 			animation: settle 2200ms ease 200ms both;
 		}
 	}
