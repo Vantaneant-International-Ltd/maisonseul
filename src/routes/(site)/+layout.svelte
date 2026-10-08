@@ -262,10 +262,10 @@
 			margin-left: 0;
 		}
 		.top nav a {
-			padding: 0 0.6rem;
+			padding: 0 1.2rem 0 0;
 		}
-		.top nav a:first-child {
-			padding-left: 0;
+		.top nav a.reserve {
+			padding: 0 0.75rem;
 		}
 		footer {
 			grid-template-columns: 1fr;
